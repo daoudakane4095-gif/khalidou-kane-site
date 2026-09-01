@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <title>KHALIDOU KANE — De la lumière dans votre style</title>
 
@@ -12,15 +14,14 @@
 
 :root{
   --black:#050505;
-  --black2:#0a0a0a;
+  --black2:#090909;
+  --card:#0d0d0d;
   --orange:#ff8500;
   --orange2:#ffb52e;
   --blue:#073b4c;
-  --red:#ff4d55;
   --white:#fff;
-  --soft:#eeeeea;
-  --muted:#9c9c9c;
-  --line:rgba(255,255,255,.11);
+  --muted:#8d8d8d;
+  --line:rgba(255,255,255,.1);
 }
 
 *{
@@ -35,7 +36,7 @@ html{
 
 body{
   background:var(--black);
-  color:white;
+  color:var(--white);
   font-family:'Inter',sans-serif;
   overflow-x:hidden;
 }
@@ -46,27 +47,81 @@ body::selection{
 }
 
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
 button{
   font-family:inherit;
 }
 
-/* =========================
+/* ================================
+   BACKGROUND ENERGY
+================================ */
+
+.energy{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(120px);
+  pointer-events:none;
+  z-index:-5;
+  opacity:.13;
+}
+
+.energy.one{
+  width:450px;
+  height:450px;
+  background:var(--orange);
+  top:-220px;
+  left:-180px;
+  animation:energyOne 10s ease-in-out infinite alternate;
+}
+
+.energy.two{
+  width:500px;
+  height:500px;
+  background:var(--blue);
+  right:-240px;
+  top:35%;
+  animation:energyTwo 12s ease-in-out infinite alternate;
+}
+
+.energy.three{
+  width:350px;
+  height:350px;
+  background:#ff4d55;
+  bottom:-220px;
+  left:35%;
+  animation:energyThree 11s ease-in-out infinite alternate;
+}
+
+@keyframes energyOne{
+  to{transform:translate(130px,110px)}
+}
+
+@keyframes energyTwo{
+  to{transform:translate(-100px,-80px)}
+}
+
+@keyframes energyThree{
+  to{transform:translate(90px,-70px)}
+}
+
+/* ================================
    LOADER
-========================= */
+================================ */
 
 .loader{
   position:fixed;
   inset:0;
-  background:#050505;
   z-index:99999;
+  background:#050505;
+
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   flex-direction:column;
+
   transition:1s ease;
 }
 
@@ -76,212 +131,364 @@ button{
 }
 
 .loader img{
-  width:115px;
-  height:115px;
+  width:105px;
+  height:105px;
   object-fit:contain;
   border-radius:50%;
-  animation:loaderGlow 2s infinite;
+  animation:loaderLogo 2s infinite;
 }
 
-.loader h2{
+.loader-name{
   margin-top:20px;
   font-size:12px;
-  letter-spacing:7px;
+  font-weight:800;
+  letter-spacing:5px;
+}
+
+.loader-sub{
+  margin-top:8px;
+  color:#666;
+  font-size:7px;
+  letter-spacing:2px;
 }
 
 .loader-line{
   width:120px;
   height:2px;
-  margin-top:18px;
+  margin-top:20px;
   background:linear-gradient(
     90deg,
     transparent,
     var(--orange),
     transparent
   );
-  animation:loading 1.5s infinite;
+  animation:loaderLine 1.4s infinite;
 }
 
-@keyframes loaderGlow{
+@keyframes loaderLogo{
   50%{
     transform:scale(1.08);
-    filter:drop-shadow(0 0 35px rgba(255,133,0,.6));
+    filter:drop-shadow(0 0 35px rgba(255,133,0,.55));
   }
 }
 
-@keyframes loading{
+@keyframes loaderLine{
   0%{transform:scaleX(.1);opacity:.2}
   50%{transform:scaleX(1);opacity:1}
   100%{transform:scaleX(.1);opacity:.2}
 }
 
-/* =========================
-   LIGHTS
-========================= */
+/* ================================
+   HEADER
+================================ */
 
-.light{
+.site-header{
   position:fixed;
-  border-radius:50%;
-  filter:blur(110px);
-  pointer-events:none;
-  z-index:-2;
-  opacity:.12;
-}
-
-.light.orange{
-  width:500px;
-  height:500px;
-  background:var(--orange);
-  top:-200px;
-  left:-180px;
-  animation:float1 10s infinite alternate;
-}
-
-.light.blue{
-  width:550px;
-  height:550px;
-  background:var(--blue);
-  right:-250px;
-  top:30%;
-  animation:float2 12s infinite alternate;
-}
-
-.light.red{
-  width:400px;
-  height:400px;
-  background:var(--red);
-  bottom:-220px;
-  left:35%;
-  animation:float3 11s infinite alternate;
-}
-
-@keyframes float1{
-  to{transform:translate(120px,100px)}
-}
-
-@keyframes float2{
-  to{transform:translate(-100px,-80px)}
-}
-
-@keyframes float3{
-  to{transform:translate(80px,-70px)}
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-header{
-  position:fixed;
-  width:100%;
   top:0;
-  z-index:1000;
-  padding:18px 5%;
-  transition:.4s;
+  left:0;
+  width:100%;
+  height:78px;
+  z-index:5000;
+  transition:.35s ease;
 }
 
-header.scrolled{
-  background:rgba(5,5,5,.82);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--line);
+.site-header.scrolled{
+  background:rgba(5,5,5,.88);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 40px rgba(0,0,0,.25);
 }
 
-.nav{
-  max-width:1250px;
+.nav-container{
+  width:min(1200px,calc(100% - 40px));
+  height:100%;
   margin:auto;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
 
+/* BRAND */
+
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:3px;
+  min-width:0;
 }
 
-.brand img{
-  width:45px;
-  height:45px;
-  object-fit:contain;
-  border-radius:50%;
-}
+.brand-logo{
+  width:48px;
+  height:48px;
+  flex-shrink:0;
 
-.nav-links{
   display:flex;
   align-items:center;
-  gap:30px;
+  justify-content:center;
+
+  overflow:hidden;
+  border-radius:50%;
+
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+
+  box-shadow:0 0 25px rgba(255,133,0,.12);
+
+  transition:.35s ease;
 }
 
-.nav-links a{
-  font-size:12px;
-  color:#ccc;
+.brand-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.brand:hover .brand-logo{
+  transform:scale(1.06);
+  box-shadow:0 0 35px rgba(255,133,0,.3);
+}
+
+.brand-name{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.brand-name strong{
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:2.5px;
+}
+
+.brand-name span{
+  color:#777;
+  font-size:7px;
+  letter-spacing:1.5px;
+  white-space:nowrap;
+}
+
+/* DESKTOP MENU */
+
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+}
+
+.desktop-nav a{
   position:relative;
+  color:#bdbdbd;
+  font-size:11px;
+  font-weight:600;
+  transition:.3s;
 }
 
-.nav-links a::after{
+.desktop-nav a:hover{
+  color:#fff;
+}
+
+.desktop-nav a:not(.nav-contact)::after{
   content:"";
   position:absolute;
-  bottom:-7px;
   left:0;
+  bottom:-8px;
   width:0;
   height:2px;
   background:var(--orange);
   transition:.3s;
 }
 
-.nav-links a:hover::after{
+.desktop-nav a:not(.nav-contact):hover::after{
   width:100%;
 }
 
-.contact-nav{
-  padding:12px 19px;
-  border:1px solid rgba(255,133,0,.5);
+.nav-contact{
+  padding:11px 18px;
+  color:#fff !important;
+  border:1px solid rgba(255,133,0,.45);
   border-radius:30px;
-  color:white!important;
-  background:rgba(255,133,0,.07);
+  background:rgba(255,133,0,.08);
   transition:.3s;
 }
 
-.contact-nav:hover{
+.nav-contact:hover{
   background:var(--orange);
-  color:#000!important;
+  color:#000 !important;
+  border-color:var(--orange);
+  transform:translateY(-2px);
 }
 
-.menu{
+/* MOBILE BUTTON */
+
+.mobile-menu-button{
   display:none;
-  border:1px solid var(--line);
-  background:#111;
-  color:white;
+
+  width:44px;
+  height:44px;
+
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);
+
+  background:rgba(255,255,255,.04);
+
+  cursor:pointer;
+
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:5px;
+}
+
+.mobile-menu-button span{
+  width:18px;
+  height:1.5px;
+  border-radius:10px;
+  background:#fff;
+  transition:.3s;
+}
+
+.mobile-menu-button.active span:nth-child(1){
+  transform:translateY(6.5px) rotate(45deg);
+}
+
+.mobile-menu-button.active span:nth-child(2){
+  opacity:0;
+}
+
+.mobile-menu-button.active span:nth-child(3){
+  transform:translateY(-6.5px) rotate(-45deg);
+}
+
+/* ================================
+   MOBILE MENU
+================================ */
+
+.mobile-menu-overlay{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,133,0,.1),
+      transparent 45%
+    ),
+    rgba(3,3,3,.98);
+
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.4s ease;
+}
+
+.mobile-menu-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.mobile-close{
+  position:absolute;
+  top:20px;
+  right:20px;
+
   width:45px;
   height:45px;
+
   border-radius:50%;
-  font-size:21px;
+  border:1px solid rgba(255,255,255,.12);
+
+  background:rgba(255,255,255,.04);
+  color:#fff;
+
+  font-size:28px;
+  cursor:pointer;
 }
 
-/* =========================
+.mobile-menu-content{
+  text-align:center;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+}
+
+.mobile-logo{
+  width:90px;
+  height:90px;
+  object-fit:contain;
+  border-radius:50%;
+  margin-bottom:18px;
+
+  filter:drop-shadow(
+    0 0 30px rgba(255,133,0,.3)
+  );
+}
+
+.mobile-menu-title{
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+.mobile-menu-subtitle{
+  margin-top:7px;
+  color:#666;
+  font-size:7px;
+  letter-spacing:2px;
+}
+
+.mobile-menu-content nav{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:25px;
+  margin-top:55px;
+}
+
+.mobile-menu-content nav a{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  transition:.3s;
+}
+
+.mobile-menu-content nav a:hover{
+  color:var(--orange);
+  transform:scale(1.05);
+}
+
+/* ================================
    HERO
-========================= */
+================================ */
 
 .hero{
   min-height:100vh;
-  position:relative;
+  padding:125px 6% 70px;
+
   display:flex;
   align-items:center;
+
+  position:relative;
   overflow:hidden;
-  padding:130px 7% 70px;
 }
 
 .hero-grid{
-  width:100%;
-  max-width:1250px;
+  width:min(1200px,100%);
   margin:auto;
+
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:70px;
+
   align-items:center;
 }
 
@@ -290,58 +497,76 @@ header.scrolled{
   z-index:3;
 }
 
-.tag{
-  display:inline-flex;
+.hero-tag{
+  display:flex;
   align-items:center;
   gap:12px;
+
   color:var(--orange2);
-  text-transform:uppercase;
-  font-size:10px;
+
+  font-size:9px;
+  font-weight:800;
+
   letter-spacing:4px;
+
   margin-bottom:25px;
 }
 
-.tag span{
+.hero-tag span{
   width:35px;
   height:1px;
   background:var(--orange);
 }
 
 .hero-logo{
-  width:95px;
-  height:95px;
+  width:90px;
+  height:90px;
   object-fit:contain;
   border-radius:50%;
+
   margin-bottom:25px;
-  filter:drop-shadow(0 0 25px rgba(255,133,0,.25));
-  animation:logoEnergy 3s infinite ease-in-out;
+
+  filter:drop-shadow(
+    0 0 25px rgba(255,133,0,.2)
+  );
+
+  animation:heroLogo 3s ease-in-out infinite;
 }
 
-@keyframes logoEnergy{
+@keyframes heroLogo{
   50%{
-    transform:translateY(-6px);
-    filter:drop-shadow(0 0 40px rgba(255,133,0,.55));
+    transform:translateY(-7px);
+    filter:drop-shadow(
+      0 0 40px rgba(255,133,0,.5)
+    );
   }
 }
 
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:clamp(48px,6vw,88px);
-  line-height:.94;
+
+  font-size:clamp(48px,6vw,82px);
+
+  line-height:.95;
+
   letter-spacing:-3px;
+
   font-weight:600;
 }
 
-.hero h1 span{
+.hero h1 .orange{
   color:var(--orange);
   text-shadow:0 0 40px rgba(255,133,0,.2);
 }
 
 .hero-description{
-  max-width:590px;
-  color:#999;
+  max-width:570px;
+
+  color:#909090;
+
   font-size:14px;
   line-height:1.9;
+
   margin:28px 0 30px;
 }
 
@@ -352,44 +577,56 @@ header.scrolled{
 }
 
 .btn{
-  padding:16px 24px;
+  min-height:48px;
+
+  padding:14px 23px;
+
   border-radius:40px;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1px;
-  transition:.35s;
+
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:8px;
+
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+
+  transition:.35s;
 }
 
-.primary{
-  background:var(--orange);
+.btn-primary{
   color:#000;
-  box-shadow:0 10px 35px rgba(255,133,0,.2);
+  background:var(--orange);
+
+  box-shadow:
+    0 12px 35px rgba(255,133,0,.2);
 }
 
-.primary:hover{
+.btn-primary:hover{
   transform:translateY(-5px);
-  box-shadow:0 15px 55px rgba(255,133,0,.4);
+
+  box-shadow:
+    0 18px 55px rgba(255,133,0,.4);
 }
 
-.secondary{
-  border:1px solid var(--line);
+.btn-secondary{
+  color:#fff;
   background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
 }
 
-.secondary:hover{
+.btn-secondary:hover{
   border-color:var(--orange);
   transform:translateY(-5px);
 }
 
-/* HERO IMAGE */
+/* HERO VISUAL */
 
 .hero-visual{
+  min-height:610px;
   position:relative;
-  min-height:620px;
+
   display:flex;
   align-items:center;
   justify-content:center;
@@ -397,116 +634,187 @@ header.scrolled{
 
 .hero-watermark{
   position:absolute;
-  width:600px;
-  max-width:100%;
+
+  width:560px;
+  height:560px;
+
+  object-fit:contain;
+
   opacity:.045;
+
   filter:grayscale(1) brightness(2);
-  animation:watermark 8s infinite ease-in-out;
+
+  pointer-events:none;
+
+  animation:watermarkMove 8s ease-in-out infinite;
 }
 
-@keyframes watermark{
+@keyframes watermarkMove{
   50%{
-    transform:scale(1.05) rotate(1deg);
+    transform:scale(1.06) rotate(1deg);
   }
 }
 
 .image-frame{
+  width:min(460px,94%);
+  height:560px;
+
   position:relative;
-  width:min(480px,100%);
-  height:570px;
-  border-radius:35px;
+
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.14);
+
+  border-radius:34px;
+
+  border:1px solid rgba(255,255,255,.13);
+
   background:#0b0b0b;
+
   box-shadow:
-    0 35px 100px rgba(0,0,0,.55),
-    0 0 80px rgba(255,133,0,.07);
+    0 35px 90px rgba(0,0,0,.55),
+    0 0 80px rgba(255,133,0,.08);
+
   transform:rotate(2deg);
-  transition:.6s;
+
+  transition:.5s ease;
+
+  z-index:2;
 }
 
 .image-frame:hover{
-  transform:rotate(0deg) scale(1.02);
-  border-color:rgba(255,133,0,.35);
+  transform:rotate(0deg) translateY(-8px);
+  border-color:rgba(255,133,0,.4);
+}
+
+.main-photo{
+  width:100%;
+  height:100%;
+
+  display:block;
+
+  object-fit:cover;
+
+  transition:.7s ease;
+}
+
+.image-frame:hover .main-photo{
+  transform:scale(1.035);
 }
 
 .image-frame::before{
   content:"";
+
   position:absolute;
   inset:0;
+
+  z-index:3;
+
+  pointer-events:none;
+
   background:
     linear-gradient(
       120deg,
       transparent 25%,
-      rgba(255,255,255,.10) 50%,
+      rgba(255,255,255,.1) 50%,
       transparent 75%
     );
-  z-index:2;
+
   transform:translateX(-100%);
+
   animation:photoShine 5s infinite;
 }
 
 @keyframes photoShine{
-  0%,55%{transform:translateX(-100%)}
-  75%,100%{transform:translateX(100%)}
+  0%,55%{
+    transform:translateX(-100%);
+  }
+
+  75%,100%{
+    transform:translateX(100%);
+  }
 }
 
-.image-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+.image-frame::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  z-index:2;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 45%,
+      rgba(0,0,0,.8) 100%
+    );
+
+  pointer-events:none;
 }
 
 .image-label{
   position:absolute;
-  bottom:20px;
-  left:20px;
-  right:20px;
-  padding:18px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:18px;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(15px);
+
+  left:18px;
+  right:18px;
+  bottom:18px;
+
   z-index:4;
+
+  padding:17px;
+
+  border-radius:17px;
+
+  border:1px solid rgba(255,255,255,.13);
+
+  background:rgba(0,0,0,.55);
+
+  backdrop-filter:blur(15px);
 }
 
 .image-label small{
   color:var(--orange);
+  font-size:8px;
   letter-spacing:3px;
-  font-size:9px;
 }
 
 .image-label strong{
   display:block;
   margin-top:7px;
-  font-size:14px;
+  font-size:13px;
 }
 
-/* =========================
+/* ================================
    MARQUEE
-========================= */
+================================ */
 
 .marquee{
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  padding:18px 0;
+
+  background:#080808;
+
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
-  overflow:hidden;
-  padding:18px 0;
-  white-space:nowrap;
-  background:#080808;
 }
 
 .marquee-track{
   display:inline-flex;
-  gap:35px;
+  align-items:center;
+  gap:30px;
+
   animation:marquee 25s linear infinite;
 }
 
 .marquee span{
-  font-size:10px;
-  letter-spacing:4px;
+  color:#8b8b8b;
+
+  font-size:9px;
   font-weight:800;
-  color:#bcbcbc;
+
+  letter-spacing:4px;
 }
 
 .marquee .orange{
@@ -514,139 +822,189 @@ header.scrolled{
 }
 
 @keyframes marquee{
-  to{transform:translateX(-50%)}
+  to{
+    transform:translateX(-50%);
+  }
 }
 
-/* =========================
-   GENERAL
-========================= */
+/* ================================
+   GENERAL SECTIONS
+================================ */
 
 section{
-  padding:115px 6%;
+  padding:110px 6%;
 }
 
 .container{
-  max-width:1200px;
+  width:min(1200px,100%);
   margin:auto;
 }
 
 .section-tag{
   color:var(--orange);
-  font-size:10px;
-  letter-spacing:4px;
+
+  font-size:9px;
   font-weight:800;
-  margin-bottom:15px;
+
+  letter-spacing:4px;
+
+  margin-bottom:16px;
 }
 
 .section-title{
   font-family:'Playfair Display',serif;
-  font-size:clamp(38px,5vw,70px);
-  line-height:1;
+
+  font-size:clamp(40px,5vw,70px);
+
+  line-height:.98;
 }
 
 .section-text{
   max-width:650px;
+
   margin-top:20px;
-  color:#888;
-  line-height:1.9;
+
+  color:#858585;
+
   font-size:14px;
+  line-height:1.9;
 }
 
-/* =========================
-   STORY
-========================= */
+/* ================================
+   VISION
+================================ */
 
-.story-grid{
+.vision-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:80px;
+
   align-items:center;
 }
 
-.story-box{
-  position:relative;
+.vision-box{
   min-height:470px;
-  border-radius:35px;
+
+  border-radius:34px;
+
   border:1px solid var(--line);
+
   background:
-    radial-gradient(circle at 30% 20%,rgba(255,133,0,.13),transparent 30%),
-    radial-gradient(circle at 80% 80%,rgba(7,59,76,.22),transparent 35%),
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255,133,0,.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(7,59,76,.25),
+      transparent 35%
+    ),
     #0a0a0a;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
+  position:relative;
   overflow:hidden;
 }
 
-.story-box img{
-  width:220px;
-  height:220px;
-  object-fit:contain;
-  border-radius:50%;
-  filter:drop-shadow(0 0 45px rgba(255,133,0,.22));
-}
-
-.story-box::after{
+.vision-box::after{
   content:"";
+
   position:absolute;
+
   width:350px;
   height:350px;
-  border:1px solid rgba(255,133,0,.08);
+
   border-radius:50%;
-  animation:rotate 15s linear infinite;
+
+  border:1px solid rgba(255,133,0,.08);
+
+  animation:rotateRing 18s linear infinite;
 }
 
-@keyframes rotate{
-  to{transform:rotate(360deg)}
+@keyframes rotateRing{
+  to{
+    transform:rotate(360deg);
+  }
 }
 
-.story-content h3{
-  font-size:30px;
-  line-height:1.35;
-  margin-bottom:20px;
+.vision-box img{
+  width:220px;
+  height:220px;
+
+  object-fit:contain;
+
+  border-radius:50%;
+
+  filter:
+    drop-shadow(
+      0 0 45px rgba(255,133,0,.25)
+    );
+
+  z-index:2;
 }
 
-.story-content h3 span{
+.vision-content h3{
+  font-size:29px;
+  line-height:1.4;
+
+  margin:25px 0 20px;
+}
+
+.vision-content h3 span{
   color:var(--orange);
 }
 
-.story-content p{
-  color:#8e8e8e;
-  line-height:1.9;
+.vision-content p{
+  color:#888;
   font-size:14px;
+  line-height:1.9;
 }
 
-.mini-grid{
+.stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:12px;
+
   margin-top:30px;
 }
 
-.mini{
+.stat{
   padding:20px 15px;
+
   background:#0b0b0b;
+
   border:1px solid var(--line);
+
   border-radius:18px;
 }
 
-.mini strong{
-  color:var(--orange);
-  font-size:22px;
+.stat strong{
   display:block;
-  margin-bottom:5px;
+
+  color:var(--orange);
+
+  font-size:23px;
+
+  margin-bottom:6px;
 }
 
-.mini small{
+.stat small{
   color:#666;
-  font-size:9px;
+
+  font-size:8px;
+
   text-transform:uppercase;
+
   letter-spacing:1px;
 }
 
-/* =========================
-   UNIVERSE
-========================= */
+/* ================================
+   UNIVERS
+================================ */
 
 .universe{
   background:#080808;
@@ -655,56 +1013,63 @@ section{
 .cards{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:18px;
+  gap:17px;
+
   margin-top:50px;
 }
 
 .card{
   min-height:310px;
-  border:1px solid var(--line);
-  border-radius:27px;
+
   padding:30px;
-  background:#0c0c0c;
+
   position:relative;
+
   overflow:hidden;
+
+  border-radius:27px;
+
+  border:1px solid var(--line);
+
+  background:#0c0c0c;
+
   transition:.45s;
 }
 
 .card:hover{
   transform:translateY(-10px);
+
   border-color:rgba(255,133,0,.4);
-  box-shadow:0 25px 70px rgba(0,0,0,.4);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.4);
 }
 
 .card-number{
   color:var(--orange);
-  font-size:10px;
+
+  font-size:9px;
+
   letter-spacing:3px;
-}
-
-.card h3{
-  position:absolute;
-  bottom:65px;
-  font-size:23px;
-}
-
-.card p{
-  position:absolute;
-  bottom:30px;
-  color:#6f6f6f;
-  font-size:12px;
 }
 
 .card-light{
   position:absolute;
-  width:160px;
-  height:160px;
-  border-radius:50%;
-  background:var(--orange);
-  filter:blur(80px);
-  opacity:.08;
+
+  width:170px;
+  height:170px;
+
   top:-50px;
   right:-50px;
+
+  border-radius:50%;
+
+  background:var(--orange);
+
+  filter:blur(80px);
+
+  opacity:.07;
+
   transition:.5s;
 }
 
@@ -713,56 +1078,88 @@ section{
   transform:scale(1.5);
 }
 
-/* =========================
-   SPECIAL
-========================= */
+.card h3{
+  position:absolute;
 
-.special{
-  position:relative;
+  left:30px;
+  bottom:65px;
+
+  font-size:22px;
 }
+
+.card p{
+  position:absolute;
+
+  left:30px;
+  bottom:30px;
+
+  color:#686868;
+
+  font-size:11px;
+}
+
+/* ================================
+   SPECIAL
+================================ */
 
 .special-box{
   min-height:500px;
-  border:1px solid rgba(255,133,0,.2);
+
   border-radius:35px;
-  overflow:hidden;
+
+  border:1px solid rgba(255,133,0,.22);
+
   position:relative;
-  background:
-    radial-gradient(circle at center,rgba(255,133,0,.09),transparent 40%),
-    #090909;
+
+  overflow:hidden;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   text-align:center;
+
   padding:40px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,133,0,.1),
+      transparent 48%
+    ),
+    #090909;
 }
 
 .special-ring{
   position:absolute;
+
   width:420px;
   height:420px;
+
   border-radius:50%;
+
   border:1px solid rgba(255,133,0,.08);
+
   box-shadow:
     0 0 0 70px rgba(255,133,0,.025),
     0 0 0 140px rgba(255,133,0,.015);
-  animation:spin 20s linear infinite;
-}
 
-@keyframes spin{
-  to{transform:rotate(360deg)}
+  animation:rotateRing 20s linear infinite;
 }
 
 .special-content{
   position:relative;
   z-index:2;
+
   max-width:700px;
 }
 
 .special-content h2{
   font-family:'Playfair Display',serif;
-  font-size:clamp(42px,6vw,80px);
-  line-height:1;
+
+  font-size:clamp(43px,6vw,78px);
+
+  line-height:.98;
 }
 
 .special-content h2 span{
@@ -770,47 +1167,65 @@ section{
 }
 
 .special-content p{
-  color:#858585;
-  line-height:1.9;
-  margin:25px auto 30px;
   max-width:600px;
+
+  margin:25px auto 30px;
+
+  color:#858585;
+
+  font-size:14px;
+  line-height:1.9;
 }
 
-/* =========================
+/* ================================
    EXPERIENCE
-========================= */
+================================ */
 
 .experience-grid{
   display:grid;
+
   grid-template-columns:repeat(4,1fr);
+
   gap:15px;
+
   margin-top:50px;
 }
 
 .experience{
-  border:1px solid var(--line);
-  border-radius:22px;
   padding:27px 22px;
+
+  border-radius:22px;
+
+  border:1px solid var(--line);
+
   background:#0b0b0b;
+
   transition:.4s;
 }
 
 .experience:hover{
   transform:translateY(-8px);
+
   border-color:rgba(255,133,0,.3);
 }
 
-.icon{
+.experience-icon{
   width:45px;
   height:45px;
-  border-radius:50%;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(255,133,0,.1);
+
+  border-radius:50%;
+
   color:var(--orange);
+
+  background:rgba(255,133,0,.1);
+
   margin-bottom:23px;
-  font-size:20px;
+
+  font-size:19px;
 }
 
 .experience h3{
@@ -820,56 +1235,79 @@ section{
 
 .experience p{
   color:#707070;
+
   font-size:11px;
   line-height:1.8;
 }
 
-/* =========================
+/* ================================
    CONTACT
-========================= */
+================================ */
 
 .contact-box{
-  border:1px solid rgba(255,133,0,.25);
-  border-radius:35px;
   padding:70px 30px;
+
   text-align:center;
+
+  border-radius:35px;
+
+  border:1px solid rgba(255,133,0,.25);
+
   background:
-    radial-gradient(circle at center,rgba(255,133,0,.09),transparent 50%),
+    radial-gradient(
+      circle at center,
+      rgba(255,133,0,.09),
+      transparent 50%
+    ),
     #090909;
 }
 
 .contact-box h2{
   font-family:'Playfair Display',serif;
-  font-size:clamp(40px,6vw,75px);
+
+  font-size:clamp(42px,6vw,75px);
+
   line-height:1;
+}
+
+.contact-box h2 span{
+  color:var(--orange);
 }
 
 .contact-box p{
   max-width:600px;
+
   margin:20px auto 30px;
+
   color:#858585;
+
+  font-size:14px;
   line-height:1.8;
 }
 
-/* =========================
+/* ================================
    FOOTER
-========================= */
+================================ */
 
 footer{
-  border-top:1px solid var(--line);
   padding:45px 6% 30px;
+
   background:#030303;
+
+  border-top:1px solid var(--line);
 }
 
 .footer{
-  max-width:1200px;
+  width:min(1200px,100%);
   margin:auto;
 }
 
 .footer-top{
   display:flex;
+
   align-items:center;
   justify-content:space-between;
+
   padding-bottom:30px;
 }
 
@@ -882,13 +1320,15 @@ footer{
 .footer-brand img{
   width:52px;
   height:52px;
+
   object-fit:contain;
+
   border-radius:50%;
 }
 
 .footer-brand strong{
-  letter-spacing:3px;
   font-size:13px;
+  letter-spacing:3px;
 }
 
 .footer-brand small{
@@ -903,12 +1343,17 @@ footer{
 .social{
   width:40px;
   height:40px;
-  border:1px solid var(--line);
-  border-radius:50%;
+
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:10px;
+
+  border-radius:50%;
+
+  border:1px solid var(--line);
+
+  font-size:9px;
+
   transition:.3s;
 }
 
@@ -918,99 +1363,70 @@ footer{
 }
 
 .footer-bottom{
-  border-top:1px solid var(--line);
   padding-top:23px;
+
+  border-top:1px solid var(--line);
+
   display:flex;
   justify-content:space-between;
+
   color:#555;
+
   font-size:9px;
   letter-spacing:1px;
 }
 
-/* =========================
+/* ================================
    WHATSAPP
-========================= */
+================================ */
 
 .whatsapp{
   position:fixed;
+
   right:20px;
   bottom:20px;
+
   width:59px;
   height:59px;
-  border-radius:50%;
-  background:#25D366;
-  color:white;
+
+  z-index:6000;
+
   display:flex;
-  justify-content:center;
   align-items:center;
-  font-size:24px;
-  z-index:5000;
-  box-shadow:0 10px 40px rgba(37,211,102,.25);
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#25D366;
+
+  color:white;
+
+  font-size:22px;
+
+  box-shadow:
+    0 10px 40px rgba(37,211,102,.25);
+
   animation:whatsappPulse 2.5s infinite;
 }
 
 @keyframes whatsappPulse{
   50%{
-    box-shadow:0 0 0 14px rgba(37,211,102,0);
+    box-shadow:
+      0 0 0 14px rgba(37,211,102,0);
   }
 }
 
-/* =========================
-   MOBILE MENU
-========================= */
-
-.mobile-menu{
-  position:fixed;
-  inset:0;
-  background:rgba(5,5,5,.98);
-  backdrop-filter:blur(20px);
-  z-index:4000;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition:.4s;
-}
-
-.mobile-menu.open{
-  opacity:1;
-  visibility:visible;
-}
-
-.mobile-links{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:28px;
-}
-
-.mobile-links a{
-  font-family:'Playfair Display',serif;
-  font-size:34px;
-}
-
-.close{
-  position:absolute;
-  top:25px;
-  right:25px;
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  border:1px solid var(--line);
-  background:#111;
-  color:white;
-  font-size:23px;
-}
-
-/* =========================
+/* ================================
    REVEAL
-========================= */
+================================ */
 
 .reveal{
   opacity:0;
   transform:translateY(35px);
-  transition:opacity .8s ease, transform .8s ease;
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
 }
 
 .reveal.visible{
@@ -1018,33 +1434,30 @@ footer{
   transform:translateY(0);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ================================
+   RESPONSIVE TABLET
+================================ */
 
 @media(max-width:950px){
 
-  .nav-links{
+  .desktop-nav{
     display:none;
   }
 
-  .menu{
-    display:block;
-  }
-
-  .hero{
-    padding-top:120px;
+  .mobile-menu-button{
+    display:flex;
   }
 
   .hero-grid{
     grid-template-columns:1fr;
+    gap:50px;
     text-align:center;
   }
 
   .hero-content{
     display:flex;
-    align-items:center;
     flex-direction:column;
+    align-items:center;
   }
 
   .hero-description{
@@ -1052,10 +1465,10 @@ footer{
   }
 
   .hero-visual{
-    min-height:500px;
+    min-height:530px;
   }
 
-  .story-grid{
+  .vision-grid{
     grid-template-columns:1fr;
   }
 
@@ -1066,17 +1479,39 @@ footer{
   .experience-grid{
     grid-template-columns:1fr 1fr;
   }
-
 }
+
+/* ================================
+   RESPONSIVE PHONE
+================================ */
 
 @media(max-width:600px){
 
-  header{
-    padding:13px 18px;
+  .site-header{
+    height:70px;
   }
 
-  .brand span{
-    display:none;
+  .nav-container{
+    width:calc(100% - 22px);
+  }
+
+  .brand{
+    gap:9px;
+  }
+
+  .brand-logo{
+    width:42px;
+    height:42px;
+  }
+
+  .brand-name strong{
+    font-size:10px;
+    letter-spacing:1.8px;
+  }
+
+  .brand-name span{
+    font-size:5.5px;
+    letter-spacing:1px;
   }
 
   section{
@@ -1084,47 +1519,75 @@ footer{
   }
 
   .hero{
-    padding:110px 20px 70px;
+    padding:110px 20px 65px;
   }
 
   .hero h1{
-    font-size:48px;
-    letter-spacing:-1px;
+    font-size:47px;
+    letter-spacing:-1.5px;
   }
 
   .hero-logo{
-    width:80px;
-    height:80px;
+    width:78px;
+    height:78px;
+  }
+
+  .hero-description{
+    font-size:13px;
+  }
+
+  .buttons{
+    justify-content:center;
+  }
+
+  .btn{
+    padding:13px 19px;
   }
 
   .hero-visual{
-    min-height:430px;
+    min-height:450px;
+  }
+
+  .hero-watermark{
+    width:320px;
+    height:320px;
   }
 
   .image-frame{
-    height:450px;
+    width:94%;
+    height:440px;
     transform:none;
+    border-radius:28px;
   }
 
-  .story-box{
+  .image-frame:hover{
+    transform:translateY(-5px);
+  }
+
+  .vision-box{
     min-height:360px;
   }
 
-  .mini-grid{
-    grid-template-columns:1fr;
+  .vision-box img{
+    width:180px;
+    height:180px;
   }
 
-  .experience-grid{
+  .stats{
     grid-template-columns:1fr;
   }
 
   .special-box{
-    min-height:420px;
+    min-height:430px;
   }
 
   .special-ring{
     width:280px;
     height:280px;
+  }
+
+  .experience-grid{
+    grid-template-columns:1fr;
   }
 
   .footer-top{
@@ -1144,98 +1607,173 @@ footer{
     right:15px;
     bottom:15px;
   }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
+<!-- ================================
      LOADER
-========================= -->
+================================ -->
 
 <div class="loader" id="loader">
 
   <img src="IMG_3081.jpeg" alt="Khalidou Kane">
 
-  <h2>KHALIDOU KANE</h2>
+  <div class="loader-name">
+    KHALIDOU KANE
+  </div>
+
+  <div class="loader-sub">
+    DE LA LUMIÈRE DANS VOTRE STYLE
+  </div>
 
   <div class="loader-line"></div>
 
 </div>
 
-<!-- LIGHTS -->
+<!-- ENERGY -->
 
-<div class="light orange"></div>
-<div class="light blue"></div>
-<div class="light red"></div>
+<div class="energy one"></div>
+<div class="energy two"></div>
+<div class="energy three"></div>
 
-<!-- =========================
+<!-- ================================
      HEADER
-========================= -->
+================================ -->
 
-<header id="header">
+<header class="site-header" id="siteHeader">
 
-  <nav class="nav">
+  <div class="nav-container">
 
     <a href="#accueil" class="brand">
 
-      <img src="IMG_3081.jpeg" alt="Logo Khalidou Kane">
+      <div class="brand-logo">
 
-      <span>KHALIDOU KANE</span>
+        <img
+          src="IMG_3081.jpeg"
+          alt="Logo Khalidou Kane"
+        >
+
+      </div>
+
+      <div class="brand-name">
+
+        <strong>KHALIDOU KANE</strong>
+
+        <span>
+          DE LA LUMIÈRE DANS VOTRE STYLE
+        </span>
+
+      </div>
 
     </a>
 
-    <div class="nav-links">
+    <nav class="desktop-nav">
 
-      <a href="#accueil">Accueil</a>
+      <a href="#accueil">
+        Accueil
+      </a>
 
-      <a href="#univers">L'univers</a>
+      <a href="#univers">
+        L'univers
+      </a>
 
-      <a href="#special">Découvrir</a>
+      <a href="#special">
+        Découvrir
+      </a>
 
-      <a href="#experience">Expérience</a>
+      <a href="#experience">
+        Expérience
+      </a>
 
-      <a href="#contact" class="contact-nav">
+      <a href="#contact" class="nav-contact">
         Contact
       </a>
 
-    </div>
+    </nav>
 
-    <button class="menu" id="menuBtn">
-      ☰
+    <button
+      class="mobile-menu-button"
+      id="mobileMenuButton"
+      aria-label="Ouvrir le menu"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
     </button>
 
-  </nav>
+  </div>
 
 </header>
 
-<!-- MOBILE MENU -->
+<!-- ================================
+     MOBILE MENU
+================================ -->
 
-<div class="mobile-menu" id="mobileMenu">
+<div
+  class="mobile-menu-overlay"
+  id="mobileMenuOverlay"
+>
 
-  <button class="close" id="closeBtn">×</button>
+  <button
+    class="mobile-close"
+    id="mobileClose"
+    aria-label="Fermer"
+  >
+    ×
+  </button>
 
-  <div class="mobile-links">
+  <div class="mobile-menu-content">
 
-    <a href="#accueil">Accueil</a>
+    <img
+      src="IMG_3081.jpeg"
+      alt="Khalidou Kane"
+      class="mobile-logo"
+    >
 
-    <a href="#univers">L'univers</a>
+    <div class="mobile-menu-title">
+      KHALIDOU KANE
+    </div>
 
-    <a href="#special">Découvrir</a>
+    <div class="mobile-menu-subtitle">
+      DE LA LUMIÈRE DANS VOTRE STYLE
+    </div>
 
-    <a href="#experience">Expérience</a>
+    <nav>
 
-    <a href="#contact">Contact</a>
+      <a href="#accueil">
+        Accueil
+      </a>
+
+      <a href="#univers">
+        L'univers
+      </a>
+
+      <a href="#special">
+        Découvrir
+      </a>
+
+      <a href="#experience">
+        Expérience
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </nav>
 
   </div>
 
 </div>
 
-<!-- =========================
+<!-- ================================
      HERO
-========================= -->
+================================ -->
 
 <main>
 
@@ -1245,40 +1783,56 @@ footer{
 
     <div class="hero-content">
 
-      <div class="tag">
+      <div class="hero-tag">
+
         <span></span>
+
         KHALIDOU KANE
+
         <span></span>
+
       </div>
 
       <img
         src="IMG_3081.jpeg"
-        class="hero-logo"
         alt="Logo Khalidou Kane"
+        class="hero-logo"
       >
 
       <h1>
+
         DE LA<br>
-        <span>LUMIÈRE</span><br>
+
+        <span class="orange">
+          LUMIÈRE
+        </span><br>
+
         DANS VOTRE STYLE
+
       </h1>
 
       <p class="hero-description">
 
-        Bienvenue dans un nouvel univers signé
-        Khalidou Kane. Une identité forte,
-        moderne et créative, pensée pour faire
-        ressortir ce qui vous rend unique.
+        Bienvenue dans l'univers Khalidou Kane.
+        Une identité forte, moderne et créative,
+        pensée pour donner une nouvelle énergie
+        à votre style.
 
       </p>
 
       <div class="buttons">
 
-        <a href="#special" class="btn primary">
+        <a
+          href="#special"
+          class="btn btn-primary"
+        >
           DÉCOUVRIR ✦
         </a>
 
-        <a href="#contact" class="btn secondary">
+        <a
+          href="#contact"
+          class="btn btn-secondary"
+        >
           NOUS CONTACTER
         </a>
 
@@ -1292,22 +1846,25 @@ footer{
 
       <img
         src="IMG_3081.jpeg"
-        class="hero-watermark"
         alt=""
+        class="hero-watermark"
       >
 
-      <!-- IMAGE PRINCIPALE -->
+      <!-- PHOTO PRINCIPALE -->
 
       <div class="image-frame">
 
         <img
           src="IMG_4209.jpeg"
           alt="Khalidou Kane"
+          class="main-photo"
         >
 
         <div class="image-label">
 
-          <small>KH — SIGNATURE</small>
+          <small>
+            KH — SIGNATURE
+          </small>
 
           <strong>
             DE LA LUMIÈRE DANS VOTRE STYLE
@@ -1323,9 +1880,9 @@ footer{
 
 </section>
 
-<!-- =========================
+<!-- ================================
      MARQUEE
-========================= -->
+================================ -->
 
 <div class="marquee">
 
@@ -1333,38 +1890,52 @@ footer{
 
     <span>KHALIDOU KANE</span>
     <span class="orange">✦</span>
-    <span>DE LA LUMIÈRE DANS VOTRE STYLE</span>
+
+    <span>
+      DE LA LUMIÈRE DANS VOTRE STYLE
+    </span>
+
     <span class="orange">✦</span>
+
     <span>CRÉATIVITÉ</span>
     <span class="orange">✦</span>
+
     <span>ÉLÉGANCE</span>
     <span class="orange">✦</span>
+
     <span>ORIGINALITÉ</span>
     <span class="orange">✦</span>
 
     <span>KHALIDOU KANE</span>
     <span class="orange">✦</span>
-    <span>DE LA LUMIÈRE DANS VOTRE STYLE</span>
+
+    <span>
+      DE LA LUMIÈRE DANS VOTRE STYLE
+    </span>
+
     <span class="orange">✦</span>
+
     <span>CRÉATIVITÉ</span>
     <span class="orange">✦</span>
+
     <span>ÉLÉGANCE</span>
     <span class="orange">✦</span>
+
     <span>ORIGINALITÉ</span>
 
   </div>
 
 </div>
 
-<!-- =========================
-     STORY
-========================= -->
+<!-- ================================
+     VISION
+================================ -->
 
 <section>
 
-  <div class="container story-grid">
+  <div class="container vision-grid">
 
-    <div class="story-box reveal">
+    <div class="vision-box reveal">
 
       <img
         src="IMG_3081.jpeg"
@@ -1373,47 +1944,72 @@ footer{
 
     </div>
 
-    <div class="story-content reveal">
+    <div class="vision-content reveal">
 
       <div class="section-tag">
         01 — NOTRE VISION
       </div>
 
       <h2 class="section-title">
+
         PLUS QU'UNE<br>
+
         <span style="color:#ff8500">
           IDENTITÉ.
         </span>
+
       </h2>
 
       <h3>
+
         Une vision.<br>
         Une énergie.<br>
-        <span>Une signature.</span>
+
+        <span>
+          Une signature.
+        </span>
+
       </h3>
 
       <p>
+
         Khalidou Kane est pensé comme un univers
         où chaque détail compte. Une présence,
         une émotion et une identité qui ne passent
         pas inaperçues.
+
       </p>
 
-      <div class="mini-grid">
+      <div class="stats">
 
-        <div class="mini">
+        <div class="stat">
+
           <strong>01</strong>
-          <small>Vision</small>
+
+          <small>
+            Vision
+          </small>
+
         </div>
 
-        <div class="mini">
+        <div class="stat">
+
           <strong>∞</strong>
-          <small>Créativité</small>
+
+          <small>
+            Créativité
+          </small>
+
         </div>
 
-        <div class="mini">
+        <div class="stat">
+
           <strong>✦</strong>
-          <small>Style</small>
+
+          <small>
+            Style
+          </small>
+
         </div>
 
       </div>
@@ -1424,11 +2020,14 @@ footer{
 
 </section>
 
-<!-- =========================
+<!-- ================================
      UNIVERS
-========================= -->
+================================ -->
 
-<section class="universe" id="univers">
+<section
+  class="universe"
+  id="univers"
+>
 
   <div class="container">
 
@@ -1439,14 +2038,18 @@ footer{
       </div>
 
       <h2 class="section-title">
+
         UNE SIGNATURE<br>
         QUI SE REMARQUE.
+
       </h2>
 
       <p class="section-text">
+
         L'univers Khalidou Kane mélange caractère,
         créativité et élégance pour créer une
         expérience qui ne ressemble à aucune autre.
+
       </p>
 
     </div>
@@ -1461,7 +2064,9 @@ footer{
           01 /
         </div>
 
-        <h3>IDENTITÉ</h3>
+        <h3>
+          IDENTITÉ
+        </h3>
 
         <p>
           Une image forte, reconnaissable et moderne.
@@ -1477,7 +2082,9 @@ footer{
           02 /
         </div>
 
-        <h3>CRÉATIVITÉ</h3>
+        <h3>
+          CRÉATIVITÉ
+        </h3>
 
         <p>
           Des idées qui donnent une nouvelle énergie
@@ -1494,10 +2101,12 @@ footer{
           03 /
         </div>
 
-        <h3>ÉLÉGANCE</h3>
+        <h3>
+          ÉLÉGANCE
+        </h3>
 
         <p>
-          Le détail qui transforme une simple présence
+          Le détail qui transforme une présence
           en signature.
         </p>
 
@@ -1509,11 +2118,14 @@ footer{
 
 </section>
 
-<!-- =========================
+<!-- ================================
      SPECIAL
-========================= -->
+================================ -->
 
-<section class="special" id="special">
+<section
+  class="special"
+  id="special"
+>
 
   <div class="container">
 
@@ -1528,18 +2140,26 @@ footer{
         </div>
 
         <h2>
+
           QUELQUE CHOSE<br>
+
           DE <span>SPÉCIAL.</span>
+
         </h2>
 
         <p>
-          L'univers Khalidou Kane ne fait que commencer.
-          Une nouvelle expérience arrive bientôt.
-          Préparez-vous à découvrir quelque chose
-          de différent.
+
+          L'univers Khalidou Kane ne fait que
+          commencer. Une nouvelle expérience arrive
+          bientôt. Préparez-vous à découvrir quelque
+          chose de différent.
+
         </p>
 
-        <a href="#contact" class="btn primary">
+        <a
+          href="#contact"
+          class="btn btn-primary"
+        >
           EN SAVOIR PLUS ✦
         </a>
 
@@ -1551,9 +2171,9 @@ footer{
 
 </section>
 
-<!-- =========================
+<!-- ================================
      EXPERIENCE
-========================= -->
+================================ -->
 
 <section id="experience">
 
@@ -1566,8 +2186,10 @@ footer{
       </div>
 
       <h2 class="section-title">
+
         PENSÉ POUR<br>
         VOUS.
+
       </h2>
 
     </div>
@@ -1576,9 +2198,13 @@ footer{
 
       <div class="experience reveal">
 
-        <div class="icon">✦</div>
+        <div class="experience-icon">
+          ✦
+        </div>
 
-        <h3>STYLE</h3>
+        <h3>
+          STYLE
+        </h3>
 
         <p>
           Une identité visuelle moderne et unique.
@@ -1588,9 +2214,13 @@ footer{
 
       <div class="experience reveal">
 
-        <div class="icon">⚡</div>
+        <div class="experience-icon">
+          ⚡
+        </div>
 
-        <h3>ÉNERGIE</h3>
+        <h3>
+          ÉNERGIE
+        </h3>
 
         <p>
           Une expérience dynamique qui attire le regard.
@@ -1600,9 +2230,13 @@ footer{
 
       <div class="experience reveal">
 
-        <div class="icon">◆</div>
+        <div class="experience-icon">
+          ◆
+        </div>
 
-        <h3>QUALITÉ</h3>
+        <h3>
+          QUALITÉ
+        </h3>
 
         <p>
           Chaque détail est pensé avec précision.
@@ -1612,9 +2246,13 @@ footer{
 
       <div class="experience reveal">
 
-        <div class="icon">∞</div>
+        <div class="experience-icon">
+          ∞
+        </div>
 
-        <h3>VISION</h3>
+        <h3>
+          VISION
+        </h3>
 
         <p>
           Une marque construite pour évoluer.
@@ -1628,9 +2266,9 @@ footer{
 
 </section>
 
-<!-- =========================
+<!-- ================================
      CONTACT
-========================= -->
+================================ -->
 
 <section id="contact">
 
@@ -1643,22 +2281,27 @@ footer{
       </div>
 
       <h2>
+
         ENTRONS DANS<br>
-        <span style="color:#ff8500">
+
+        <span>
           L'UNIVERS.
         </span>
+
       </h2>
 
       <p>
+
         Une question, une demande ou envie
         d'en savoir plus sur Khalidou Kane ?
         Contactez-nous directement.
+
       </p>
 
       <a
         href="https://wa.me/221781383200"
         target="_blank"
-        class="btn primary"
+        class="btn btn-primary"
       >
         CONTACTER SUR WHATSAPP
       </a>
@@ -1671,9 +2314,9 @@ footer{
 
 </main>
 
-<!-- =========================
+<!-- ================================
      WHATSAPP
-========================= -->
+================================ -->
 
 <a
   href="https://wa.me/221781383200"
@@ -1684,9 +2327,9 @@ footer{
   ☎
 </a>
 
-<!-- =========================
+<!-- ================================
      FOOTER
-========================= -->
+================================ -->
 
 <footer>
 
@@ -1698,12 +2341,14 @@ footer{
 
         <img
           src="IMG_3081.jpeg"
-          alt="Khalidou Kane"
+          alt="Logo Khalidou Kane"
         >
 
         <div>
 
-          <strong>KHALIDOU KANE</strong>
+          <strong>
+            KHALIDOU KANE
+          </strong>
 
           <br>
 
@@ -1739,7 +2384,8 @@ footer{
     <div class="footer-bottom">
 
       <span>
-        © <span id="year"></span> KHALIDOU KANE
+        © <span id="year"></span>
+        KHALIDOU KANE
       </span>
 
       <span>
@@ -1752,35 +2398,35 @@ footer{
 
 </footer>
 
+<!-- ================================
+     JAVASCRIPT
+================================ -->
+
 <script>
 
-/* =========================
-   LOADER
-========================= */
+/* LOADER */
 
-window.addEventListener("load",function(){
+window.addEventListener("load", () => {
 
-  setTimeout(function(){
+  setTimeout(() => {
 
     document
       .getElementById("loader")
       .classList.add("hide");
 
-  },900);
+  }, 900);
 
 });
 
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
-window.addEventListener("scroll",function(){
+const header =
+  document.getElementById("siteHeader");
 
-  const header =
-    document.getElementById("header");
+window.addEventListener("scroll", () => {
 
-  if(window.scrollY > 40){
+  if(window.scrollY > 30){
 
     header.classList.add("scrolled");
 
@@ -1793,82 +2439,113 @@ window.addEventListener("scroll",function(){
 });
 
 
-/* =========================
-   MOBILE MENU
-========================= */
+/* MOBILE MENU */
 
-const menuBtn =
-  document.getElementById("menuBtn");
+const mobileButton =
+  document.getElementById(
+    "mobileMenuButton"
+  );
 
 const mobileMenu =
-  document.getElementById("mobileMenu");
+  document.getElementById(
+    "mobileMenuOverlay"
+  );
 
-const closeBtn =
-  document.getElementById("closeBtn");
+const mobileClose =
+  document.getElementById(
+    "mobileClose"
+  );
 
-menuBtn.addEventListener("click",function(){
 
-  mobileMenu.classList.add("open");
+mobileButton.addEventListener(
+  "click",
+  () => {
 
-});
+    mobileButton.classList.add("active");
 
-closeBtn.addEventListener("click",function(){
+    mobileMenu.classList.add("open");
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+);
+
+
+mobileClose.addEventListener(
+  "click",
+  closeMobileMenu
+);
+
+
+document
+  .querySelectorAll(
+    ".mobile-menu-content nav a"
+  )
+  .forEach(link => {
+
+    link.addEventListener(
+      "click",
+      closeMobileMenu
+    );
+
+  });
+
+
+function closeMobileMenu(){
+
+  mobileButton.classList.remove("active");
 
   mobileMenu.classList.remove("open");
 
-});
+  document.body.style.overflow = "";
 
-document
-  .querySelectorAll(".mobile-links a")
-  .forEach(function(link){
-
-    link.addEventListener("click",function(){
-
-      mobileMenu.classList.remove("open");
-
-    });
-
-  });
+}
 
 
-/* =========================
-   SCROLL ANIMATION
-========================= */
+/* SCROLL REVEAL */
 
-const reveal =
+const elements =
   document.querySelectorAll(".reveal");
 
 const observer =
-  new IntersectionObserver(function(entries){
+  new IntersectionObserver(
+    entries => {
 
-    entries.forEach(function(entry){
+      entries.forEach(entry => {
 
-      if(entry.isIntersecting){
+        if(entry.isIntersecting){
 
-        entry.target.classList.add("visible");
+          entry.target
+            .classList
+            .add("visible");
 
-        observer.unobserve(entry.target);
+          observer.unobserve(
+            entry.target
+          );
 
-      }
+        }
 
-    });
+      });
 
-  },{
-    threshold:.12
-  });
+    },
+    {
+      threshold:.12
+    }
+  );
 
-reveal.forEach(function(element){
+
+elements.forEach(element => {
 
   observer.observe(element);
 
 });
 
 
-/* =========================
-   YEAR
-========================= */
+/* YEAR */
 
-document.getElementById("year").textContent =
+document.getElementById("year")
+  .textContent =
   new Date().getFullYear();
 
 </script>
