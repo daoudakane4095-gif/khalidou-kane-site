@@ -4,957 +4,1408 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Khalidou Kane — Une identité. Une énergie. Une vision.">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="theme-color" content="#050505">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <title>Khalidou Kane — De la lumière dans votre style</title>
 
   <style>
-    :root {
-      --black: #070707;
-      --black-2: #101010;
-      --black-3: #151515;
-      --white: #ffffff;
-      --gray: #a5a5a5;
-      --orange: #d98a32;
-      --gold: #e7b66a;
-      --line: rgba(255,255,255,.10);
-      --shadow: 0 25px 70px rgba(0,0,0,.45);
+    :root{
+      --bg:#050505;
+      --bg2:#0a0a0a;
+      --card:#101010;
+      --white:#fff;
+      --muted:#8a8a8a;
+      --orange:#ff8a00;
+      --orange-light:#ffb347;
+      --line:rgba(255,255,255,.1);
+      --shadow:0 30px 80px rgba(0,0,0,.55);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
-      overflow-x: hidden;
+    body{
+      background:var(--bg);
+      color:var(--white);
+      font-family:Arial,Helvetica,sans-serif;
+      overflow-x:hidden;
     }
 
-    body.menu-open {
-      overflow: hidden;
+    body.menu-open{
+      overflow:hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
+    img{
+      max-width:100%;
     }
 
-    button {
-      font: inherit;
+    button{
+      font:inherit;
+    }
+
+    /* =========================
+       BACKGROUND ENERGY
+    ========================= */
+
+    .glow{
+      position:fixed;
+      width:350px;
+      height:350px;
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:.08;
+      pointer-events:none;
+      z-index:-10;
+    }
+
+    .glow.one{
+      background:var(--orange);
+      top:-180px;
+      left:-160px;
+    }
+
+    .glow.two{
+      background:#006b82;
+      right:-180px;
+      top:40%;
+    }
+
+    .glow.three{
+      background:#ff5c00;
+      bottom:-200px;
+      left:35%;
+    }
+
+    /* =========================
+       LOADER
+    ========================= */
+
+    #loader{
+      position:fixed;
+      inset:0;
+      background:#050505;
+      z-index:99999;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+
+      transition:.7s ease;
+    }
+
+    #loader.hide{
+      opacity:0;
+      visibility:hidden;
+    }
+
+    .loader-image{
+      width:100px;
+      height:100px;
+      object-fit:cover;
+      border-radius:50%;
+
+      border:1px solid rgba(255,255,255,.15);
+
+      animation:loaderPulse 1.7s infinite;
+
+      box-shadow:
+        0 0 50px rgba(255,138,0,.15);
+    }
+
+    .loader-name{
+      margin-top:20px;
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:4px;
+    }
+
+    .loader-sub{
+      margin-top:8px;
+      color:#666;
+      font-size:7px;
+      letter-spacing:2px;
+    }
+
+    .loader-bar{
+      width:100px;
+      height:2px;
+      background:var(--orange);
+      margin-top:20px;
+      animation:loaderBar 1.4s infinite;
+    }
+
+    @keyframes loaderPulse{
+      50%{
+        transform:scale(1.08);
+      }
+    }
+
+    @keyframes loaderBar{
+      0%,100%{
+        transform:scaleX(.2);
+        opacity:.2;
+      }
+
+      50%{
+        transform:scaleX(1);
+        opacity:1;
+      }
     }
 
     /* =========================
        HEADER
     ========================= */
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 22px 6%;
-      transition: .35s ease;
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:78px;
+      z-index:5000;
+
+      transition:.35s ease;
     }
 
-    header.scrolled {
-      background: rgba(7,7,7,.88);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
-      padding-top: 14px;
-      padding-bottom: 14px;
+    header.scrolled{
+      background:rgba(5,5,5,.88);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
     }
 
-    .nav {
-      max-width: 1400px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
+    .nav{
+      width:min(1200px,calc(100% - 40px));
+      height:100%;
+      margin:auto;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      position: relative;
-      z-index: 1100;
+    /* =========================
+       BRAND
+    ========================= */
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
-    .brand-image {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,.35);
-      box-shadow: 0 0 25px rgba(217,138,50,.12);
+    .brand-image{
+      width:48px;
+      height:48px;
+      flex-shrink:0;
+
+      border-radius:50%;
+      overflow:hidden;
+
+      background:#111;
+      border:1px solid rgba(255,255,255,.14);
     }
 
-    .brand-name {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .brand-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
-    .brand-sub {
-      color: var(--gray);
-      font-size: 9px;
-      letter-spacing: 2px;
-      margin-top: 4px;
+    .brand-info{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
     }
 
-    .desktop-menu {
-      display: flex;
-      align-items: center;
-      gap: 34px;
+    .brand-name{
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:2.5px;
     }
 
-    .desktop-menu a {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.8px;
-      color: #ddd;
-      position: relative;
-      padding: 8px 0;
+    .brand-slogan{
+      color:#666;
+      font-size:7px;
+      letter-spacing:1.5px;
+      white-space:nowrap;
     }
 
-    .desktop-menu a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: .3s;
+    /* =========================
+       DESKTOP MENU
+    ========================= */
+
+    .desktop-menu{
+      display:flex;
+      align-items:center;
+      gap:28px;
     }
 
-    .desktop-menu a:hover {
-      color: var(--white);
+    .desktop-menu a{
+      color:#999;
+      font-size:11px;
+      font-weight:600;
+      transition:.3s;
     }
 
-    .desktop-menu a:hover::after {
-      width: 100%;
+    .desktop-menu a:hover{
+      color:#fff;
     }
 
-    .menu-button {
-      display: none;
-      width: 48px;
-      height: 48px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
-      color: white;
-      border-radius: 50%;
-      cursor: pointer;
-      position: relative;
-      z-index: 1100;
+    .desktop-menu .contact-link{
+      padding:11px 18px;
+      border:1px solid rgba(255,138,0,.45);
+      border-radius:30px;
+      background:rgba(255,138,0,.06);
     }
 
-    .menu-button span,
-    .menu-button span::before,
-    .menu-button span::after {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: white;
-      margin: auto;
-      transition: .3s;
+    .desktop-menu .contact-link:hover{
+      background:var(--orange);
+      color:#000;
     }
 
-    .menu-button span::before,
-    .menu-button span::after {
-      content: "";
-      position: absolute;
-      left: 13px;
+    /* =========================
+       MOBILE BUTTON
+    ========================= */
+
+    .menu-button{
+      display:none;
+
+      width:44px;
+      height:44px;
+
+      border-radius:50%;
+      border:1px solid var(--line);
+
+      background:rgba(255,255,255,.04);
+
+      cursor:pointer;
+
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:5px;
     }
 
-    .menu-button span::before {
-      transform: translateY(-6px);
+    .menu-button span{
+      width:18px;
+      height:2px;
+      background:#fff;
+      transition:.3s;
     }
 
-    .menu-button span::after {
-      transform: translateY(6px);
+    .menu-button.active span:nth-child(1){
+      transform:translateY(7px) rotate(45deg);
     }
 
-    .menu-button.active span {
-      background: transparent;
+    .menu-button.active span:nth-child(2){
+      opacity:0;
     }
 
-    .menu-button.active span::before {
-      transform: rotate(45deg);
-    }
-
-    .menu-button.active span::after {
-      transform: rotate(-45deg);
+    .menu-button.active span:nth-child(3){
+      transform:translateY(-7px) rotate(-45deg);
     }
 
     /* =========================
        MOBILE MENU
     ========================= */
 
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      background: rgba(7,7,7,.98);
-      backdrop-filter: blur(20px);
-      z-index: 1050;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-15px);
-      transition: .35s ease;
+    .mobile-menu{
+      position:fixed;
+      inset:0;
+
+      z-index:9000;
+
+      background:rgba(3,3,3,.98);
+
+      backdrop-filter:blur(25px);
+      -webkit-backdrop-filter:blur(25px);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      opacity:0;
+      visibility:hidden;
+
+      transition:.4s ease;
     }
 
-    .mobile-menu.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+    .mobile-menu.open{
+      opacity:1;
+      visibility:visible;
     }
 
-    .mobile-links {
-      width: 85%;
-      max-width: 500px;
+    .mobile-close{
+      position:absolute;
+      top:20px;
+      right:20px;
+
+      width:45px;
+      height:45px;
+
+      border-radius:50%;
+      border:1px solid var(--line);
+
+      background:#111;
+      color:#fff;
+
+      font-size:28px;
+      cursor:pointer;
     }
 
-    .mobile-links a {
-      display: block;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -1px;
+    .mobile-content{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
     }
 
-    .mobile-number {
-      margin-top: 35px;
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 2px;
+    .mobile-logo{
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+    .mobile-name{
+      margin-top:18px;
+      font-size:16px;
+      font-weight:900;
+      letter-spacing:4px;
+    }
+
+    .mobile-sub{
+      margin-top:8px;
+      color:#666;
+      font-size:7px;
+      letter-spacing:2px;
+    }
+
+    .mobile-links{
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+      margin-top:45px;
+    }
+
+    .mobile-links a{
+      font-family:Georgia,serif;
+      font-size:29px;
+      transition:.3s;
+    }
+
+    .mobile-links a:hover{
+      color:var(--orange);
     }
 
     /* =========================
        HERO
     ========================= */
 
-    .hero {
-      min-height: 100svh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      isolation: isolate;
+    .hero{
+      min-height:100vh;
+      padding:120px 6% 70px;
+
+      display:flex;
+      align-items:center;
+
+      position:relative;
     }
 
-    .hero-background {
-      position: absolute;
-      inset: 0;
-      z-index: -5;
-      background:
-        linear-gradient(90deg,
-          rgba(0,0,0,.96) 0%,
-          rgba(0,0,0,.72) 43%,
-          rgba(0,0,0,.20) 100%),
-        url("./IMG_4209.jpeg") center center / cover no-repeat;
-      transform: scale(1.04);
-      animation: heroZoom 12s ease-out forwards;
+    .hero-container{
+      width:min(1200px,100%);
+      margin:auto;
+
+      display:grid;
+      grid-template-columns:1fr 1fr;
+
+      gap:65px;
+
+      align-items:center;
     }
 
-    @keyframes heroZoom {
-      from {
-        transform: scale(1.08);
-      }
-
-      to {
-        transform: scale(1.01);
-      }
+    .hero-content{
+      position:relative;
+      z-index:2;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      background: linear-gradient(
-        0deg,
-        var(--black) 0%,
-        transparent 25%,
-        transparent 75%,
-        rgba(0,0,0,.35) 100%
-      );
+    .hero-small{
+      color:var(--orange-light);
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:4px;
+      margin-bottom:23px;
     }
 
-    /* =========================
-       FILIGRANE
-       ========================= */
+    .hero-mini-logo{
+      width:82px;
+      height:82px;
+      object-fit:cover;
+      border-radius:50%;
 
-    .hero-watermark {
-      position: absolute;
-      width: min(700px, 90vw);
-      height: auto;
-      right: -100px;
-      bottom: -100px;
+      margin-bottom:25px;
 
-      /* FILIGRANE TRÈS DISCRET */
-      opacity: .04;
-
-      filter: grayscale(1);
-      z-index: -2;
-      pointer-events: none;
-      user-select: none;
-
-      /* aucune animation supplémentaire */
-      transform: none;
+      box-shadow:
+        0 0 45px rgba(255,138,0,.14);
     }
 
-    .hero-content {
-      width: 100%;
-      max-width: 1400px;
-      margin: auto;
-      padding: 150px 6% 90px;
+    .hero-title{
+      font-family:Georgia,serif;
+      font-size:clamp(50px,6vw,82px);
+      line-height:.94;
+      letter-spacing:-3px;
+      font-weight:500;
     }
 
-    .hero-kicker {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--gold);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 25px;
-      animation: reveal .8s ease forwards;
+    .orange{
+      color:var(--orange);
     }
 
-    .hero-kicker::before {
-      content: "";
-      width: 45px;
-      height: 1px;
-      background: var(--gold);
+    .hero-description{
+      max-width:570px;
+
+      margin:28px 0;
+
+      color:#858585;
+
+      font-size:14px;
+      line-height:1.9;
     }
 
-    .hero h1 {
-      max-width: 820px;
-      font-size: clamp(55px, 8vw, 125px);
-      line-height: .88;
-      letter-spacing: -6px;
-      text-transform: uppercase;
-      font-weight: 900;
-      animation: reveal .9s .1s ease both;
+    .hero-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
     }
 
-    .hero h1 span {
-      color: var(--gold);
-      display: block;
+    .btn{
+      padding:14px 22px;
+
+      border-radius:40px;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:1px;
+
+      transition:.35s;
     }
 
-    .hero-text {
-      max-width: 560px;
-      margin-top: 32px;
-      color: #d0d0d0;
-      line-height: 1.8;
-      font-size: 16px;
-      animation: reveal .9s .2s ease both;
+    .btn-primary{
+      color:#000;
+      background:var(--orange);
+
+      box-shadow:
+        0 12px 40px rgba(255,138,0,.18);
     }
 
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 38px;
-      animation: reveal .9s .3s ease both;
+    .btn-primary:hover{
+      transform:translateY(-4px);
+      box-shadow:
+        0 18px 55px rgba(255,138,0,.35);
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 25px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      transition: .3s ease;
-      border: 1px solid transparent;
+    .btn-secondary{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
     }
 
-    .btn-primary {
-      background: var(--white);
-      color: #080808;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold);
-      transform: translateY(-3px);
-    }
-
-    .btn-outline {
-      border-color: rgba(255,255,255,.35);
-      background: rgba(255,255,255,.04);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-3px);
-    }
-
-    .hero-bottom {
-      position: absolute;
-      bottom: 30px;
-      left: 6%;
-      right: 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #888;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
-
-    .scroll {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .scroll-line {
-      width: 45px;
-      height: 1px;
-      background: #777;
-    }
-
-    @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .btn-secondary:hover{
+      transform:translateY(-4px);
+      border-color:rgba(255,138,0,.5);
     }
 
     /* =========================
-       GENERAL
+       HERO VISUAL
     ========================= */
 
-    section {
-      position: relative;
+    .hero-visual{
+      min-height:600px;
+
+      position:relative;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
 
-    .section {
-      padding: 120px 6%;
+    /*
+      FILIGRANE :
+      même image IMG_4209.jpeg
+    */
+
+    .hero-watermark{
+      position:absolute;
+
+      width:570px;
+      height:570px;
+
+      object-fit:cover;
+
+      border-radius:50%;
+
+      opacity:.045;
+
+      filter:grayscale(1);
+
+      pointer-events:none;
+      z-index:0;
     }
 
-    .container {
-      max-width: 1400px;
-      margin: auto;
+    .hero-photo{
+      position:relative;
+      z-index:2;
+
+      width:min(460px,95%);
+      height:560px;
+
+      overflow:hidden;
+
+      border-radius:35px;
+
+      background:#0b0b0b;
+
+      border:1px solid rgba(255,255,255,.14);
+
+      box-shadow:var(--shadow);
+
+      transform:rotate(2deg);
+
+      transition:.5s ease;
     }
 
-    .section-label {
-      color: var(--gold);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
+    .hero-photo:hover{
+      transform:rotate(0deg) translateY(-8px);
     }
 
-    .section-title {
-      max-width: 900px;
-      font-size: clamp(40px, 6vw, 82px);
-      line-height: .95;
-      letter-spacing: -4px;
-      text-transform: uppercase;
-      font-weight: 900;
+    .hero-photo > img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
     }
 
-    .section-title span {
-      color: var(--gold);
+    .photo-gradient{
+      position:absolute;
+      inset:0;
+
+      background:
+        linear-gradient(
+          to bottom,
+          transparent 38%,
+          rgba(0,0,0,.9)
+        );
     }
 
-    .section-intro {
-      max-width: 650px;
-      color: var(--gray);
-      line-height: 1.8;
-      margin-top: 28px;
-      font-size: 16px;
+    .photo-caption{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+
+      padding:17px;
+
+      border-radius:17px;
+
+      background:rgba(0,0,0,.55);
+
+      border:1px solid rgba(255,255,255,.1);
+
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+    }
+
+    .photo-caption small{
+      color:var(--orange);
+      font-size:8px;
+      letter-spacing:3px;
+    }
+
+    .photo-caption strong{
+      display:block;
+      margin-top:7px;
+      font-size:13px;
+    }
+
+    /* =========================
+       MARQUEE
+    ========================= */
+
+    .marquee{
+      width:100%;
+      overflow:hidden;
+      white-space:nowrap;
+
+      padding:18px 0;
+
+      background:#080808;
+
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    .marquee-track{
+      display:inline-flex;
+      gap:30px;
+
+      animation:marquee 25s linear infinite;
+    }
+
+    .marquee span{
+      color:#777;
+
+      font-size:9px;
+      font-weight:900;
+
+      letter-spacing:4px;
+    }
+
+    .marquee .dot{
+      color:var(--orange);
+    }
+
+    @keyframes marquee{
+      from{
+        transform:translateX(0);
+      }
+
+      to{
+        transform:translateX(-50%);
+      }
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section{
+      padding:110px 6%;
+    }
+
+    .container{
+      width:min(1200px,100%);
+      margin:auto;
+    }
+
+    .section-number{
+      color:var(--orange);
+
+      font-size:9px;
+      font-weight:900;
+
+      letter-spacing:4px;
+
+      margin-bottom:17px;
+    }
+
+    .section-title{
+      font-family:Georgia,serif;
+
+      font-size:clamp(42px,5vw,70px);
+
+      line-height:.98;
+
+      font-weight:500;
+    }
+
+    .section-description{
+      max-width:650px;
+
+      margin-top:22px;
+
+      color:#838383;
+
+      font-size:14px;
+      line-height:1.9;
     }
 
     /* =========================
        VISION
     ========================= */
 
-    .vision {
-      background: var(--black);
+    .vision-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+
+      gap:80px;
+
+      align-items:center;
     }
 
-    .vision-grid {
-      margin-top: 75px;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 70px;
-      align-items: end;
+    .vision-image{
+      min-height:480px;
+
+      border-radius:35px;
+
+      border:1px solid var(--line);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,138,0,.12),
+          transparent 52%
+        ),
+        #090909;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      overflow:hidden;
     }
 
-    .vision-big {
-      font-size: clamp(30px, 4vw, 55px);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      font-weight: 700;
+    .vision-image img{
+      width:240px;
+      height:240px;
+
+      object-fit:cover;
+
+      border-radius:50%;
+
+      filter:
+        drop-shadow(
+          0 0 45px rgba(255,138,0,.28)
+        );
     }
 
-    .vision-big span {
-      color: var(--gold);
+    .vision-content h3{
+      margin:27px 0 20px;
+
+      font-size:28px;
+      line-height:1.4;
     }
 
-    .vision-text {
-      color: var(--gray);
-      line-height: 1.9;
-      font-size: 15px;
+    .vision-content p{
+      color:#828282;
+
+      font-size:14px;
+      line-height:1.9;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+
+      gap:12px;
+
+      margin-top:30px;
+    }
+
+    .stat{
+      padding:20px 15px;
+
+      border-radius:18px;
+
+      background:#0b0b0b;
+
+      border:1px solid var(--line);
+    }
+
+    .stat strong{
+      display:block;
+
+      color:var(--orange);
+
+      font-size:24px;
+
+      margin-bottom:6px;
+    }
+
+    .stat span{
+      color:#666;
+
+      font-size:8px;
+
+      text-transform:uppercase;
+
+      letter-spacing:1px;
     }
 
     /* =========================
        UNIVERS
     ========================= */
 
-    .universe {
-      background: var(--black-2);
+    .dark-section{
+      background:#080808;
     }
 
-    .cards {
-      margin-top: 70px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+
+      gap:16px;
+
+      margin-top:50px;
     }
 
-    .card {
-      min-height: 340px;
-      padding: 35px;
-      border: 1px solid var(--line);
-      background: linear-gradient(
-        145deg,
-        rgba(255,255,255,.045),
-        rgba(255,255,255,.01)
-      );
-      position: relative;
-      overflow: hidden;
-      transition: .4s ease;
+    .card{
+      min-height:310px;
+
+      position:relative;
+
+      padding:30px;
+
+      border-radius:27px;
+
+      background:#0c0c0c;
+
+      border:1px solid var(--line);
+
+      overflow:hidden;
+
+      transition:.4s;
     }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      right: -80px;
-      bottom: -80px;
-      background: rgba(231,182,106,.06);
-      transition: .4s;
+    .card::after{
+      content:"";
+
+      position:absolute;
+
+      width:150px;
+      height:150px;
+
+      right:-80px;
+      bottom:-80px;
+
+      background:var(--orange);
+
+      border-radius:50%;
+
+      filter:blur(60px);
+
+      opacity:.08;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(231,182,106,.45);
+    .card:hover{
+      transform:translateY(-10px);
+
+      border-color:rgba(255,138,0,.4);
     }
 
-    .card:hover::before {
-      transform: scale(1.5);
+    .card-number{
+      color:var(--orange);
+
+      font-size:9px;
+
+      letter-spacing:3px;
     }
 
-    .card-number {
-      color: #777;
-      font-size: 10px;
-      letter-spacing: 3px;
+    .card h3{
+      position:absolute;
+
+      left:30px;
+      bottom:65px;
+
+      font-size:22px;
     }
 
-    .card h3 {
-      position: absolute;
-      left: 35px;
-      bottom: 75px;
-      font-size: 34px;
-      letter-spacing: -1px;
-      text-transform: uppercase;
-    }
+    .card p{
+      position:absolute;
 
-    .card p {
-      position: absolute;
-      left: 35px;
-      right: 35px;
-      bottom: 35px;
-      color: #888;
-      font-size: 12px;
-      line-height: 1.6;
+      left:30px;
+      bottom:30px;
+
+      color:#686868;
+
+      font-size:11px;
     }
 
     /* =========================
        SPECIAL
     ========================= */
 
-    .special {
-      min-height: 75vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
+    .special-box{
+      min-height:500px;
+
+      border-radius:35px;
+
+      border:1px solid rgba(255,138,0,.25);
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      text-align:center;
+
+      padding:40px;
+
       background:
-        linear-gradient(90deg, rgba(0,0,0,.96), rgba(0,0,0,.55)),
-        url("./IMG_4209.jpeg") center / cover no-repeat;
+        radial-gradient(
+          circle at center,
+          rgba(255,138,0,.11),
+          transparent 52%
+        ),
+        #090909;
     }
 
-    .special-content {
-      max-width: 1000px;
+    .special-content{
+      max-width:720px;
     }
 
-    .special-title {
-      font-size: clamp(50px, 9vw, 130px);
-      line-height: .82;
-      letter-spacing: -7px;
-      text-transform: uppercase;
-      font-weight: 900;
+    .special-content h2{
+      font-family:Georgia,serif;
+
+      font-size:clamp(43px,6vw,78px);
+
+      line-height:.98;
+
+      font-weight:500;
     }
 
-    .special-title span {
-      color: var(--gold);
-    }
+    .special-content p{
+      max-width:600px;
 
-    .special p {
-      max-width: 600px;
-      color: #ccc;
-      line-height: 1.8;
-      margin-top: 35px;
+      margin:25px auto 30px;
+
+      color:#858585;
+
+      font-size:14px;
+
+      line-height:1.9;
     }
 
     /* =========================
        EXPERIENCE
     ========================= */
 
-    .experience {
-      background: var(--black);
+    .experience-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+
+      gap:15px;
+
+      margin-top:50px;
     }
 
-    .experience-grid {
-      margin-top: 70px;
-      border-top: 1px solid var(--line);
+    .experience{
+      padding:27px 22px;
+
+      border-radius:22px;
+
+      background:#0b0b0b;
+
+      border:1px solid var(--line);
+
+      transition:.4s;
     }
 
-    .experience-item {
-      display: grid;
-      grid-template-columns: 100px 1fr 1fr;
-      gap: 30px;
-      padding: 35px 0;
-      border-bottom: 1px solid var(--line);
-      transition: .3s;
+    .experience:hover{
+      transform:translateY(-8px);
+
+      border-color:rgba(255,138,0,.35);
     }
 
-    .experience-item:hover {
-      padding-left: 12px;
+    .experience-icon{
+      width:45px;
+      height:45px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border-radius:50%;
+
+      color:var(--orange);
+
+      background:rgba(255,138,0,.09);
+
+      margin-bottom:23px;
+
+      font-size:18px;
     }
 
-    .experience-num {
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 2px;
+    .experience h3{
+      font-size:15px;
+      margin-bottom:10px;
     }
 
-    .experience-item h3 {
-      font-size: clamp(25px, 3vw, 42px);
-      text-transform: uppercase;
-      letter-spacing: -1px;
-    }
+    .experience p{
+      color:#707070;
 
-    .experience-item p {
-      color: var(--gray);
-      line-height: 1.7;
-      font-size: 14px;
+      font-size:11px;
+      line-height:1.8;
     }
 
     /* =========================
        CONTACT
     ========================= */
 
-    .contact {
-      background: var(--black-2);
-      text-align: center;
-      padding-bottom: 140px;
+    .contact-box{
+      padding:70px 30px;
+
+      text-align:center;
+
+      border-radius:35px;
+
+      border:1px solid rgba(255,138,0,.25);
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(255,138,0,.10),
+          transparent 52%
+        ),
+        #090909;
     }
 
-    .contact .section-title {
-      margin: auto;
+    .contact-box h2{
+      font-family:Georgia,serif;
+
+      font-size:clamp(42px,6vw,75px);
+
+      line-height:1;
+
+      font-weight:500;
     }
 
-    .contact-text {
-      max-width: 600px;
-      margin: 30px auto 0;
-      color: var(--gray);
-      line-height: 1.8;
-    }
+    .contact-box p{
+      max-width:600px;
 
-    .contact-buttons {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+      margin:20px auto 30px;
 
-    /* =========================
-       WHATSAPP
-    ========================= */
+      color:#858585;
 
-    .whatsapp {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      background: #25D366;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 900;
-      box-shadow: 0 10px 35px rgba(0,0,0,.4);
-      transition: .3s;
-    }
+      font-size:14px;
 
-    .whatsapp:hover {
-      transform: translateY(-5px) scale(1.05);
-    }
-
-    .whatsapp svg {
-      width: 27px;
-      height: 27px;
-      fill: currentColor;
+      line-height:1.8;
     }
 
     /* =========================
        FOOTER
     ========================= */
 
-    footer {
-      background: #050505;
-      border-top: 1px solid var(--line);
-      padding: 30px 6%;
+    footer{
+      padding:45px 6% 30px;
+
+      background:#030303;
+
+      border-top:1px solid var(--line);
     }
 
-    .footer-inner {
-      max-width: 1400px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
+    .footer-container{
+      width:min(1200px,100%);
+      margin:auto;
     }
 
-    footer p {
-      color: #666;
-      font-size: 10px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+    .footer-top{
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      padding-bottom:30px;
     }
 
-    .footer-name {
-      color: var(--gold);
-      font-weight: 800;
+    .footer-brand{
+      display:flex;
+      align-items:center;
+
+      gap:12px;
+    }
+
+    .footer-brand img{
+      width:52px;
+      height:52px;
+
+      object-fit:cover;
+
+      border-radius:50%;
+    }
+
+    .footer-brand strong{
+      font-size:13px;
+      letter-spacing:3px;
+    }
+
+    .footer-brand small{
+      color:#555;
+    }
+
+    .socials{
+      display:flex;
+      gap:10px;
+    }
+
+    .social{
+      width:40px;
+      height:40px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border-radius:50%;
+
+      border:1px solid var(--line);
+
+      color:#999;
+
+      font-size:9px;
+
+      transition:.3s;
+    }
+
+    .social:hover{
+      background:var(--orange);
+
+      color:#000;
+
+      border-color:var(--orange);
+    }
+
+    .footer-bottom{
+      padding-top:23px;
+
+      border-top:1px solid var(--line);
+
+      display:flex;
+
+      align-items:center;
+      justify-content:space-between;
+
+      color:#555;
+
+      font-size:9px;
+
+      letter-spacing:1px;
     }
 
     /* =========================
-       RESPONSIVE
+       WHATSAPP
     ========================= */
 
-    @media (max-width: 850px) {
+    .whatsapp{
+      position:fixed;
 
-      header {
-        padding: 15px 5%;
+      right:20px;
+      bottom:20px;
+
+      width:58px;
+      height:58px;
+
+      z-index:6000;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      border-radius:50%;
+
+      background:#25D366;
+
+      color:#fff;
+
+      font-size:19px;
+
+      box-shadow:
+        0 10px 35px rgba(37,211,102,.25);
+
+      transition:.3s;
+    }
+
+    .whatsapp:hover{
+      transform:scale(1.08);
+    }
+
+    /* =========================
+       REVEAL
+    ========================= */
+
+    .reveal{
+      opacity:0;
+      transform:translateY(30px);
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
+    }
+
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media(max-width:950px){
+
+      .desktop-menu{
+        display:none;
       }
 
-      .desktop-menu {
-        display: none;
+      .menu-button{
+        display:flex;
       }
 
-      .menu-button {
-        display: flex;
+      .hero-container{
+        grid-template-columns:1fr;
+        gap:45px;
       }
 
-      .brand-image {
-        width: 46px;
-        height: 46px;
+      .hero-content{
+        text-align:center;
+
+        display:flex;
+        flex-direction:column;
+        align-items:center;
       }
 
-      .hero {
-        min-height: 100svh;
+      .hero-description{
+        max-width:680px;
       }
 
-      .hero-background {
-        background:
-          linear-gradient(
-            180deg,
-            rgba(0,0,0,.55) 0%,
-            rgba(0,0,0,.78) 55%,
-            rgba(0,0,0,.98) 100%
-          ),
-          url("./IMG_4209.jpeg") center / cover no-repeat;
+      .vision-grid{
+        grid-template-columns:1fr;
       }
 
-      /* Filigrane mobile */
-      .hero-watermark {
-        width: 480px;
-        right: -120px;
-        bottom: -70px;
-        opacity: .035;
+      .cards{
+        grid-template-columns:1fr;
       }
 
-      .hero-content {
-        padding: 150px 5% 120px;
-      }
-
-      .hero h1 {
-        font-size: clamp(50px, 15vw, 85px);
-        letter-spacing: -4px;
-      }
-
-      .hero-text {
-        font-size: 14px;
-        max-width: 500px;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-        max-width: 330px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-bottom {
-        left: 5%;
-        right: 5%;
-        bottom: 20px;
-      }
-
-      .section {
-        padding: 85px 5%;
-      }
-
-      .section-title {
-        letter-spacing: -2px;
-      }
-
-      .vision-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        margin-top: 50px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 50px;
-      }
-
-      .card {
-        min-height: 280px;
-      }
-
-      .special {
-        min-height: 70vh;
-      }
-
-      .special-title {
-        font-size: clamp(50px, 14vw, 85px);
-        letter-spacing: -4px;
-      }
-
-      .experience-item {
-        grid-template-columns: 45px 1fr;
-        gap: 15px;
-      }
-
-      .experience-item p {
-        grid-column: 2;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .whatsapp {
-        width: 54px;
-        height: 54px;
-        right: 17px;
-        bottom: 17px;
+      .experience-grid{
+        grid-template-columns:1fr 1fr;
       }
     }
 
-    @media (max-width: 450px) {
+    /* =========================
+       MOBILE
+    ========================= */
 
-      .brand-name {
-        font-size: 12px;
+    @media(max-width:600px){
+
+      header{
+        height:70px;
       }
 
-      .brand-sub {
-        font-size: 7px;
+      .nav{
+        width:calc(100% - 22px);
       }
 
-      .hero-kicker {
-        font-size: 8px;
-        letter-spacing: 3px;
+      .brand{
+        gap:9px;
       }
 
-      .hero h1 {
-        font-size: 51px;
+      .brand-image{
+        width:42px;
+        height:42px;
       }
 
-      .hero-text {
-        font-size: 13px;
+      .brand-name{
+        font-size:10px;
+        letter-spacing:1.8px;
       }
 
-      .section-title {
-        font-size: 42px;
+      .brand-slogan{
+        font-size:5.5px;
+        letter-spacing:1px;
       }
 
-      .card h3 {
-        font-size: 29px;
+      .hero{
+        padding:110px 20px 60px;
       }
 
-      .special-title {
-        font-size: 52px;
+      .hero-title{
+        font-size:47px;
+        letter-spacing:-1.5px;
       }
 
-      .hero-watermark {
-        width: 390px;
-        right: -120px;
-        bottom: -45px;
-        opacity: .03;
+      .hero-mini-logo{
+        width:72px;
+        height:72px;
+      }
+
+      .hero-description{
+        font-size:13px;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .hero-visual{
+        min-height:460px;
+      }
+
+      .hero-watermark{
+        width:330px;
+        height:330px;
+      }
+
+      .hero-photo{
+        width:94%;
+        height:450px;
+
+        transform:none;
+
+        border-radius:28px;
+      }
+
+      section{
+        padding:80px 20px;
+      }
+
+      .vision-image{
+        min-height:350px;
+      }
+
+      .vision-image img{
+        width:180px;
+        height:180px;
+      }
+
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .special-box{
+        min-height:430px;
+      }
+
+      .experience-grid{
+        grid-template-columns:1fr;
+      }
+
+      .footer-top{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:25px;
+      }
+
+      .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+      }
+
+      .whatsapp{
+        width:54px;
+        height:54px;
+
+        right:15px;
+        bottom:15px;
       }
     }
   </style>
@@ -963,29 +1414,64 @@
 <body>
 
   <!-- =========================
+       LOADER
+  ========================= -->
+
+  <div id="loader">
+
+    <img
+      class="loader-image"
+      src="./IMG_4209.jpeg"
+      alt="Khalidou Kane"
+    >
+
+    <div class="loader-name">
+      KHALIDOU KANE
+    </div>
+
+    <div class="loader-sub">
+      DE LA LUMIÈRE DANS VOTRE STYLE
+    </div>
+
+    <div class="loader-bar"></div>
+
+  </div>
+
+
+  <!-- BACKGROUND -->
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="glow three"></div>
+
+
+  <!-- =========================
        HEADER
   ========================= -->
 
   <header id="header">
 
-    <nav class="nav">
+    <div class="nav">
 
       <a href="#accueil" class="brand">
 
-        <img
-          class="brand-image"
-          src="./IMG_4209.jpeg"
-          alt="Khalidou Kane"
-        >
+        <div class="brand-image">
 
-        <div>
+          <img
+            src="./IMG_4209.jpeg"
+            alt="Khalidou Kane"
+          >
+
+        </div>
+
+        <div class="brand-info">
 
           <div class="brand-name">
-            Khalidou Kane
+            KHALIDOU KANE
           </div>
 
-          <div class="brand-sub">
-            Une identité • Une vision
+          <div class="brand-slogan">
+            DE LA LUMIÈRE DANS VOTRE STYLE
           </div>
 
         </div>
@@ -993,7 +1479,83 @@
       </a>
 
 
-      <div class="desktop-menu">
+      <!-- DESKTOP -->
+
+      <nav class="desktop-menu">
+
+        <a href="#accueil">
+          Accueil
+        </a>
+
+        <a href="#vision">
+          Vision
+        </a>
+
+        <a href="#univers">
+          L'univers
+        </a>
+
+        <a href="#experience">
+          Expérience
+        </a>
+
+        <a href="#contact" class="contact-link">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <!-- MOBILE -->
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Ouvrir le menu"
+      >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================= -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <button
+      class="mobile-close"
+      id="mobileClose"
+      aria-label="Fermer"
+    >
+      ×
+    </button>
+
+    <div class="mobile-content">
+
+      <img
+        class="mobile-logo"
+        src="./IMG_4209.jpeg"
+        alt="Khalidou Kane"
+      >
+
+      <div class="mobile-name">
+        KHALIDOU KANE
+      </div>
+
+      <div class="mobile-sub">
+        DE LA LUMIÈRE DANS VOTRE STYLE
+      </div>
+
+      <nav class="mobile-links">
 
         <a href="#accueil">
           Accueil
@@ -1015,54 +1577,7 @@
           Contact
         </a>
 
-      </div>
-
-
-      <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Ouvrir le menu"
-        aria-expanded="false"
-      >
-        <span></span>
-      </button>
-
-    </nav>
-
-  </header>
-
-
-  <!-- =========================
-       MOBILE MENU
-  ========================= -->
-
-  <div class="mobile-menu" id="mobileMenu">
-
-    <div class="mobile-links">
-
-      <a href="#accueil">
-        01 — Accueil
-      </a>
-
-      <a href="#vision">
-        02 — Vision
-      </a>
-
-      <a href="#univers">
-        03 — L'univers
-      </a>
-
-      <a href="#experience">
-        04 — Expérience
-      </a>
-
-      <a href="#contact">
-        05 — Contact
-      </a>
-
-      <div class="mobile-number">
-        +221 78 138 32 00
-      </div>
+      </nav>
 
     </div>
 
@@ -1070,89 +1585,114 @@
 
 
   <!-- =========================
-       HERO
+       MAIN
   ========================= -->
 
   <main>
 
+    <!-- =========================
+         ACCUEIL
+    ========================= -->
+
     <section class="hero" id="accueil">
 
-      <div class="hero-background"></div>
+      <div class="hero-container">
 
 
-      <!--
-        FILIGRANE
-        Même image IMG_4209.jpeg
-        Très transparent et derrière le contenu.
-      -->
+        <!-- TEXT -->
 
-      <img
-        class="hero-watermark"
-        src="./IMG_4209.jpeg"
-        alt=""
-        aria-hidden="true"
-      >
+        <div class="hero-content reveal">
 
+          <div class="hero-small">
+            ✦ KHALIDOU KANE
+          </div>
 
-      <div class="hero-content">
-
-        <div class="hero-kicker">
-          Khalidou Kane
-        </div>
-
-
-        <h1>
-
-          De la lumière
-
-          <span>
-            dans votre style.
-          </span>
-
-        </h1>
-
-
-        <p class="hero-text">
-
-          Une identité forte, une énergie singulière et une vision tournée
-          vers l'avenir. Bienvenue dans l'univers Khalidou Kane.
-
-        </p>
-
-
-        <div class="hero-actions">
-
-          <a
-            href="#univers"
-            class="btn btn-primary"
+          <img
+            class="hero-mini-logo"
+            src="./IMG_4209.jpeg"
+            alt="Khalidou Kane"
           >
-            Découvrir
-          </a>
+
+          <h1 class="hero-title">
+
+            DE LA<br>
+
+            <span class="orange">
+              LUMIÈRE
+            </span><br>
+
+            DANS VOTRE STYLE
+
+          </h1>
+
+          <p class="hero-description">
+
+            Bienvenue dans l'univers Khalidou Kane.
+            Une identité forte, moderne et créative,
+            pensée pour apporter de la lumière,
+            de l'énergie et du caractère à votre style.
+
+          </p>
+
+          <div class="hero-buttons">
+
+            <a
+              href="#univers"
+              class="btn btn-primary"
+            >
+              DÉCOUVRIR ✦
+            </a>
+
+            <a
+              href="#contact"
+              class="btn btn-secondary"
+            >
+              NOUS CONTACTER
+            </a>
+
+          </div>
+
+        </div>
 
 
-          <a
-            href="#contact"
-            class="btn btn-outline"
+        <!-- VISUAL -->
+
+        <div class="hero-visual reveal">
+
+          <!-- FILIGRANE -->
+
+          <img
+            class="hero-watermark"
+            src="./IMG_4209.jpeg"
+            alt=""
+            aria-hidden="true"
           >
-            Nous contacter
-          </a>
-
-        </div>
-
-      </div>
 
 
-      <div class="hero-bottom">
+          <!-- GRANDE IMAGE -->
 
-        <div>
-          Dakar • Sénégal
-        </div>
+          <div class="hero-photo">
 
-        <div class="scroll">
+            <img
+              src="./IMG_4209.jpeg"
+              alt="Khalidou Kane"
+            >
 
-          <span class="scroll-line"></span>
+            <div class="photo-gradient"></div>
 
-          Défiler
+            <div class="photo-caption">
+
+              <small>
+                KH — SIGNATURE
+              </small>
+
+              <strong>
+                DE LA LUMIÈRE DANS VOTRE STYLE
+              </strong>
+
+            </div>
+
+          </div>
 
         </div>
 
@@ -1162,54 +1702,115 @@
 
 
     <!-- =========================
+         MARQUEE
+    ========================= -->
+
+    <div class="marquee">
+
+      <div class="marquee-track">
+
+        <span>KHALIDOU KANE</span>
+        <span class="dot">✦</span>
+        <span>STYLE</span>
+        <span class="dot">✦</span>
+        <span>ÉNERGIE</span>
+        <span class="dot">✦</span>
+        <span>CRÉATIVITÉ</span>
+        <span class="dot">✦</span>
+        <span>ÉLÉGANCE</span>
+        <span class="dot">✦</span>
+        <span>VISION</span>
+        <span class="dot">✦</span>
+
+        <span>KHALIDOU KANE</span>
+        <span class="dot">✦</span>
+        <span>STYLE</span>
+        <span class="dot">✦</span>
+        <span>ÉNERGIE</span>
+        <span class="dot">✦</span>
+        <span>CRÉATIVITÉ</span>
+        <span class="dot">✦</span>
+        <span>ÉLÉGANCE</span>
+        <span class="dot">✦</span>
+        <span>VISION</span>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
          VISION
     ========================= -->
 
-    <section
-      class="section vision"
-      id="vision"
-    >
+    <section id="vision">
 
-      <div class="container">
+      <div class="container vision-grid">
 
-        <div class="section-label">
-          01 — Notre vision
+
+        <div class="vision-image reveal">
+
+          <img
+            src="./IMG_4209.jpeg"
+            alt="Khalidou Kane"
+          >
+
         </div>
 
 
-        <h2 class="section-title">
+        <div class="vision-content reveal">
 
-          Une identité qui
-
-          <span>
-            se remarque.
-          </span>
-
-        </h2>
-
-
-        <div class="vision-grid">
-
-          <div class="vision-big">
-
-            Nous croyons que chaque détail peut devenir une
-
-            <span>
-              signature.
-            </span>
-
+          <div class="section-number">
+            01 — NOTRE VISION
           </div>
 
+          <h2 class="section-title">
 
-          <div class="vision-text">
+            PLUS QU'UNE<br>
 
-            Khalidou Kane est pensé comme une identité moderne,
-            ambitieuse et différente. Un univers où l'élégance rencontre
-            l'énergie et où chaque élément raconte quelque chose.
+            <span class="orange">
+              IDENTITÉ.
+            </span>
 
-            <br><br>
+          </h2>
 
-            Cette vision évoluera avec l'histoire de la marque.
+          <h3>
+
+            Une vision.<br>
+            Une énergie.<br>
+
+            <span class="orange">
+              Une signature.
+            </span>
+
+          </h3>
+
+          <p>
+
+            Khalidou Kane représente un univers
+            moderne et créatif. Une identité pensée
+            pour se démarquer, créer une présence
+            forte et proposer quelque chose de
+            différent.
+
+          </p>
+
+          <div class="stats">
+
+            <div class="stat">
+              <strong>01</strong>
+              <span>Vision</span>
+            </div>
+
+            <div class="stat">
+              <strong>∞</strong>
+              <span>Créativité</span>
+            </div>
+
+            <div class="stat">
+              <strong>✦</strong>
+              <span>Signature</span>
+            </div>
 
           </div>
 
@@ -1225,85 +1826,85 @@
     ========================= -->
 
     <section
-      class="section universe"
+      class="dark-section"
       id="univers"
     >
 
       <div class="container">
 
-        <div class="section-label">
-          02 — L'univers
+        <div class="reveal">
+
+          <div class="section-number">
+            02 — L'UNIVERS
+          </div>
+
+          <h2 class="section-title">
+
+            UNE SIGNATURE<br>
+            QUI SE REMARQUE.
+
+          </h2>
+
+          <p class="section-description">
+
+            Un univers construit autour du style,
+            de l'énergie, de l'originalité et
+            d'une identité forte.
+
+          </p>
+
         </div>
-
-
-        <h2 class="section-title">
-
-          Plus qu'une image.
-
-          <span>
-            Une présence.
-          </span>
-
-        </h2>
-
-
-        <p class="section-intro">
-
-          Trois piliers qui définissent pour l'instant l'esprit
-          Khalidou Kane. Le reste de l'histoire reste à écrire.
-
-        </p>
 
 
         <div class="cards">
 
 
-          <article class="card">
+          <article class="card reveal">
 
             <div class="card-number">
-              01
+              01 /
             </div>
 
             <h3>
-              Identité
+              IDENTITÉ
             </h3>
 
             <p>
-              Une signature reconnaissable, personnelle et authentique.
+              Une image forte et reconnaissable.
             </p>
 
           </article>
 
 
-          <article class="card">
+          <article class="card reveal">
 
             <div class="card-number">
-              02
+              02 /
             </div>
 
             <h3>
-              Énergie
+              ÉNERGIE
             </h3>
 
             <p>
-              Une présence dynamique qui ne passe jamais inaperçue.
+              Une présence qui attire le regard.
             </p>
 
           </article>
 
 
-          <article class="card">
+          <article class="card reveal">
 
             <div class="card-number">
-              03
+              03 /
             </div>
 
             <h3>
-              Élégance
+              ÉLÉGANCE
             </h3>
 
             <p>
-              Des lignes modernes et une esthétique pensée dans chaque détail.
+              Le détail qui transforme le style.
             </p>
 
           </article>
@@ -1317,38 +1918,49 @@
 
 
     <!-- =========================
-         QUELQUE CHOSE DE SPÉCIAL
+         SPECIAL
     ========================= -->
 
-    <section class="section special">
+    <section id="special">
 
       <div class="container">
 
-        <div class="special-content">
+        <div class="special-box reveal">
 
-          <div class="section-label">
-            03 — À découvrir
+          <div class="special-content">
+
+            <div class="section-number">
+              03 — DÉCOUVRIR
+            </div>
+
+            <h2>
+
+              QUELQUE CHOSE<br>
+
+              DE
+              <span class="orange">
+                SPÉCIAL.
+              </span>
+
+            </h2>
+
+            <p>
+
+              Khalidou Kane ne cherche pas simplement
+              à être vu. L'objectif est de créer une
+              véritable identité avec de l'énergie,
+              du caractère et une vision.
+
+            </p>
+
+            <a
+              href="#contact"
+              class="btn btn-primary"
+            >
+              EN SAVOIR PLUS ✦
+            </a>
+
           </div>
-
-
-          <h2 class="special-title">
-
-            Quelque chose
-
-            <span>
-              de spécial.
-            </span>
-
-          </h2>
-
-
-          <p>
-
-            Il y a une histoire derrière Khalidou Kane.
-            Une idée particulière, une énergie et quelque chose
-            que nous révélerons au bon moment.
-
-          </p>
 
         </div>
 
@@ -1361,97 +1973,92 @@
          EXPERIENCE
     ========================= -->
 
-    <section
-      class="section experience"
-      id="experience"
-    >
+    <section id="experience">
 
       <div class="container">
 
-        <div class="section-label">
-          04 — L'expérience
+        <div class="reveal">
+
+          <div class="section-number">
+            04 — L'EXPÉRIENCE
+          </div>
+
+          <h2 class="section-title">
+
+            PENSÉ POUR<br>
+            VOUS.
+
+          </h2>
+
         </div>
-
-
-        <h2 class="section-title">
-
-          Pensé pour
-
-          <span>
-            marquer.
-          </span>
-
-        </h2>
 
 
         <div class="experience-grid">
 
 
-          <div class="experience-item">
+          <div class="experience reveal">
 
-            <div class="experience-num">
-              01
+            <div class="experience-icon">
+              ✦
             </div>
 
             <h3>
-              Style
+              STYLE
             </h3>
 
             <p>
-              Une direction visuelle contemporaine, reconnaissable
-              et cohérente.
+              Une identité moderne et unique.
             </p>
 
           </div>
 
 
-          <div class="experience-item">
+          <div class="experience reveal">
 
-            <div class="experience-num">
-              02
+            <div class="experience-icon">
+              ⚡
             </div>
 
             <h3>
-              Énergie
+              ÉNERGIE
             </h3>
 
             <p>
-              Une approche vivante et dynamique qui donne du caractère
-              à chaque expérience.
+              Une expérience dynamique et vivante.
             </p>
 
           </div>
 
 
-          <div class="experience-item">
+          <div class="experience reveal">
 
-            <div class="experience-num">
-              03
+            <div class="experience-icon">
+              ◆
             </div>
 
             <h3>
-              Qualité
+              QUALITÉ
             </h3>
 
             <p>
-              L'attention portée aux détails est au cœur de notre approche.
+              Chaque détail compte.
             </p>
 
           </div>
 
 
-          <div class="experience-item">
+          <div class="experience reveal">
 
-            <div class="experience-num">
-              04
+            <div class="experience-icon">
+              ∞
             </div>
 
             <h3>
-              Vision
+              VISION
             </h3>
 
             <p>
-              Construire quelque chose de durable, moderne et différent.
+              Une marque construite pour évoluer.
             </p>
 
           </div>
@@ -1468,54 +2075,41 @@
          CONTACT
     ========================= -->
 
-    <section
-      class="section contact"
-      id="contact"
-    >
+    <section id="contact">
 
       <div class="container">
 
-        <div class="section-label">
-          05 — Contact
-        </div>
+        <div class="contact-box reveal">
 
+          <div class="section-number">
+            05 — CONTACT
+          </div>
 
-        <h2 class="section-title">
+          <h2>
 
-          Parlons de
+            ENTRONS DANS<br>
 
-          <span>
-            la suite.
-          </span>
+            <span class="orange">
+              L'UNIVERS.
+            </span>
 
-        </h2>
+          </h2>
 
+          <p>
 
-        <p class="contact-text">
+            Une question ou envie d'en savoir
+            plus sur Khalidou Kane ?
+            Contactez-nous directement.
 
-          Une question, une idée ou simplement envie d'en savoir plus ?
-          Contactez Khalidou Kane directement.
-
-        </p>
-
-
-        <div class="contact-buttons">
+          </p>
 
           <a
             href="https://wa.me/221781383200"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             class="btn btn-primary"
           >
-            WhatsApp
-          </a>
-
-
-          <a
-            href="#accueil"
-            class="btn btn-outline"
-          >
-            Retour en haut
+            CONTACTER SUR WHATSAPP
           </a>
 
         </div>
@@ -1532,22 +2126,13 @@
   ========================= -->
 
   <a
-    class="whatsapp"
     href="https://wa.me/221781383200"
     target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Contacter Khalidou Kane sur WhatsApp"
+    rel="noopener"
+    class="whatsapp"
+    aria-label="WhatsApp"
   >
-
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-
-      <path d="M20.5 3.5A11.9 11.9 0 0 0 12.03 0C5.45 0 .1 5.34.1 11.92c0 2.1.55 4.15 1.59 5.96L0 24l6.27-1.64a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.92-5.35 11.92-11.92 0-3.19-1.24-6.19-3.46-8.41ZM12.04 21.85h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.97.99-3.63-.23-.37a9.9 9.9 0 0 1-1.52-5.3C2.15 6.46 6.58 2.03 12.03 2.03c2.64 0 5.12 1.03 6.98 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.86 9.93Zm5.42-7.41c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
-
-    </svg>
-
+    ☎
   </a>
 
 
@@ -1557,19 +2142,79 @@
 
   <footer>
 
-    <div class="footer-inner">
+    <div class="footer-container">
 
-      <p>
-        © 2026
-        <span class="footer-name">
-          Khalidou Kane
+      <div class="footer-top">
+
+
+        <div class="footer-brand">
+
+          <img
+            src="./IMG_4209.jpeg"
+            alt="Khalidou Kane"
+          >
+
+          <div>
+
+            <strong>
+              KHALIDOU KANE
+            </strong>
+
+            <br>
+
+            <small>
+              De la lumière dans votre style
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="socials">
+
+          <a
+            href="#"
+            class="social"
+            aria-label="Instagram"
+          >
+            IG
+          </a>
+
+          <a
+            href="https://wa.me/221781383200"
+            target="_blank"
+            rel="noopener"
+            class="social"
+            aria-label="WhatsApp"
+          >
+            WA
+          </a>
+
+          <a
+            href="#"
+            class="social"
+            aria-label="TikTok"
+          >
+            TK
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © <span id="year"></span> KHALIDOU KANE
         </span>
-      </p>
 
+        <span>
+          DE LA LUMIÈRE DANS VOTRE STYLE ✦
+        </span>
 
-      <p>
-        De la lumière dans votre style.
-      </p>
+      </div>
 
     </div>
 
@@ -1582,8 +2227,41 @@
 
   <script>
 
+    /* LOADER */
+
+    window.addEventListener("load",function(){
+
+      setTimeout(function(){
+
+        const loader =
+          document.getElementById("loader");
+
+        if(loader){
+          loader.classList.add("hide");
+        }
+
+      },700);
+
+    });
+
+
+    /* HEADER */
+
     const header =
       document.getElementById("header");
+
+    window.addEventListener("scroll",function(){
+
+      if(window.scrollY > 30){
+        header.classList.add("scrolled");
+      }else{
+        header.classList.remove("scrolled");
+      }
+
+    });
+
+
+    /* MOBILE MENU */
 
     const menuButton =
       document.getElementById("menuButton");
@@ -1591,110 +2269,123 @@
     const mobileMenu =
       document.getElementById("mobileMenu");
 
-
-    /* Header au scroll */
-
-    window.addEventListener("scroll", () => {
-
-      if (window.scrollY > 30) {
-
-        header.classList.add("scrolled");
-
-      } else {
-
-        header.classList.remove("scrolled");
-
-      }
-
-    });
+    const mobileClose =
+      document.getElementById("mobileClose");
 
 
-    /* Menu mobile */
+    function openMenu(){
 
-    function toggleMenu() {
+      menuButton.classList.add("active");
 
-      const isOpen =
-        mobileMenu.classList.toggle("active");
+      mobileMenu.classList.add("open");
 
-      menuButton.classList.toggle(
-        "active",
-        isOpen
-      );
+      document.body.classList.add("menu-open");
 
-      menuButton.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
+    }
 
-      document.body.classList.toggle(
-        "menu-open",
-        isOpen
-      );
+
+    function closeMenu(){
+
+      menuButton.classList.remove("active");
+
+      mobileMenu.classList.remove("open");
+
+      document.body.classList.remove("menu-open");
 
     }
 
 
     menuButton.addEventListener(
       "click",
-      toggleMenu
+      openMenu
     );
 
 
-    /* Fermer le menu lorsqu'on clique sur un lien */
+    mobileClose.addEventListener(
+      "click",
+      closeMenu
+    );
+
 
     document
       .querySelectorAll(".mobile-links a")
-      .forEach(link => {
+      .forEach(function(link){
 
-        link.addEventListener("click", () => {
-
-          mobileMenu.classList.remove("active");
-
-          menuButton.classList.remove("active");
-
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-          document.body.classList.remove(
-            "menu-open"
-          );
-
-        });
+        link.addEventListener(
+          "click",
+          closeMenu
+        );
 
       });
 
 
-    /* Fermer avec Escape */
+    /* ESCAPE */
 
     document.addEventListener(
       "keydown",
-      event => {
+      function(event){
 
-        if (event.key === "Escape") {
-
-          mobileMenu.classList.remove(
-            "active"
-          );
-
-          menuButton.classList.remove(
-            "active"
-          );
-
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-          document.body.classList.remove(
-            "menu-open"
-          );
-
+        if(event.key === "Escape"){
+          closeMenu();
         }
 
       }
     );
+
+
+    /* REVEAL */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+
+    const revealObserver =
+      new IntersectionObserver(
+        function(entries){
+
+          entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold:.12
+        }
+      );
+
+
+    revealElements.forEach(
+      function(element){
+
+        revealObserver.observe(element);
+
+      }
+    );
+
+
+    /* YEAR */
+
+    const year =
+      document.getElementById("year");
+
+    if(year){
+
+      year.textContent =
+        new Date().getFullYear();
+
+    }
 
   </script>
 
