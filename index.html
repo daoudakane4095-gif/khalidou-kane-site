@@ -3,12 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="theme-color" content="#050505">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <title>Khalidou Kane — De la lumière dans votre style</title>
 
   <style>
+    :root{
+      --black:#050505;
+      --black2:#0b0b0b;
+      --card:#101010;
+      --white:#ffffff;
+      --gray:#8c8c8c;
+      --gray2:#555;
+      --orange:#ff8500;
+      --orange2:#ffad32;
+      --line:rgba(255,255,255,.10);
+      --shadow:0 30px 90px rgba(0,0,0,.5);
+    }
+
     *{
       margin:0;
       padding:0;
@@ -20,15 +35,23 @@
     }
 
     body{
-      background:#050505;
-      color:#fff;
-      font-family:Arial, Helvetica, sans-serif;
+      background:var(--black);
+      color:var(--white);
+      font-family:Arial,Helvetica,sans-serif;
       overflow-x:hidden;
     }
 
+    body.menu-open{
+      overflow:hidden;
+    }
+
+    img{
+      max-width:100%;
+    }
+
     a{
-      text-decoration:none;
       color:inherit;
+      text-decoration:none;
     }
 
     button{
@@ -36,53 +59,39 @@
     }
 
     /* =========================
-       VARIABLES
+       BACKGROUND
     ========================= */
 
-    :root{
-      --orange:#ff8500;
-      --orange-light:#ffb52e;
-      --black:#050505;
-      --black2:#0b0b0b;
-      --white:#fff;
-      --gray:#888;
-      --line:rgba(255,255,255,.1);
-    }
-
-    /* =========================
-       BACKGROUND ENERGY
-    ========================= */
-
-    .energy{
+    .glow{
       position:fixed;
       border-radius:50%;
       pointer-events:none;
       filter:blur(120px);
-      z-index:-10;
-      opacity:.13;
+      opacity:.10;
+      z-index:-5;
     }
 
-    .energy-1{
+    .glow.one{
       width:420px;
       height:420px;
-      background:#ff8500;
+      background:var(--orange);
       top:-180px;
       left:-180px;
     }
 
-    .energy-2{
-      width:450px;
-      height:450px;
-      background:#003d50;
-      right:-220px;
-      top:35%;
+    .glow.two{
+      width:400px;
+      height:400px;
+      background:#004d65;
+      right:-180px;
+      top:40%;
     }
 
-    .energy-3{
+    .glow.three{
       width:350px;
       height:350px;
-      background:#ff4d55;
-      bottom:-200px;
+      background:#ff3b30;
+      bottom:-180px;
       left:35%;
     }
 
@@ -90,66 +99,77 @@
        LOADER
     ========================= */
 
-    .loader{
+    #loader{
       position:fixed;
       inset:0;
-      z-index:99999;
       background:#050505;
+      z-index:99999;
 
       display:flex;
-      flex-direction:column;
-      justify-content:center;
       align-items:center;
+      justify-content:center;
+      flex-direction:column;
 
-      transition:.8s ease;
+      transition:.7s ease;
     }
 
-    .loader.hidden{
+    #loader.hide{
       opacity:0;
       visibility:hidden;
     }
 
-    .loader img{
+    .loader-logo{
       width:100px;
       height:100px;
       object-fit:contain;
       border-radius:50%;
-      animation:loaderPulse 2s infinite;
+
+      animation:pulse 1.8s infinite;
+
+      filter:drop-shadow(
+        0 0 30px rgba(255,133,0,.25)
+      );
     }
 
     .loader-name{
-      margin-top:18px;
+      margin-top:20px;
       font-size:13px;
       font-weight:900;
-      letter-spacing:5px;
+      letter-spacing:4px;
     }
 
-    .loader-sub{
+    .loader-text{
       margin-top:8px;
       color:#666;
       font-size:7px;
       letter-spacing:2px;
     }
 
-    .loader-bar{
-      width:120px;
+    .loader-line{
+      width:100px;
       height:2px;
       margin-top:20px;
       background:var(--orange);
-      animation:loaderBar 1.4s infinite;
+
+      animation:loading 1.4s infinite;
     }
 
-    @keyframes loaderPulse{
+    @keyframes pulse{
       50%{
         transform:scale(1.08);
-        filter:drop-shadow(0 0 30px rgba(255,133,0,.45));
       }
     }
 
-    @keyframes loaderBar{
-      0%{transform:scaleX(.2);opacity:.2}
-      50%{transform:scaleX(1);opacity:1}
-      100%{transform:scaleX(.2);opacity:.2}
+    @keyframes loading{
+      0%,100%{
+        transform:scaleX(.2);
+        opacity:.2;
+      }
+
+      50%{
+        transform:scaleX(1);
+        opacity:1;
+      }
     }
 
     /* =========================
@@ -163,14 +183,15 @@
       width:100%;
       height:78px;
       z-index:5000;
+
       transition:.35s ease;
     }
 
     header.scrolled{
-      background:rgba(5,5,5,.9);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
+      background:rgba(5,5,5,.88);
       border-bottom:1px solid var(--line);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
     }
 
     .nav{
@@ -183,7 +204,9 @@
       justify-content:space-between;
     }
 
-    /* LOGO */
+    /* =========================
+       BRAND
+    ========================= */
 
     .brand{
       display:flex;
@@ -195,6 +218,7 @@
     .brand-logo{
       width:48px;
       height:48px;
+      flex-shrink:0;
 
       border-radius:50%;
       overflow:hidden;
@@ -203,39 +227,39 @@
       align-items:center;
       justify-content:center;
 
-      border:1px solid rgba(255,255,255,.14);
       background:#0d0d0d;
-
-      flex-shrink:0;
+      border:1px solid rgba(255,255,255,.14);
     }
 
     .brand-logo img{
       width:100%;
       height:100%;
-      display:block;
       object-fit:contain;
+      display:block;
     }
 
-    .brand-text{
+    .brand-info{
       display:flex;
       flex-direction:column;
       gap:4px;
     }
 
-    .brand-text strong{
+    .brand-name{
       font-size:13px;
       font-weight:900;
       letter-spacing:2.5px;
     }
 
-    .brand-text span{
-      color:#777;
+    .brand-slogan{
+      color:#6d6d6d;
       font-size:7px;
       letter-spacing:1.5px;
       white-space:nowrap;
     }
 
-    /* DESKTOP MENU */
+    /* =========================
+       DESKTOP MENU
+    ========================= */
 
     .desktop-menu{
       display:flex;
@@ -244,7 +268,7 @@
     }
 
     .desktop-menu a{
-      color:#aaa;
+      color:#999;
       font-size:11px;
       font-weight:600;
       transition:.3s;
@@ -254,19 +278,21 @@
       color:#fff;
     }
 
-    .contact-button{
+    .desktop-contact{
       padding:11px 18px;
-      border:1px solid rgba(255,133,0,.5);
       border-radius:30px;
-      background:rgba(255,133,0,.08);
+      border:1px solid rgba(255,133,0,.45);
+      background:rgba(255,133,0,.07);
     }
 
-    .contact-button:hover{
+    .desktop-contact:hover{
       background:var(--orange);
       color:#000 !important;
     }
 
-    /* MOBILE BUTTON */
+    /* =========================
+       MOBILE BUTTON
+    ========================= */
 
     .menu-button{
       display:none;
@@ -284,7 +310,6 @@
       flex-direction:column;
 
       gap:5px;
-
       cursor:pointer;
     }
 
@@ -292,6 +317,7 @@
       width:18px;
       height:2px;
       background:#fff;
+
       transition:.3s;
     }
 
@@ -314,14 +340,14 @@
     .mobile-menu{
       position:fixed;
       inset:0;
-      z-index:9000;
+      z-index:8000;
+
+      background:rgba(3,3,3,.98);
+      backdrop-filter:blur(25px);
 
       display:flex;
       align-items:center;
       justify-content:center;
-
-      background:rgba(3,3,3,.98);
-      backdrop-filter:blur(25px);
 
       opacity:0;
       visibility:hidden;
@@ -345,10 +371,10 @@
       border-radius:50%;
       border:1px solid var(--line);
 
-      background:#101010;
+      background:#111;
       color:#fff;
 
-      font-size:28px;
+      font-size:27px;
       cursor:pointer;
     }
 
@@ -356,25 +382,26 @@
       text-align:center;
 
       display:flex;
-      flex-direction:column;
       align-items:center;
+      flex-direction:column;
     }
 
     .mobile-content img{
-      width:95px;
-      height:95px;
+      width:90px;
+      height:90px;
       object-fit:contain;
       border-radius:50%;
-      margin-bottom:20px;
     }
 
-    .mobile-content strong{
-      font-size:17px;
+    .mobile-name{
+      margin-top:18px;
+      font-size:16px;
+      font-weight:900;
       letter-spacing:4px;
     }
 
-    .mobile-content small{
-      margin-top:8px;
+    .mobile-slogan{
+      margin-top:7px;
       color:#666;
       font-size:7px;
       letter-spacing:2px;
@@ -383,8 +410,9 @@
     .mobile-links{
       display:flex;
       flex-direction:column;
-      gap:25px;
-      margin-top:50px;
+      gap:23px;
+      margin-top:45px;
+      text-align:center;
     }
 
     .mobile-links a{
@@ -403,7 +431,7 @@
 
     .hero{
       min-height:100vh;
-      padding:120px 6% 70px;
+      padding:125px 6% 70px;
 
       display:flex;
       align-items:center;
@@ -411,13 +439,13 @@
       position:relative;
     }
 
-    .hero-grid{
+    .hero-container{
       width:min(1200px,100%);
       margin:auto;
 
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:70px;
+      gap:65px;
 
       align-items:center;
     }
@@ -427,8 +455,8 @@
       z-index:3;
     }
 
-    .hero-tag{
-      color:var(--orange-light);
+    .hero-small{
+      color:var(--orange2);
       font-size:9px;
       font-weight:800;
       letter-spacing:4px;
@@ -436,21 +464,24 @@
     }
 
     .hero-logo{
-      width:90px;
-      height:90px;
+      width:92px;
+      height:92px;
       object-fit:contain;
       border-radius:50%;
-      margin-bottom:25px;
 
-      filter:drop-shadow(0 0 30px rgba(255,133,0,.25));
+      margin-bottom:24px;
+
+      filter:drop-shadow(
+        0 0 35px rgba(255,133,0,.25)
+      );
     }
 
-    .hero h1{
+    .hero-title{
       font-family:Georgia,serif;
-      font-size:clamp(48px,6vw,82px);
-      line-height:.96;
+      font-size:clamp(50px,6vw,82px);
+      line-height:.94;
       letter-spacing:-3px;
-      font-weight:600;
+      font-weight:500;
     }
 
     .orange{
@@ -458,30 +489,33 @@
     }
 
     .hero-description{
-      max-width:580px;
+      max-width:570px;
+
       margin:28px 0;
 
-      color:#888;
+      color:#858585;
       font-size:14px;
       line-height:1.9;
     }
 
-    .buttons{
+    .hero-buttons{
       display:flex;
+      align-items:center;
       gap:12px;
       flex-wrap:wrap;
     }
 
     .btn{
       padding:14px 22px;
-      border-radius:40px;
 
       display:inline-flex;
       align-items:center;
       justify-content:center;
 
+      border-radius:40px;
+
       font-size:10px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:1px;
 
       transition:.35s;
@@ -490,44 +524,50 @@
     .btn-primary{
       background:var(--orange);
       color:#000;
-      box-shadow:0 12px 35px rgba(255,133,0,.2);
+
+      box-shadow:
+        0 12px 40px rgba(255,133,0,.18);
     }
 
     .btn-primary:hover{
       transform:translateY(-4px);
-      box-shadow:0 18px 50px rgba(255,133,0,.35);
+
+      box-shadow:
+        0 18px 55px rgba(255,133,0,.35);
     }
 
     .btn-secondary{
-      border:1px solid var(--line);
       background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
       color:#fff;
     }
 
     .btn-secondary:hover{
-      border-color:var(--orange);
       transform:translateY(-4px);
+      border-color:rgba(255,133,0,.5);
     }
 
-    /* HERO IMAGE */
+    /* =========================
+       HERO PHOTO
+    ========================= */
 
     .hero-visual{
-      position:relative;
+      min-height:600px;
 
-      min-height:610px;
+      position:relative;
 
       display:flex;
       align-items:center;
       justify-content:center;
     }
 
-    /* FILIGRANE */
+    /* LOGO FILIGRANE */
 
-    .watermark{
+    .hero-watermark{
       position:absolute;
 
-      width:550px;
-      height:550px;
+      width:560px;
+      height:560px;
 
       object-fit:contain;
 
@@ -536,9 +576,11 @@
       filter:grayscale(1) brightness(2);
 
       pointer-events:none;
+
+      z-index:0;
     }
 
-    .photo-frame{
+    .hero-photo{
       position:relative;
       z-index:2;
 
@@ -553,20 +595,18 @@
 
       border:1px solid rgba(255,255,255,.14);
 
-      box-shadow:
-        0 35px 90px rgba(0,0,0,.55),
-        0 0 70px rgba(255,133,0,.08);
+      box-shadow:var(--shadow);
 
       transform:rotate(2deg);
 
-      transition:.5s;
+      transition:.5s ease;
     }
 
-    .photo-frame:hover{
-      transform:rotate(0) translateY(-8px);
+    .hero-photo:hover{
+      transform:rotate(0deg) translateY(-8px);
     }
 
-    .main-photo{
+    .hero-photo > img{
       width:100%;
       height:100%;
 
@@ -575,45 +615,42 @@
       object-fit:cover;
     }
 
-    .photo-overlay{
+    .photo-gradient{
       position:absolute;
       inset:0;
 
       background:
         linear-gradient(
           to bottom,
-          transparent 45%,
-          rgba(0,0,0,.8)
+          transparent 40%,
+          rgba(0,0,0,.88)
         );
     }
 
-    .photo-label{
+    .photo-caption{
       position:absolute;
 
       left:18px;
       right:18px;
       bottom:18px;
 
-      z-index:3;
-
-      padding:18px;
+      padding:17px;
 
       border-radius:17px;
 
       background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.10);
 
-      backdrop-filter:blur(15px);
-
-      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(14px);
     }
 
-    .photo-label small{
+    .photo-caption small{
       color:var(--orange);
       font-size:8px;
       letter-spacing:3px;
     }
 
-    .photo-label strong{
+    .photo-caption strong{
       display:block;
       margin-top:7px;
       font-size:13px;
@@ -624,15 +661,16 @@
     ========================= */
 
     .marquee{
+      width:100%;
       overflow:hidden;
       white-space:nowrap;
 
-      padding:18px 0;
+      background:#080808;
 
       border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);
 
-      background:#080808;
+      padding:18px 0;
     }
 
     .marquee-track{
@@ -654,6 +692,10 @@
     }
 
     @keyframes marquee{
+      from{
+        transform:translateX(0);
+      }
+
       to{
         transform:translateX(-50%);
       }
@@ -672,24 +714,27 @@
       margin:auto;
     }
 
-    .section-tag{
+    .section-number{
       color:var(--orange);
       font-size:9px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:4px;
-      margin-bottom:16px;
+      margin-bottom:17px;
     }
 
     .section-title{
       font-family:Georgia,serif;
-      font-size:clamp(40px,5vw,70px);
+      font-size:clamp(42px,5vw,70px);
       line-height:.98;
+      font-weight:500;
     }
 
-    .section-text{
+    .section-description{
       max-width:650px;
-      margin-top:20px;
-      color:#858585;
+      margin-top:22px;
+
+      color:#838383;
+
       font-size:14px;
       line-height:1.9;
     }
@@ -701,12 +746,14 @@
     .vision-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
+
       gap:80px;
+
       align-items:center;
     }
 
-    .vision-box{
-      min-height:470px;
+    .vision-image{
+      min-height:480px;
 
       border-radius:35px;
 
@@ -714,11 +761,11 @@
 
       background:
         radial-gradient(
-          circle at center,
+          circle,
           rgba(255,133,0,.12),
-          transparent 45%
+          transparent 50%
         ),
-        #0a0a0a;
+        #090909;
 
       display:flex;
       align-items:center;
@@ -727,25 +774,29 @@
       overflow:hidden;
     }
 
-    .vision-box img{
-      width:230px;
-      height:230px;
+    .vision-image img{
+      width:235px;
+      height:235px;
+
       object-fit:contain;
+
       border-radius:50%;
 
-      filter:drop-shadow(
-        0 0 45px rgba(255,133,0,.3)
-      );
+      filter:
+        drop-shadow(
+          0 0 45px rgba(255,133,0,.3)
+        );
     }
 
     .vision-content h3{
-      margin:25px 0 20px;
-      font-size:29px;
+      margin:27px 0 20px;
+
+      font-size:28px;
       line-height:1.4;
     }
 
     .vision-content p{
-      color:#888;
+      color:#828282;
       font-size:14px;
       line-height:1.9;
     }
@@ -754,62 +805,97 @@
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:12px;
+
       margin-top:30px;
     }
 
     .stat{
       padding:20px 15px;
-      background:#0b0b0b;
-      border:1px solid var(--line);
+
       border-radius:18px;
+
+      background:#0b0b0b;
+
+      border:1px solid var(--line);
     }
 
     .stat strong{
       display:block;
+
       color:var(--orange);
-      font-size:23px;
+
+      font-size:24px;
+
       margin-bottom:6px;
     }
 
-    .stat small{
+    .stat span{
       color:#666;
+
       font-size:8px;
-      letter-spacing:1px;
+
       text-transform:uppercase;
+      letter-spacing:1px;
     }
 
     /* =========================
        UNIVERSE
     ========================= */
 
-    .universe{
+    .dark-section{
       background:#080808;
     }
 
     .cards{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:17px;
+
+      gap:16px;
+
       margin-top:50px;
     }
 
     .card{
       min-height:310px;
-      padding:30px;
 
       position:relative;
-      overflow:hidden;
+
+      padding:30px;
 
       border-radius:27px;
-      border:1px solid var(--line);
 
       background:#0c0c0c;
+
+      border:1px solid var(--line);
+
+      overflow:hidden;
 
       transition:.4s;
     }
 
+    .card::after{
+      content:"";
+
+      position:absolute;
+
+      width:150px;
+      height:150px;
+
+      right:-80px;
+      bottom:-80px;
+
+      background:var(--orange);
+
+      border-radius:50%;
+
+      filter:blur(60px);
+
+      opacity:.08;
+    }
+
     .card:hover{
       transform:translateY(-10px);
+
       border-color:rgba(255,133,0,.4);
     }
 
@@ -821,16 +907,21 @@
 
     .card h3{
       position:absolute;
+
       left:30px;
       bottom:65px;
+
       font-size:22px;
     }
 
     .card p{
       position:absolute;
+
       left:30px;
       bottom:30px;
+
       color:#686868;
+
       font-size:11px;
     }
 
@@ -856,27 +947,35 @@
       background:
         radial-gradient(
           circle at center,
-          rgba(255,133,0,.1),
+          rgba(255,133,0,.11),
           transparent 50%
         ),
         #090909;
     }
 
     .special-content{
-      max-width:700px;
+      max-width:720px;
     }
 
     .special-content h2{
       font-family:Georgia,serif;
+
       font-size:clamp(43px,6vw,78px);
+
       line-height:.98;
+
+      font-weight:500;
     }
 
     .special-content p{
       max-width:600px;
+
       margin:25px auto 30px;
+
       color:#858585;
+
       font-size:14px;
+
       line-height:1.9;
     }
 
@@ -887,24 +986,31 @@
     .experience-grid{
       display:grid;
       grid-template-columns:repeat(4,1fr);
+
       gap:15px;
+
       margin-top:50px;
     }
 
     .experience{
       padding:27px 22px;
+
       border-radius:22px;
-      border:1px solid var(--line);
+
       background:#0b0b0b;
+
+      border:1px solid var(--line);
+
       transition:.4s;
     }
 
     .experience:hover{
       transform:translateY(-8px);
-      border-color:rgba(255,133,0,.3);
+
+      border-color:rgba(255,133,0,.35);
     }
 
-    .icon{
+    .experience-icon{
       width:45px;
       height:45px;
 
@@ -915,9 +1021,12 @@
       border-radius:50%;
 
       color:var(--orange);
-      background:rgba(255,133,0,.1);
+
+      background:rgba(255,133,0,.09);
 
       margin-bottom:23px;
+
+      font-size:18px;
     }
 
     .experience h3{
@@ -927,6 +1036,7 @@
 
     .experience p{
       color:#707070;
+
       font-size:11px;
       line-height:1.8;
     }
@@ -947,7 +1057,7 @@
       background:
         radial-gradient(
           circle at center,
-          rgba(255,133,0,.09),
+          rgba(255,133,0,.10),
           transparent 50%
         ),
         #090909;
@@ -955,15 +1065,23 @@
 
     .contact-box h2{
       font-family:Georgia,serif;
+
       font-size:clamp(42px,6vw,75px);
+
       line-height:1;
+
+      font-weight:500;
     }
 
     .contact-box p{
       max-width:600px;
+
       margin:20px auto 30px;
+
       color:#858585;
+
       font-size:14px;
+
       line-height:1.8;
     }
 
@@ -973,11 +1091,13 @@
 
     footer{
       padding:45px 6% 30px;
+
       background:#030303;
+
       border-top:1px solid var(--line);
     }
 
-    .footer{
+    .footer-container{
       width:min(1200px,100%);
       margin:auto;
     }
@@ -986,6 +1106,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
+
       padding-bottom:30px;
     }
 
@@ -998,7 +1119,9 @@
     .footer-brand img{
       width:52px;
       height:52px;
+
       object-fit:contain;
+
       border-radius:50%;
     }
 
@@ -1028,6 +1151,8 @@
 
       border:1px solid var(--line);
 
+      color:#999;
+
       font-size:9px;
 
       transition:.3s;
@@ -1036,6 +1161,7 @@
     .social:hover{
       background:var(--orange);
       color:#000;
+      border-color:var(--orange);
     }
 
     .footer-bottom{
@@ -1044,11 +1170,13 @@
       border-top:1px solid var(--line);
 
       display:flex;
+      align-items:center;
       justify-content:space-between;
 
       color:#555;
 
       font-size:9px;
+
       letter-spacing:1px;
     }
 
@@ -1058,6 +1186,7 @@
 
     .whatsapp{
       position:fixed;
+
       right:20px;
       bottom:20px;
 
@@ -1080,19 +1209,28 @@
 
       box-shadow:
         0 10px 35px rgba(37,211,102,.25);
+
+      transition:.3s;
+    }
+
+    .whatsapp:hover{
+      transform:scale(1.08);
     }
 
     /* =========================
-       REVEAL
+       ANIMATION REVEAL
     ========================= */
 
     .reveal{
       opacity:0;
       transform:translateY(30px);
-      transition:.8s ease;
+
+      transition:
+        opacity .8s ease,
+        transform .8s ease;
     }
 
-    .reveal.show{
+    .reveal.visible{
       opacity:1;
       transform:translateY(0);
     }
@@ -1111,19 +1249,21 @@
         display:flex;
       }
 
-      .hero-grid{
+      .hero-container{
         grid-template-columns:1fr;
-        text-align:center;
+        gap:45px;
       }
 
       .hero-content{
+        text-align:center;
+
         display:flex;
         flex-direction:column;
         align-items:center;
       }
 
       .hero-description{
-        max-width:650px;
+        max-width:680px;
       }
 
       .vision-grid{
@@ -1140,7 +1280,7 @@
     }
 
     /* =========================
-       PHONE
+       MOBILE
     ========================= */
 
     @media(max-width:600px){
@@ -1162,20 +1302,21 @@
         height:42px;
       }
 
-      .brand-text strong{
+      .brand-name{
         font-size:10px;
         letter-spacing:1.8px;
       }
 
-      .brand-text span{
+      .brand-slogan{
         font-size:5.5px;
+        letter-spacing:1px;
       }
 
       .hero{
         padding:110px 20px 60px;
       }
 
-      .hero h1{
+      .hero-title{
         font-size:47px;
         letter-spacing:-1.5px;
       }
@@ -1189,19 +1330,25 @@
         font-size:13px;
       }
 
+      .hero-buttons{
+        justify-content:center;
+      }
+
       .hero-visual{
-        min-height:450px;
+        min-height:460px;
       }
 
-      .watermark{
-        width:320px;
-        height:320px;
+      .hero-watermark{
+        width:330px;
+        height:330px;
       }
 
-      .photo-frame{
+      .hero-photo{
         width:94%;
-        height:440px;
+        height:450px;
+
         transform:none;
+
         border-radius:28px;
       }
 
@@ -1209,11 +1356,11 @@
         padding:80px 20px;
       }
 
-      .vision-box{
+      .vision-image{
         min-height:350px;
       }
 
-      .vision-box img{
+      .vision-image img{
         width:180px;
         height:180px;
       }
@@ -1223,7 +1370,7 @@
       }
 
       .special-box{
-        min-height:420px;
+        min-height:430px;
       }
 
       .experience-grid{
@@ -1238,12 +1385,14 @@
 
       .footer-bottom{
         flex-direction:column;
+        align-items:flex-start;
         gap:12px;
       }
 
       .whatsapp{
         width:54px;
         height:54px;
+
         right:15px;
         bottom:15px;
       }
@@ -1253,923 +1402,1069 @@
 
 <body>
 
-<!-- =========================
-     LOADER
-========================= -->
+  <!-- =========================
+       LOADER
+  ========================= -->
 
-<div class="loader" id="loader">
+  <div id="loader">
 
-  <img
-    src="./IMG_3081.jpeg"
-    alt="Logo Khalidou Kane"
-  >
+    <img
+      class="loader-logo"
+      src="./IMG_3846.png"
+      alt="Logo Khalidou Kane"
+      onerror="this.style.display='none'"
+    >
 
-  <div class="loader-name">
-    KHALIDOU KANE
+    <div class="loader-name">
+      KHALIDOU KANE
+    </div>
+
+    <div class="loader-text">
+      DE LA LUMIÈRE DANS VOTRE STYLE
+    </div>
+
+    <div class="loader-line"></div>
+
   </div>
 
-  <div class="loader-sub">
-    DE LA LUMIÈRE DANS VOTRE STYLE
+
+  <!-- BACKGROUND -->
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="glow three"></div>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header id="header">
+
+    <div class="nav">
+
+      <a href="#accueil" class="brand">
+
+        <div class="brand-logo">
+
+          <img
+            src="./IMG_3846.png"
+            alt="Khalidou Kane"
+            onerror="this.style.display='none'"
+          >
+
+        </div>
+
+        <div class="brand-info">
+
+          <div class="brand-name">
+            KHALIDOU KANE
+          </div>
+
+          <div class="brand-slogan">
+            DE LA LUMIÈRE DANS VOTRE STYLE
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- MENU DESKTOP -->
+
+      <nav class="desktop-menu">
+
+        <a href="#accueil">
+          Accueil
+        </a>
+
+        <a href="#vision">
+          Vision
+        </a>
+
+        <a href="#univers">
+          L'univers
+        </a>
+
+        <a href="#experience">
+          Expérience
+        </a>
+
+        <a href="#contact" class="desktop-contact">
+          Contact
+        </a>
+
+      </nav>
+
+
+      <!-- MENU MOBILE -->
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Ouvrir le menu"
+      >
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================= -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <button
+      class="mobile-close"
+      id="mobileClose"
+      aria-label="Fermer"
+    >
+      ×
+    </button>
+
+    <div class="mobile-content">
+
+      <img
+        src="./IMG_3846.png"
+        alt="Logo Khalidou Kane"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="mobile-name">
+        KHALIDOU KANE
+      </div>
+
+      <div class="mobile-slogan">
+        DE LA LUMIÈRE DANS VOTRE STYLE
+      </div>
+
+      <nav class="mobile-links">
+
+        <a href="#accueil">
+          Accueil
+        </a>
+
+        <a href="#vision">
+          Vision
+        </a>
+
+        <a href="#univers">
+          L'univers
+        </a>
+
+        <a href="#experience">
+          Expérience
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </nav>
+
+    </div>
+
   </div>
 
-  <div class="loader-bar"></div>
 
-</div>
+  <!-- =========================
+       HERO
+  ========================= -->
 
-<!-- ENERGY -->
+  <main>
 
-<div class="energy energy-1"></div>
-<div class="energy energy-2"></div>
-<div class="energy energy-3"></div>
+    <section class="hero" id="accueil">
+
+      <div class="hero-container">
 
 
-<!-- =========================
-     HEADER
-========================= -->
+        <!-- TEXTE -->
 
-<header id="header">
+        <div class="hero-content reveal">
 
-  <div class="nav">
+          <div class="hero-small">
+            ✦ KHALIDOU KANE
+          </div>
 
-    <a href="#accueil" class="brand">
+          <img
+            class="hero-logo"
+            src="./IMG_3846.png"
+            alt="Logo Khalidou Kane"
+            onerror="this.style.display='none'"
+          >
 
-      <div class="brand-logo">
+          <h1 class="hero-title">
 
-        <img
-          src="./IMG_3081.jpeg"
-          alt="Logo Khalidou Kane"
-        >
+            DE LA<br>
+
+            <span class="orange">
+              LUMIÈRE
+            </span><br>
+
+            DANS VOTRE STYLE
+
+          </h1>
+
+          <p class="hero-description">
+
+            Bienvenue dans l'univers Khalidou Kane.
+            Une identité forte, moderne et créative,
+            pensée pour apporter de la lumière,
+            de l'énergie et du caractère à votre style.
+
+          </p>
+
+          <div class="hero-buttons">
+
+            <a
+              href="#univers"
+              class="btn btn-primary"
+            >
+              DÉCOUVRIR ✦
+            </a>
+
+            <a
+              href="#contact"
+              class="btn btn-secondary"
+            >
+              NOUS CONTACTER
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- PHOTO -->
+
+        <div class="hero-visual reveal">
+
+          <!-- FILIGRANE -->
+
+          <img
+            class="hero-watermark"
+            src="./IMG_3846.png"
+            alt=""
+            aria-hidden="true"
+            onerror="this.style.display='none'"
+          >
+
+
+          <!-- PHOTO PRINCIPALE -->
+
+          <div class="hero-photo">
+
+            <img
+              src="./IMG_4209.jpeg"
+              alt="Khalidou Kane"
+            >
+
+            <div class="photo-gradient"></div>
+
+            <div class="photo-caption">
+
+              <small>
+                KH — SIGNATURE
+              </small>
+
+              <strong>
+                DE LA LUMIÈRE DANS VOTRE STYLE
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
-      <div class="brand-text">
+    </section>
 
-        <strong>
+
+    <!-- =========================
+         MARQUEE
+    ========================= -->
+
+    <div class="marquee">
+
+      <div class="marquee-track">
+
+        <span>
           KHALIDOU KANE
-        </strong>
+        </span>
+
+        <span class="dot">✦</span>
 
         <span>
           DE LA LUMIÈRE DANS VOTRE STYLE
         </span>
 
-      </div>
+        <span class="dot">✦</span>
 
-    </a>
-
-
-    <nav class="desktop-menu">
-
-      <a href="#accueil">
-        Accueil
-      </a>
-
-      <a href="#univers">
-        L'univers
-      </a>
-
-      <a href="#special">
-        Découvrir
-      </a>
-
-      <a href="#experience">
-        Expérience
-      </a>
-
-      <a href="#contact" class="contact-button">
-        Contact
-      </a>
-
-    </nav>
-
-
-    <button
-      class="menu-button"
-      id="menuButton"
-      aria-label="Menu"
-    >
-
-      <span></span>
-      <span></span>
-      <span></span>
-
-    </button>
-
-  </div>
-
-</header>
-
-
-<!-- =========================
-     MOBILE MENU
-========================= -->
-
-<div class="mobile-menu" id="mobileMenu">
-
-  <button
-    class="mobile-close"
-    id="mobileClose"
-  >
-    ×
-  </button>
-
-  <div class="mobile-content">
-
-    <img
-      src="./IMG_3081.jpeg"
-      alt="Logo Khalidou Kane"
-    >
-
-    <strong>
-      KHALIDOU KANE
-    </strong>
-
-    <small>
-      DE LA LUMIÈRE DANS VOTRE STYLE
-    </small>
-
-    <nav class="mobile-links">
-
-      <a href="#accueil">
-        Accueil
-      </a>
-
-      <a href="#univers">
-        L'univers
-      </a>
-
-      <a href="#special">
-        Découvrir
-      </a>
-
-      <a href="#experience">
-        Expérience
-      </a>
-
-      <a href="#contact">
-        Contact
-      </a>
-
-    </nav>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<main>
-
-<section class="hero" id="accueil">
-
-  <div class="hero-grid">
-
-    <div class="hero-content">
-
-      <div class="hero-tag">
-        ✦ KHALIDOU KANE
-      </div>
-
-      <img
-        class="hero-logo"
-        src="./IMG_3081.jpeg"
-        alt="Logo Khalidou Kane"
-      >
-
-      <h1>
-
-        DE LA<br>
-
-        <span class="orange">
-          LUMIÈRE
-        </span><br>
-
-        DANS VOTRE STYLE
-
-      </h1>
-
-      <p class="hero-description">
-
-        Bienvenue dans l'univers Khalidou Kane.
-        Une identité forte, moderne et créative,
-        pensée pour apporter de la lumière,
-        de l'énergie et du caractère à votre style.
-
-      </p>
-
-      <div class="buttons">
-
-        <a
-          href="#special"
-          class="btn btn-primary"
-        >
-          DÉCOUVRIR ✦
-        </a>
-
-        <a
-          href="#contact"
-          class="btn btn-secondary"
-        >
-          NOUS CONTACTER
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <!-- PHOTO -->
-
-    <div class="hero-visual">
-
-      <!-- LOGO FILIGRANE -->
-
-      <img
-        class="watermark"
-        src="./IMG_3081.jpeg"
-        alt=""
-      >
-
-      <!-- PHOTO IMG_4209 -->
-
-      <div class="photo-frame">
-
-        <img
-          class="main-photo"
-          src="./IMG_4209.jpeg"
-          alt="Khalidou Kane"
-        >
-
-        <div class="photo-overlay"></div>
-
-        <div class="photo-label">
-
-          <small>
-            KH — SIGNATURE
-          </small>
-
-          <strong>
-            DE LA LUMIÈRE DANS VOTRE STYLE
-          </strong>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     MARQUEE
-========================= -->
-
-<div class="marquee">
-
-  <div class="marquee-track">
-
-    <span>KHALIDOU KANE</span>
-    <span class="dot">✦</span>
-
-    <span>
-      DE LA LUMIÈRE DANS VOTRE STYLE
-    </span>
-
-    <span class="dot">✦</span>
-
-    <span>CRÉATIVITÉ</span>
-    <span class="dot">✦</span>
-
-    <span>ÉNERGIE</span>
-    <span class="dot">✦</span>
-
-    <span>STYLE</span>
-    <span class="dot">✦</span>
-
-    <span>ÉLÉGANCE</span>
-    <span class="dot">✦</span>
-
-    <span>KHALIDOU KANE</span>
-    <span class="dot">✦</span>
-
-    <span>
-      DE LA LUMIÈRE DANS VOTRE STYLE
-    </span>
-
-    <span class="dot">✦</span>
-
-    <span>CRÉATIVITÉ</span>
-    <span class="dot">✦</span>
-
-    <span>ÉNERGIE</span>
-    <span class="dot">✦</span>
-
-    <span>STYLE</span>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     VISION
-========================= -->
-
-<section>
-
-  <div class="container vision-grid">
-
-    <div class="vision-box reveal">
-
-      <img
-        src="./IMG_3081.jpeg"
-        alt="Khalidou Kane"
-      >
-
-    </div>
-
-
-    <div class="vision-content reveal">
-
-      <div class="section-tag">
-        01 — NOTRE VISION
-      </div>
-
-      <h2 class="section-title">
-
-        PLUS QU'UNE<br>
-
-        <span class="orange">
-          IDENTITÉ.
+        <span>
+          CRÉATIVITÉ
         </span>
 
-      </h2>
+        <span class="dot">✦</span>
 
-      <h3>
-
-        Une vision.<br>
-        Une énergie.<br>
-
-        <span class="orange">
-          Une signature.
-        </span>
-
-      </h3>
-
-      <p>
-
-        Khalidou Kane est un univers pensé
-        autour du style, de l'énergie et de
-        l'originalité. Chaque détail participe
-        à créer une identité reconnaissable.
-
-      </p>
-
-      <div class="stats">
-
-        <div class="stat">
-          <strong>01</strong>
-          <small>Vision</small>
-        </div>
-
-        <div class="stat">
-          <strong>∞</strong>
-          <small>Créativité</small>
-        </div>
-
-        <div class="stat">
-          <strong>✦</strong>
-          <small>Style</small>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     UNIVERS
-========================= -->
-
-<section class="universe" id="univers">
-
-  <div class="container">
-
-    <div class="reveal">
-
-      <div class="section-tag">
-        02 — L'UNIVERS
-      </div>
-
-      <h2 class="section-title">
-
-        UNE SIGNATURE<br>
-        QUI SE REMARQUE.
-
-      </h2>
-
-      <p class="section-text">
-
-        L'univers Khalidou Kane mélange
-        caractère, créativité et élégance
-        pour créer une expérience différente.
-
-      </p>
-
-    </div>
-
-
-    <div class="cards">
-
-      <article class="card reveal">
-
-        <div class="card-number">
-          01 /
-        </div>
-
-        <h3>
-          IDENTITÉ
-        </h3>
-
-        <p>
-          Une image forte et reconnaissable.
-        </p>
-
-      </article>
-
-
-      <article class="card reveal">
-
-        <div class="card-number">
-          02 /
-        </div>
-
-        <h3>
+        <span>
           ÉNERGIE
-        </h3>
+        </span>
 
-        <p>
-          Une présence qui attire le regard.
-        </p>
+        <span class="dot">✦</span>
 
-      </article>
-
-
-      <article class="card reveal">
-
-        <div class="card-number">
-          03 /
-        </div>
-
-        <h3>
-          ÉLÉGANCE
-        </h3>
-
-        <p>
-          Le détail qui transforme le style.
-        </p>
-
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     SPECIAL
-========================= -->
-
-<section id="special">
-
-  <div class="container">
-
-    <div class="special-box reveal">
-
-      <div class="special-content">
-
-        <div class="section-tag">
-          03 — DÉCOUVRIR
-        </div>
-
-        <h2>
-
-          QUELQUE CHOSE<br>
-
-          DE <span class="orange">
-            SPÉCIAL.
-          </span>
-
-        </h2>
-
-        <p>
-
-          Khalidou Kane ne veut pas simplement
-          être vu. Nous voulons créer une
-          véritable expérience, avec une identité,
-          une énergie et une vision.
-
-        </p>
-
-        <a
-          href="#contact"
-          class="btn btn-primary"
-        >
-          EN SAVOIR PLUS ✦
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     EXPERIENCE
-========================= -->
-
-<section id="experience">
-
-  <div class="container">
-
-    <div class="reveal">
-
-      <div class="section-tag">
-        04 — L'EXPÉRIENCE
-      </div>
-
-      <h2 class="section-title">
-
-        PENSÉ POUR<br>
-        VOUS.
-
-      </h2>
-
-    </div>
-
-
-    <div class="experience-grid">
-
-      <div class="experience reveal">
-
-        <div class="icon">
-          ✦
-        </div>
-
-        <h3>
+        <span>
           STYLE
-        </h3>
-
-        <p>
-          Une identité moderne et unique.
-        </p>
-
-      </div>
-
-
-      <div class="experience reveal">
-
-        <div class="icon">
-          ⚡
-        </div>
-
-        <h3>
-          ÉNERGIE
-        </h3>
-
-        <p>
-          Une expérience dynamique.
-        </p>
-
-      </div>
-
-
-      <div class="experience reveal">
-
-        <div class="icon">
-          ◆
-        </div>
-
-        <h3>
-          QUALITÉ
-        </h3>
-
-        <p>
-          Chaque détail compte.
-        </p>
-
-      </div>
-
-
-      <div class="experience reveal">
-
-        <div class="icon">
-          ∞
-        </div>
-
-        <h3>
-          VISION
-        </h3>
-
-        <p>
-          Une marque construite pour évoluer.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section id="contact">
-
-  <div class="container">
-
-    <div class="contact-box reveal">
-
-      <div class="section-tag">
-        05 — CONTACT
-      </div>
-
-      <h2>
-
-        ENTRONS DANS<br>
-
-        <span class="orange">
-          L'UNIVERS.
         </span>
 
-      </h2>
+        <span class="dot">✦</span>
 
-      <p>
+        <span>
+          ÉLÉGANCE
+        </span>
 
-        Une question ou envie d'en savoir
-        plus sur Khalidou Kane ?
-        Contactez-nous directement.
+        <span class="dot">✦</span>
 
-      </p>
 
-      <a
-        href="https://wa.me/221781383200"
-        target="_blank"
-        class="btn btn-primary"
-      >
-        CONTACTER SUR WHATSAPP
-      </a>
+        <span>
+          KHALIDOU KANE
+        </span>
+
+        <span class="dot">✦</span>
+
+        <span>
+          DE LA LUMIÈRE DANS VOTRE STYLE
+        </span>
+
+        <span class="dot">✦</span>
+
+        <span>
+          CRÉATIVITÉ
+        </span>
+
+        <span class="dot">✦</span>
+
+        <span>
+          ÉNERGIE
+        </span>
+
+        <span class="dot">✦</span>
+
+        <span>
+          STYLE
+        </span>
+
+        <span class="dot">✦</span>
+
+        <span>
+          ÉLÉGANCE
+        </span>
+
+      </div>
 
     </div>
 
-  </div>
 
-</section>
+    <!-- =========================
+         VISION
+    ========================= -->
 
-</main>
+    <section id="vision">
 
-
-<!-- =========================
-     WHATSAPP
-========================= -->
-
-<a
-  href="https://wa.me/221781383200"
-  target="_blank"
-  class="whatsapp"
-  aria-label="WhatsApp"
->
-  ☎
-</a>
+      <div class="container vision-grid">
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+        <div class="vision-image reveal">
 
-<footer>
+          <img
+            src="./IMG_3846.png"
+            alt="Logo Khalidou Kane"
+            onerror="this.style.display='none'"
+          >
 
-  <div class="footer">
+        </div>
 
-    <div class="footer-top">
 
-      <div class="footer-brand">
+        <div class="vision-content reveal">
 
-        <img
-          src="./IMG_3081.jpeg"
-          alt="Logo Khalidou Kane"
-        >
+          <div class="section-number">
+            01 — NOTRE VISION
+          </div>
 
-        <div>
+          <h2 class="section-title">
 
-          <strong>
-            KHALIDOU KANE
-          </strong>
+            PLUS QU'UNE<br>
 
-          <br>
+            <span class="orange">
+              IDENTITÉ.
+            </span>
 
-          <small>
-            De la lumière dans votre style
-          </small>
+          </h2>
+
+          <h3>
+
+            Une vision.<br>
+            Une énergie.<br>
+
+            <span class="orange">
+              Une signature.
+            </span>
+
+          </h3>
+
+          <p>
+
+            Khalidou Kane est un univers pensé
+            autour du style, de l'énergie et de
+            l'originalité. Chaque détail participe
+            à créer une identité reconnaissable
+            et différente.
+
+          </p>
+
+          <div class="stats">
+
+            <div class="stat">
+
+              <strong>
+                01
+              </strong>
+
+              <span>
+                Vision
+              </span>
+
+            </div>
+
+            <div class="stat">
+
+              <strong>
+                ∞
+              </strong>
+
+              <span>
+                Créativité
+              </span>
+
+            </div>
+
+            <div class="stat">
+
+              <strong>
+                ✦
+              </strong>
+
+              <span>
+                Signature
+              </span>
+
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
+    </section>
 
-      <div class="socials">
 
-        <a href="#" class="social">
-          IG
-        </a>
+    <!-- =========================
+         UNIVERS
+    ========================= -->
 
-        <a
-          href="https://wa.me/221781383200"
-          class="social"
-        >
-          WA
-        </a>
+    <section
+      class="dark-section"
+      id="univers"
+    >
 
-        <a href="#" class="social">
-          TK
-        </a>
+      <div class="container">
+
+        <div class="reveal">
+
+          <div class="section-number">
+            02 — L'UNIVERS
+          </div>
+
+          <h2 class="section-title">
+
+            UNE SIGNATURE<br>
+            QUI SE REMARQUE.
+
+          </h2>
+
+          <p class="section-description">
+
+            L'univers Khalidou Kane mélange
+            caractère, créativité et élégance
+            pour créer une expérience différente.
+
+          </p>
+
+        </div>
+
+
+        <div class="cards">
+
+
+          <article class="card reveal">
+
+            <div class="card-number">
+              01 /
+            </div>
+
+            <h3>
+              IDENTITÉ
+            </h3>
+
+            <p>
+              Une image forte et reconnaissable.
+            </p>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-number">
+              02 /
+            </div>
+
+            <h3>
+              ÉNERGIE
+            </h3>
+
+            <p>
+              Une présence qui attire le regard.
+            </p>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-number">
+              03 /
+            </div>
+
+            <h3>
+              ÉLÉGANCE
+            </h3>
+
+            <p>
+              Le détail qui transforme le style.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SPECIAL
+    ========================= -->
+
+    <section id="special">
+
+      <div class="container">
+
+        <div class="special-box reveal">
+
+          <div class="special-content">
+
+            <div class="section-number">
+              03 — DÉCOUVRIR
+            </div>
+
+            <h2>
+
+              QUELQUE CHOSE<br>
+
+              DE
+              <span class="orange">
+                SPÉCIAL.
+              </span>
+
+            </h2>
+
+            <p>
+
+              Khalidou Kane ne veut pas simplement
+              être vu. Nous voulons créer une véritable
+              expérience, avec une identité, une énergie
+              et une vision.
+
+            </p>
+
+            <a
+              href="#contact"
+              class="btn btn-primary"
+            >
+              EN SAVOIR PLUS ✦
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         EXPERIENCE
+    ========================= -->
+
+    <section id="experience">
+
+      <div class="container">
+
+        <div class="reveal">
+
+          <div class="section-number">
+            04 — L'EXPÉRIENCE
+          </div>
+
+          <h2 class="section-title">
+
+            PENSÉ POUR<br>
+            VOUS.
+
+          </h2>
+
+        </div>
+
+
+        <div class="experience-grid">
+
+
+          <div class="experience reveal">
+
+            <div class="experience-icon">
+              ✦
+            </div>
+
+            <h3>
+              STYLE
+            </h3>
+
+            <p>
+              Une identité moderne et unique.
+            </p>
+
+          </div>
+
+
+          <div class="experience reveal">
+
+            <div class="experience-icon">
+              ⚡
+            </div>
+
+            <h3>
+              ÉNERGIE
+            </h3>
+
+            <p>
+              Une expérience dynamique et vivante.
+            </p>
+
+          </div>
+
+
+          <div class="experience reveal">
+
+            <div class="experience-icon">
+              ◆
+            </div>
+
+            <h3>
+              QUALITÉ
+            </h3>
+
+            <p>
+              Chaque détail compte.
+            </p>
+
+          </div>
+
+
+          <div class="experience reveal">
+
+            <div class="experience-icon">
+              ∞
+            </div>
+
+            <h3>
+              VISION
+            </h3>
+
+            <p>
+              Une marque construite pour évoluer.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="contact-box reveal">
+
+          <div class="section-number">
+            05 — CONTACT
+          </div>
+
+          <h2>
+
+            ENTRONS DANS<br>
+
+            <span class="orange">
+              L'UNIVERS.
+            </span>
+
+          </h2>
+
+          <p>
+
+            Une question ou envie d'en savoir
+            plus sur Khalidou Kane ?
+            Contactez-nous directement.
+
+          </p>
+
+          <a
+            href="https://wa.me/221781383200"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-primary"
+          >
+            CONTACTER SUR WHATSAPP
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       WHATSAPP
+  ========================= -->
+
+  <a
+    href="https://wa.me/221781383200"
+    target="_blank"
+    rel="noopener"
+    class="whatsapp"
+    aria-label="WhatsApp"
+  >
+    ☎
+  </a>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div class="footer-top">
+
+
+        <div class="footer-brand">
+
+          <img
+            src="./IMG_3846.png"
+            alt="Logo Khalidou Kane"
+            onerror="this.style.display='none'"
+          >
+
+          <div>
+
+            <strong>
+              KHALIDOU KANE
+            </strong>
+
+            <br>
+
+            <small>
+              De la lumière dans votre style
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="socials">
+
+          <a
+            href="#"
+            class="social"
+            aria-label="Instagram"
+          >
+            IG
+          </a>
+
+          <a
+            href="https://wa.me/221781383200"
+            target="_blank"
+            rel="noopener"
+            class="social"
+            aria-label="WhatsApp"
+          >
+            WA
+          </a>
+
+          <a
+            href="#"
+            class="social"
+            aria-label="TikTok"
+          >
+            TK
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © <span id="year"></span> KHALIDOU KANE
+        </span>
+
+        <span>
+          DE LA LUMIÈRE DANS VOTRE STYLE ✦
+        </span>
 
       </div>
 
     </div>
 
-
-    <div class="footer-bottom">
-
-      <span>
-        © <span id="year"></span>
-        KHALIDOU KANE
-      </span>
-
-      <span>
-        DE LA LUMIÈRE DANS VOTRE STYLE ✦
-      </span>
-
-    </div>
-
-  </div>
-
-</footer>
+  </footer>
 
 
-<!-- =========================
-     JAVASCRIPT
-========================= -->
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
-<script>
+  <script>
 
-  /* LOADER */
+    /* =========================
+       LOADER
+    ========================= */
 
-  window.addEventListener("load", function(){
+    window.addEventListener("load", function(){
 
-    setTimeout(function(){
+      setTimeout(function(){
 
-      document
-        .getElementById("loader")
-        .classList
-        .add("hidden");
+        const loader =
+          document.getElementById("loader");
 
-    },800);
+        if(loader){
+          loader.classList.add("hide");
+        }
 
-  });
-
-
-  /* HEADER */
-
-  const header =
-    document.getElementById("header");
-
-  window.addEventListener("scroll",function(){
-
-    if(window.scrollY > 30){
-
-      header.classList.add("scrolled");
-
-    }else{
-
-      header.classList.remove("scrolled");
-
-    }
-
-  });
-
-
-  /* MOBILE MENU */
-
-  const menuButton =
-    document.getElementById("menuButton");
-
-  const mobileMenu =
-    document.getElementById("mobileMenu");
-
-  const mobileClose =
-    document.getElementById("mobileClose");
-
-
-  menuButton.addEventListener("click",function(){
-
-    menuButton.classList.add("active");
-
-    mobileMenu.classList.add("open");
-
-    document.body.style.overflow="hidden";
-
-  });
-
-
-  mobileClose.addEventListener("click",closeMenu);
-
-
-  document
-    .querySelectorAll(".mobile-links a")
-    .forEach(function(link){
-
-      link.addEventListener("click",closeMenu);
+      },700);
 
     });
 
 
-  function closeMenu(){
+    /* =========================
+       HEADER
+    ========================= */
 
-    menuButton.classList.remove("active");
+    const header =
+      document.getElementById("header");
 
-    mobileMenu.classList.remove("open");
+    window.addEventListener("scroll",function(){
 
-    document.body.style.overflow="";
+      if(window.scrollY > 30){
 
-  }
+        header.classList.add("scrolled");
+
+      }else{
+
+        header.classList.remove("scrolled");
+
+      }
+
+    });
 
 
-  /* REVEAL */
+    /* =========================
+       MOBILE MENU
+    ========================= */
 
-  const reveals =
-    document.querySelectorAll(".reveal");
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    const mobileClose =
+      document.getElementById("mobileClose");
 
 
-  const observer =
-    new IntersectionObserver(
-      function(entries){
+    function openMenu(){
 
-        entries.forEach(function(entry){
+      menuButton.classList.add("active");
 
-          if(entry.isIntersecting){
+      mobileMenu.classList.add("open");
 
-            entry.target
-              .classList
-              .add("show");
+      document.body.classList.add("menu-open");
 
-            observer.unobserve(
-              entry.target
-            );
+    }
 
-          }
 
-        });
+    function closeMenu(){
 
-      },
-      {
-        threshold:.12
+      menuButton.classList.remove("active");
+
+      mobileMenu.classList.remove("open");
+
+      document.body.classList.remove("menu-open");
+
+    }
+
+
+    menuButton.addEventListener(
+      "click",
+      openMenu
+    );
+
+
+    mobileClose.addEventListener(
+      "click",
+      closeMenu
+    );
+
+
+    document
+      .querySelectorAll(".mobile-links a")
+      .forEach(function(link){
+
+        link.addEventListener(
+          "click",
+          closeMenu
+        );
+
+      });
+
+
+    /* =========================
+       ESCAPE
+    ========================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event){
+
+        if(event.key === "Escape"){
+
+          closeMenu();
+
+        }
+
       }
     );
 
 
-  reveals.forEach(function(element){
+    /* =========================
+       REVEAL ANIMATION
+    ========================= */
 
-    observer.observe(element);
+    const revealElements =
+      document.querySelectorAll(".reveal");
 
-  });
+
+    const revealObserver =
+      new IntersectionObserver(
+        function(entries){
+
+          entries.forEach(function(entry){
+
+            if(entry.isIntersecting){
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+              revealObserver.unobserve(
+                entry.target
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold:.12
+        }
+      );
 
 
-  /* YEAR */
+    revealElements.forEach(
+      function(element){
 
-  document.getElementById("year")
-    .textContent =
-    new Date().getFullYear();
+        revealObserver.observe(element);
 
-</script>
+      }
+    );
+
+
+    /* =========================
+       YEAR
+    ========================= */
+
+    const year =
+      document.getElementById("year");
+
+    if(year){
+
+      year.textContent =
+        new Date().getFullYear();
+
+    }
+
+  </script>
 
 </body>
 </html>
