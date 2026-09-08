@@ -278,8 +278,13 @@
     }
 
     @keyframes heroZoom {
-      from { transform: scale(1.08); }
-      to { transform: scale(1.01); }
+      from {
+        transform: scale(1.08);
+      }
+
+      to {
+        transform: scale(1.01);
+      }
     }
 
     .hero::after {
@@ -434,6 +439,7 @@
         opacity: 0;
         transform: translateY(25px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -597,7 +603,6 @@
 
     /* =========================
        COLLECTION
-       AJOUT DES 17 PHOTOS
     ========================= */
 
     .collection {
@@ -614,33 +619,88 @@
     .collection-item {
       position: relative;
       overflow: hidden;
-      aspect-ratio: 4 / 5;
       background: var(--black-3);
       border: 1px solid var(--line);
+      transition: .4s ease;
     }
 
-    .collection-item img {
+    .collection-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(231,182,106,.40);
+    }
+
+    .collection-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .collection-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform .7s ease, filter .5s ease;
     }
 
-    .collection-item::after {
+    .collection-photo::after {
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(
         180deg,
         transparent 55%,
-        rgba(0,0,0,.55) 100%
+        rgba(0,0,0,.50) 100%
       );
       pointer-events: none;
     }
 
-    .collection-item:hover img {
+    .collection-item:hover .collection-photo img {
       transform: scale(1.07);
       filter: brightness(1.08);
+    }
+
+    .collection-info {
+      padding: 20px;
+      background: #0b0b0b;
+    }
+
+    .collection-number {
+      color: var(--gold);
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .collection-name {
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -.5px;
+      margin-bottom: 16px;
+    }
+
+    .order-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 44px;
+      padding: 0 15px;
+      background: #25D366;
+      color: white;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: .3s ease;
+    }
+
+    .order-btn:hover {
+      background: #1ebe5d;
+      transform: translateY(-2px);
     }
 
     /* =========================
@@ -907,15 +967,27 @@
         min-height: 280px;
       }
 
-      /* Collection mobile */
       .collection-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         margin-top: 50px;
       }
 
-      .collection-item {
+      .collection-photo {
         aspect-ratio: 3 / 4;
+      }
+
+      .collection-info {
+        padding: 15px;
+      }
+
+      .collection-name {
+        font-size: 14px;
+      }
+
+      .order-btn {
+        font-size: 8px;
+        min-height: 40px;
       }
 
       .special {
@@ -984,8 +1056,16 @@
         grid-template-columns: 1fr;
       }
 
-      .collection-item {
+      .collection-photo {
         aspect-ratio: 4 / 5;
+      }
+
+      .collection-name {
+        font-size: 17px;
+      }
+
+      .order-btn {
+        font-size: 9px;
       }
 
       .special-title {
@@ -1054,7 +1134,7 @@
       <a href="#contact">06 — Contact</a>
 
       <div class="mobile-number">
-        +221 78 138 32 00
+        +221 70 892 74 00
       </div>
 
     </div>
@@ -1234,79 +1314,402 @@
         </h2>
 
         <p class="section-intro">
-          Découvrez quelques créations de Khalidou Kane.
-          Chaque pièce exprime une identité, une élégance et un savoir-faire.
+          Découvrez les créations de Khalidou Kane.
+          Chaque costume exprime une identité, une élégance et un savoir-faire.
         </p>
 
         <div class="collection-grid">
 
-          <div class="collection-item">
-            <img src="./IMG_3045_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 1 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3045_compressed.jpeg"
+                alt="Costume africain 1"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">01 — Création</div>
+              <div class="collection-name">Costume africain 1</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%201.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3052_compressed_2.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 2 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3052_compressed_2.jpeg"
+                alt="Costume africain 2"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">02 — Création</div>
+              <div class="collection-name">Costume africain 2</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%202.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3061_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 3 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3061_compressed.jpeg"
+                alt="Costume africain 3"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">03 — Création</div>
+              <div class="collection-name">Costume africain 3</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%203.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3068_compressed_2.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 4 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3068_compressed_2.jpeg"
+                alt="Costume africain 4"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">04 — Création</div>
+              <div class="collection-name">Costume africain 4</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%204.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3075_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 5 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3075_compressed.jpeg"
+                alt="Costume africain 5"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">05 — Création</div>
+              <div class="collection-name">Costume africain 5</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%205.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3080_compressed_2.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 6 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3080_compressed_2.jpeg"
+                alt="Costume africain 6"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">06 — Création</div>
+              <div class="collection-name">Costume africain 6</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%206.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3087_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 7 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3087_compressed.jpeg"
+                alt="Costume africain 7"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">07 — Création</div>
+              <div class="collection-name">Costume africain 7</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%207.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3095_compressed_2.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 8 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3095_compressed_2.jpeg"
+                alt="Costume africain 8"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">08 — Création</div>
+              <div class="collection-name">Costume africain 8</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%208.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3105_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 9 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3105_compressed.jpeg"
+                alt="Costume africain 9"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">09 — Création</div>
+              <div class="collection-name">Costume africain 9</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%209.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3110_compressed_2.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 10 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3110_compressed_2.jpeg"
+                alt="Costume africain 10"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">10 — Création</div>
+              <div class="collection-name">Costume africain 10</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2010.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3115_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 11 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3115_compressed.jpeg"
+                alt="Costume africain 11"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">11 — Création</div>
+              <div class="collection-name">Costume africain 11</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2011.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3120_compressed_3.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 12 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3120_compressed_3.jpeg"
+                alt="Costume africain 12"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">12 — Création</div>
+              <div class="collection-name">Costume africain 12</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2012.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3125_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 13 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3125_compressed.jpeg"
+                alt="Costume africain 13"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">13 — Création</div>
+              <div class="collection-name">Costume africain 13</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2013.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3129_compressed_2.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 14 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3129_compressed_2.jpeg"
+                alt="Costume africain 14"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">14 — Création</div>
+              <div class="collection-name">Costume africain 14</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2014.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3133_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 15 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3133_compressed.jpeg"
+                alt="Costume africain 15"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">15 — Création</div>
+              <div class="collection-name">Costume africain 15</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2015.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3145_compressed_3.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 16 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3145_compressed_3.jpeg"
+                alt="Costume africain 16"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">16 — Création</div>
+              <div class="collection-name">Costume africain 16</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2016.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
-          <div class="collection-item">
-            <img src="./IMG_3156_compressed.jpeg" alt="Création Khalidou Kane" loading="lazy">
-          </div>
+          <!-- COSTUME 17 -->
+          <article class="collection-item">
+            <div class="collection-photo">
+              <img
+                src="./IMG_3156_compressed.jpeg"
+                alt="Costume africain 17"
+                loading="lazy"
+              >
+            </div>
+            <div class="collection-info">
+              <div class="collection-number">17 — Création</div>
+              <div class="collection-name">Costume africain 17</div>
+              <a
+                class="order-btn"
+                href="https://wa.me/221708927400?text=Bonjour%20Khalidou%20Kane%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2017.%20Je%20voudrais%20avoir%20plus%20d%27informations."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commander sur WhatsApp
+              </a>
+            </div>
+          </article>
 
         </div>
 
@@ -1448,12 +1851,14 @@
         <p class="contact-text">
           Une question, une idée ou simplement envie d'en savoir plus ?
           Contactez Khalidou Kane directement.
+          <br><br>
+          <strong>+221 70 892 74 00</strong>
         </p>
 
         <div class="contact-buttons">
 
           <a
-            href="https://wa.me/221781383200"
+            href="https://wa.me/221708927400"
             target="_blank"
             rel="noopener noreferrer"
             class="btn btn-primary"
@@ -1461,8 +1866,8 @@
             WhatsApp
           </a>
 
-          <a href="#accueil" class="btn btn-outline">
-            Retour en haut
+          <a href="#collection" class="btn btn-outline">
+            Voir les créations
           </a>
 
         </div>
@@ -1479,7 +1884,7 @@
 
   <a
     class="whatsapp"
-    href="https://wa.me/221781383200"
+    href="https://wa.me/221708927400"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Contacter Khalidou Kane sur WhatsApp"
