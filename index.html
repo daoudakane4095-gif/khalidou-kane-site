@@ -4,23 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Khalidou Kane — AR NIANTO. Costumes africains, élégance et identité.">
+  <meta
+    name="description"
+    content="Khalidou Kane — AR NIANTO. Costumes africains, élégance et identité."
+  >
+
   <meta name="theme-color" content="#070707">
 
   <title>Khalidou Kane — AR NIANTO</title>
 
   <style>
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
     :root {
       --black: #070707;
       --black-2: #101010;
       --black-3: #151515;
+
       --white: #ffffff;
       --gray: #a5a5a5;
-      --orange: #d98a32;
+
       --gold: #e7b66a;
+      --orange: #d98a32;
+
       --line: rgba(255,255,255,.10);
-      --shadow: 0 25px 70px rgba(0,0,0,.45);
+
+      --shadow:
+        0 25px 70px rgba(0,0,0,.45);
     }
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
 
     * {
       margin: 0;
@@ -35,7 +54,12 @@
     body {
       background: var(--black);
       color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       overflow-x: hidden;
     }
 
@@ -57,93 +81,144 @@
       font: inherit;
     }
 
-    /* =========================
+
+    /* =========================================================
        HEADER
-    ========================= */
+    ========================================================= */
 
     header {
       position: fixed;
+
       top: 0;
       left: 0;
+
       width: 100%;
+
       z-index: 1000;
+
       padding: 22px 6%;
+
       transition: .35s ease;
     }
 
     header.scrolled {
       background: rgba(7,7,7,.88);
+
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
+
       padding-top: 14px;
       padding-bottom: 14px;
     }
 
     .nav {
       max-width: 1400px;
+
       margin: auto;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 30px;
     }
 
+
+    /* LOGO */
+
     .brand {
       display: flex;
+
       align-items: center;
+
       gap: 13px;
+
       position: relative;
+
       z-index: 1100;
     }
 
-    /* LOGO AR NIANTO */
     .brand-image {
       width: 58px;
       height: 58px;
+
       border-radius: 50%;
+
       object-fit: cover;
-      border: 1px solid rgba(255,255,255,.35);
-      box-shadow: 0 0 25px rgba(217,138,50,.15);
+
+      border:
+        1px solid rgba(255,255,255,.35);
+
+      box-shadow:
+        0 0 25px rgba(217,138,50,.15);
+
       background: #111;
     }
 
     .brand-name {
       font-size: 15px;
+
       font-weight: 800;
+
       letter-spacing: 2px;
+
       text-transform: uppercase;
     }
 
     .brand-sub {
       color: var(--gold);
+
       font-size: 9px;
+
       letter-spacing: 2px;
+
       margin-top: 4px;
     }
 
+
+    /* =========================================================
+       DESKTOP MENU
+    ========================================================= */
+
     .desktop-menu {
       display: flex;
+
       align-items: center;
+
       gap: 34px;
     }
 
     .desktop-menu a {
       font-size: 11px;
+
       text-transform: uppercase;
+
       letter-spacing: 1.8px;
+
       color: #ddd;
+
       position: relative;
+
       padding: 8px 0;
     }
 
     .desktop-menu a::after {
       content: "";
+
       position: absolute;
+
       left: 0;
       bottom: 0;
+
       width: 0;
       height: 1px;
+
       background: var(--gold);
+
       transition: .3s;
     }
 
@@ -155,16 +230,31 @@
       width: 100%;
     }
 
+
+    /* =========================================================
+       MENU MOBILE
+    ========================================================= */
+
     .menu-button {
       display: none;
+
       width: 48px;
       height: 48px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.04);
+
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.04);
+
       color: white;
+
       border-radius: 50%;
+
       cursor: pointer;
+
       position: relative;
+
       z-index: 1100;
     }
 
@@ -172,17 +262,23 @@
     .menu-button span::before,
     .menu-button span::after {
       display: block;
+
       width: 20px;
       height: 2px;
+
       background: white;
+
       margin: auto;
+
       transition: .3s;
     }
 
     .menu-button span::before,
     .menu-button span::after {
       content: "";
+
       position: absolute;
+
       left: 13px;
     }
 
@@ -206,68 +302,98 @@
       transform: rotate(-45deg);
     }
 
-    /* =========================
-       MOBILE MENU
-    ========================= */
 
     .mobile-menu {
       position: fixed;
+
       inset: 0;
-      background: rgba(7,7,7,.98);
+
+      background:
+        rgba(7,7,7,.98);
+
       backdrop-filter: blur(20px);
+
       z-index: 1050;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       opacity: 0;
+
       visibility: hidden;
-      transform: translateY(-15px);
+
+      transform:
+        translateY(-15px);
+
       transition: .35s ease;
     }
 
     .mobile-menu.active {
       opacity: 1;
+
       visibility: visible;
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
     }
 
     .mobile-links {
       width: 85%;
+
       max-width: 500px;
     }
 
     .mobile-links a {
       display: block;
+
       padding: 20px 0;
-      border-bottom: 1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
+
       font-size: 28px;
+
       font-weight: 700;
+
       letter-spacing: -1px;
     }
 
     .mobile-number {
       margin-top: 35px;
+
       color: var(--gold);
+
       font-size: 12px;
+
       letter-spacing: 2px;
     }
 
-    /* =========================
+
+    /* =========================================================
        HERO
-    ========================= */
+    ========================================================= */
 
     .hero {
       min-height: 100svh;
+
       position: relative;
+
       display: flex;
+
       align-items: center;
+
       overflow: hidden;
+
       isolation: isolate;
     }
 
     .hero-background {
       position: absolute;
+
       inset: 0;
+
       z-index: -5;
 
       background:
@@ -277,13 +403,17 @@
           rgba(0,0,0,.72) 43%,
           rgba(0,0,0,.20) 100%
         ),
-        url("./IMG_3045_compressed.jpeg") center center / cover no-repeat;
+        url("./IMG_3045_compressed.jpeg")
+        center center / cover no-repeat;
 
       transform: scale(1.04);
-      animation: heroZoom 12s ease-out forwards;
+
+      animation:
+        heroZoom 12s ease-out forwards;
     }
 
     @keyframes heroZoom {
+
       from {
         transform: scale(1.08);
       }
@@ -291,12 +421,17 @@
       to {
         transform: scale(1.01);
       }
+
     }
+
 
     .hero::after {
       content: "";
+
       position: absolute;
+
       inset: 0;
+
       z-index: -3;
 
       background:
@@ -309,89 +444,135 @@
         );
     }
 
-    /* =========================
-       LOGO FILIGRANE
-    ========================= */
+
+    /* =========================================================
+       FILIGRANE LOGO
+    ========================================================= */
 
     .hero-watermark {
       position: absolute;
 
-      width: min(700px, 90vw);
+      width:
+        min(680px, 85vw);
 
-      right: -100px;
-      bottom: -100px;
+      right: -120px;
+
+      bottom: -120px;
 
       opacity: .045;
 
       filter:
         grayscale(1)
-        brightness(1.5);
+        brightness(1.7);
 
       z-index: -2;
 
       pointer-events: none;
 
-      animation: watermarkFloat 8s ease-in-out infinite;
+      animation:
+        watermarkFloat
+        9s
+        ease-in-out
+        infinite;
     }
 
     @keyframes watermarkFloat {
-      0%,100% {
-        transform: translateY(0) rotate(0deg);
+
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          rotate(0deg);
       }
 
       50% {
-        transform: translateY(-15px) rotate(1deg);
+        transform:
+          translateY(-12px)
+          rotate(1deg);
       }
+
     }
+
 
     .hero-content {
       width: 100%;
+
       max-width: 1400px;
+
       margin: auto;
-      padding: 150px 6% 90px;
+
+      padding:
+        150px 6% 90px;
     }
 
     .hero-kicker {
       display: flex;
+
       align-items: center;
+
       gap: 12px;
 
       color: var(--gold);
 
       font-size: 10px;
+
       font-weight: 700;
+
       letter-spacing: 4px;
+
       text-transform: uppercase;
 
       margin-bottom: 25px;
 
-      animation: reveal .8s ease forwards;
+      animation:
+        reveal
+        .8s
+        ease
+        forwards;
     }
 
     .hero-kicker::before {
       content: "";
+
       width: 45px;
       height: 1px;
+
       background: var(--gold);
     }
+
 
     .hero h1 {
       max-width: 900px;
 
-      font-size: clamp(55px, 8vw, 125px);
+      font-size:
+        clamp(
+          55px,
+          8vw,
+          125px
+        );
+
       line-height: .88;
 
       letter-spacing: -6px;
+
       text-transform: uppercase;
+
       font-weight: 900;
 
-      animation: reveal .9s .1s ease both;
+      animation:
+        reveal
+        .9s
+        .1s
+        ease
+        both;
     }
 
     .hero h1 span {
       color: var(--gold);
+
       display: block;
     }
+
 
     .hero-text {
       max-width: 560px;
@@ -401,119 +582,171 @@
       color: #d0d0d0;
 
       line-height: 1.8;
+
       font-size: 16px;
 
-      animation: reveal .9s .2s ease both;
+      animation:
+        reveal
+        .9s
+        .2s
+        ease
+        both;
     }
+
 
     .hero-actions {
       display: flex;
+
       align-items: center;
+
       gap: 14px;
 
       margin-top: 38px;
 
-      animation: reveal .9s .3s ease both;
+      animation:
+        reveal
+        .9s
+        .3s
+        ease
+        both;
     }
+
 
     .btn {
       display: inline-flex;
+
       align-items: center;
+
       justify-content: center;
 
       min-height: 52px;
-      padding: 0 25px;
+
+      padding:
+        0 25px;
 
       border-radius: 999px;
 
       font-size: 11px;
+
       font-weight: 800;
 
       text-transform: uppercase;
+
       letter-spacing: 1.5px;
 
       transition: .3s ease;
 
-      border: 1px solid transparent;
+      border:
+        1px solid transparent;
     }
 
     .btn-primary {
       background: var(--white);
+
       color: #080808;
     }
 
     .btn-primary:hover {
       background: var(--gold);
-      transform: translateY(-3px);
+
+      transform:
+        translateY(-3px);
     }
 
     .btn-outline {
-      border-color: rgba(255,255,255,.35);
-      background: rgba(255,255,255,.04);
+      border-color:
+        rgba(255,255,255,.35);
+
+      background:
+        rgba(255,255,255,.04);
     }
 
     .btn-outline:hover {
       border-color: var(--gold);
+
       color: var(--gold);
-      transform: translateY(-3px);
+
+      transform:
+        translateY(-3px);
     }
+
 
     .hero-bottom {
       position: absolute;
 
       bottom: 30px;
+
       left: 6%;
       right: 6%;
 
       display: flex;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       align-items: center;
 
       color: #888;
 
       font-size: 9px;
+
       text-transform: uppercase;
+
       letter-spacing: 3px;
     }
 
     .scroll {
       display: flex;
+
       align-items: center;
+
       gap: 12px;
     }
 
     .scroll-line {
       width: 45px;
+
       height: 1px;
+
       background: #777;
     }
 
+
     @keyframes reveal {
+
       from {
         opacity: 0;
-        transform: translateY(25px);
+
+        transform:
+          translateY(25px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+          translateY(0);
       }
+
     }
 
-    /* =========================
+
+    /* =========================================================
        GENERAL
-    ========================= */
+    ========================================================= */
 
     section {
       position: relative;
     }
 
     .section {
-      padding: 120px 6%;
+      padding:
+        120px 6%;
     }
 
     .container {
       max-width: 1400px;
+
       margin: auto;
     }
 
@@ -521,7 +754,9 @@
       color: var(--gold);
 
       font-size: 10px;
+
       font-weight: 800;
+
       letter-spacing: 4px;
 
       text-transform: uppercase;
@@ -532,12 +767,19 @@
     .section-title {
       max-width: 900px;
 
-      font-size: clamp(40px, 6vw, 82px);
+      font-size:
+        clamp(
+          40px,
+          6vw,
+          82px
+        );
 
       line-height: .95;
+
       letter-spacing: -4px;
 
       text-transform: uppercase;
+
       font-weight: 900;
     }
 
@@ -557,9 +799,10 @@
       font-size: 16px;
     }
 
-    /* =========================
+
+    /* =========================================================
        VISION
-    ========================= */
+    ========================================================= */
 
     .vision {
       background: var(--black);
@@ -569,7 +812,9 @@
       margin-top: 75px;
 
       display: grid;
-      grid-template-columns: 1.1fr .9fr;
+
+      grid-template-columns:
+        1.1fr .9fr;
 
       gap: 70px;
 
@@ -577,9 +822,15 @@
     }
 
     .vision-big {
-      font-size: clamp(30px, 4vw, 55px);
+      font-size:
+        clamp(
+          30px,
+          4vw,
+          55px
+        );
 
       line-height: 1.05;
+
       letter-spacing: -2px;
 
       font-weight: 700;
@@ -597,9 +848,10 @@
       font-size: 15px;
     }
 
-    /* =========================
+
+    /* =========================================================
        UNIVERS
-    ========================= */
+    ========================================================= */
 
     .universe {
       background: var(--black-2);
@@ -609,7 +861,9 @@
       margin-top: 70px;
 
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(3, 1fr);
 
       gap: 18px;
     }
@@ -619,7 +873,8 @@
 
       padding: 35px;
 
-      border: 1px solid var(--line);
+      border:
+        1px solid var(--line);
 
       background:
         linear-gradient(
@@ -629,6 +884,7 @@
         );
 
       position: relative;
+
       overflow: hidden;
 
       transition: .4s ease;
@@ -647,25 +903,30 @@
       right: -80px;
       bottom: -80px;
 
-      background: rgba(231,182,106,.06);
+      background:
+        rgba(231,182,106,.06);
 
       transition: .4s;
     }
 
     .card:hover {
-      transform: translateY(-8px);
+      transform:
+        translateY(-8px);
 
-      border-color: rgba(231,182,106,.45);
+      border-color:
+        rgba(231,182,106,.45);
     }
 
     .card:hover::before {
-      transform: scale(1.5);
+      transform:
+        scale(1.5);
     }
 
     .card-number {
       color: #777;
 
       font-size: 10px;
+
       letter-spacing: 3px;
     }
 
@@ -692,12 +953,14 @@
       color: #888;
 
       font-size: 12px;
+
       line-height: 1.6;
     }
 
-    /* =========================
+
+    /* =========================================================
        COLLECTION
-    ========================= */
+    ========================================================= */
 
     .collection {
       background: var(--black);
@@ -706,7 +969,9 @@
     .collection-header {
       display: flex;
 
-      justify-content: space-between;
+      justify-content:
+        space-between;
+
       align-items: end;
 
       gap: 30px;
@@ -724,10 +989,12 @@
       font-size: 14px;
     }
 
+
     .gallery {
       display: grid;
 
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns:
+        repeat(4, 1fr);
 
       gap: 14px;
     }
@@ -743,7 +1010,9 @@
 
       cursor: pointer;
 
-      border: 1px solid rgba(255,255,255,.06);
+      border:
+        1px solid
+        rgba(255,255,255,.06);
 
       transition: .4s ease;
     }
@@ -759,7 +1028,9 @@
       object-fit: cover;
 
       transition:
-        transform .7s cubic-bezier(.2,.7,.2,1),
+        transform .7s
+        cubic-bezier(.2,.7,.2,1),
+
         filter .5s ease;
     }
 
@@ -783,15 +1054,19 @@
     }
 
     .gallery-item:hover img {
-      transform: scale(1.07);
+      transform:
+        scale(1.07);
 
-      filter: brightness(1.08);
+      filter:
+        brightness(1.08);
     }
 
     .gallery-item:hover {
-      transform: translateY(-5px);
+      transform:
+        translateY(-5px);
 
-      border-color: rgba(231,182,106,.35);
+      border-color:
+        rgba(231,182,106,.35);
     }
 
     .gallery-label {
@@ -811,29 +1086,34 @@
       color: white;
     }
 
-    /* =========================
+
+    /* =========================================================
        LIGHTBOX
-    ========================= */
+    ========================================================= */
 
     .lightbox {
       position: fixed;
 
       inset: 0;
 
-      background: rgba(0,0,0,.94);
+      background:
+        rgba(0,0,0,.94);
 
-      backdrop-filter: blur(15px);
+      backdrop-filter:
+        blur(15px);
 
       z-index: 3000;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
       padding: 25px;
 
       opacity: 0;
+
       visibility: hidden;
 
       transition: .3s ease;
@@ -841,26 +1121,33 @@
 
     .lightbox.active {
       opacity: 1;
+
       visibility: visible;
     }
 
     .lightbox img {
       max-width: 92vw;
+
       max-height: 88vh;
 
       object-fit: contain;
 
-      border: 1px solid rgba(255,255,255,.15);
+      border:
+        1px solid
+        rgba(255,255,255,.15);
 
-      box-shadow: var(--shadow);
+      box-shadow:
+        var(--shadow);
 
-      transform: scale(.95);
+      transform:
+        scale(.95);
 
       transition: .3s ease;
     }
 
     .lightbox.active img {
-      transform: scale(1);
+      transform:
+        scale(1);
     }
 
     .close-lightbox {
@@ -874,9 +1161,12 @@
 
       border-radius: 50%;
 
-      border: 1px solid rgba(255,255,255,.25);
+      border:
+        1px solid
+        rgba(255,255,255,.25);
 
-      background: rgba(255,255,255,.08);
+      background:
+        rgba(255,255,255,.08);
 
       color: white;
 
@@ -885,14 +1175,16 @@
       font-size: 24px;
     }
 
-    /* =========================
+
+    /* =========================================================
        SPECIAL
-    ========================= */
+    ========================================================= */
 
     .special {
       min-height: 75vh;
 
       display: flex;
+
       align-items: center;
 
       overflow: hidden;
@@ -903,7 +1195,8 @@
           rgba(0,0,0,.96),
           rgba(0,0,0,.55)
         ),
-        url("./IMG_3045_compressed.jpeg") center / cover no-repeat;
+        url("./IMG_3045_compressed.jpeg")
+        center / cover no-repeat;
     }
 
     .special-content {
@@ -911,7 +1204,12 @@
     }
 
     .special-title {
-      font-size: clamp(50px, 9vw, 130px);
+      font-size:
+        clamp(
+          50px,
+          9vw,
+          130px
+        );
 
       line-height: .82;
 
@@ -936,9 +1234,10 @@
       margin-top: 35px;
     }
 
-    /* =========================
+
+    /* =========================================================
        EXPERIENCE
-    ========================= */
+    ========================================================= */
 
     .experience {
       background: var(--black);
@@ -947,19 +1246,22 @@
     .experience-grid {
       margin-top: 70px;
 
-      border-top: 1px solid var(--line);
+      border-top:
+        1px solid var(--line);
     }
 
     .experience-item {
       display: grid;
 
-      grid-template-columns: 100px 1fr 1fr;
+      grid-template-columns:
+        100px 1fr 1fr;
 
       gap: 30px;
 
       padding: 35px 0;
 
-      border-bottom: 1px solid var(--line);
+      border-bottom:
+        1px solid var(--line);
 
       transition: .3s;
     }
@@ -977,7 +1279,12 @@
     }
 
     .experience-item h3 {
-      font-size: clamp(25px, 3vw, 42px);
+      font-size:
+        clamp(
+          25px,
+          3vw,
+          42px
+        );
 
       text-transform: uppercase;
 
@@ -992,9 +1299,10 @@
       font-size: 14px;
     }
 
-    /* =========================
-       BRAND
-    ========================= */
+
+    /* =========================================================
+       BRAND STORY
+    ========================================================= */
 
     .brand-story {
       background: var(--black-2);
@@ -1003,7 +1311,8 @@
     .brand-story-grid {
       display: grid;
 
-      grid-template-columns: .8fr 1.2fr;
+      grid-template-columns:
+        .8fr 1.2fr;
 
       gap: 80px;
 
@@ -1014,17 +1323,23 @@
       display: flex;
 
       justify-content: center;
+
       align-items: center;
     }
 
     .story-logo img {
-      width: min(360px, 75vw);
+      width:
+        min(360px, 75vw);
 
       border-radius: 50%;
 
       opacity: .95;
 
-      filter: drop-shadow(0 20px 45px rgba(0,0,0,.5));
+      filter:
+        drop-shadow(
+          0 20px 45px
+          rgba(0,0,0,.5)
+        );
     }
 
     .story-text {
@@ -1039,96 +1354,137 @@
       color: var(--gold);
     }
 
-    /* =========================
+
+    /* =========================================================
        CONTACT
-    ========================= */
+    ========================================================= */
 
     .contact {
-      background: var(--black-2);
-
-      text-align: center;
-
-      padding-bottom: 140px;
+      background: var(--black);
     }
 
-    .contact .section-title {
-      margin: auto;
+    .contact-grid {
+      margin-top: 70px;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 18px;
     }
 
-    .contact-text {
-      max-width: 600px;
+    .contact-card {
+      padding: 45px;
 
-      margin: 30px auto 0;
+      min-height: 250px;
+
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.025);
+
+      transition: .35s;
+    }
+
+    .contact-card:hover {
+      transform:
+        translateY(-6px);
+
+      border-color:
+        rgba(231,182,106,.4);
+    }
+
+    .contact-card small {
+      color: var(--gold);
+
+      font-size: 10px;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
+
+    .contact-card h3 {
+      margin-top: 25px;
+
+      font-size:
+        clamp(25px,4vw,48px);
+
+      letter-spacing: -2px;
+    }
+
+    .contact-card p {
+      margin-top: 18px;
 
       color: var(--gray);
 
-      line-height: 1.8;
+      line-height: 1.7;
     }
 
-    .contact-buttons {
-      margin-top: 40px;
 
-      display: flex;
-
-      justify-content: center;
-
-      gap: 14px;
-
-      flex-wrap: wrap;
-    }
-
-    /* =========================
+    /* =========================================================
        WHATSAPP
-    ========================= */
+    ========================================================= */
 
     .whatsapp {
       position: fixed;
 
-      right: 22px;
-      bottom: 22px;
+      right: 24px;
+      bottom: 24px;
 
-      width: 58px;
-      height: 58px;
+      z-index: 2000;
+
+      width: 62px;
+      height: 62px;
 
       border-radius: 50%;
-
-      background: #25D366;
-
-      color: white;
 
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
-      z-index: 900;
+      background:
+        #25D366;
 
-      box-shadow: 0 10px 35px rgba(0,0,0,.4);
+      color: white;
 
-      transition: .3s;
+      box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.4);
+
+      transition: .3s ease;
     }
 
     .whatsapp:hover {
-      transform: translateY(-5px) scale(1.05);
+      transform:
+        translateY(-5px)
+        scale(1.05);
     }
 
     .whatsapp svg {
-      width: 27px;
-      height: 27px;
+      width: 29px;
+      height: 29px;
 
       fill: currentColor;
     }
 
-    /* =========================
+
+    /* =========================================================
        FOOTER
-    ========================= */
+    ========================================================= */
 
     footer {
+      padding:
+        55px 6%;
+
+      border-top:
+        1px solid var(--line);
+
       background: #050505;
-
-      border-top: 1px solid var(--line);
-
-      padding: 30px 6%;
     }
 
     .footer-inner {
@@ -1138,66 +1494,94 @@
 
       display: flex;
 
-      justify-content: space-between;
+      justify-content:
+        space-between;
 
       align-items: center;
 
-      gap: 20px;
+      gap: 30px;
     }
 
-    footer p {
+    .footer-brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+    }
+
+    .footer-brand img {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      object-fit: cover;
+    }
+
+    .footer-brand span {
+      font-size: 11px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .footer-copy {
       color: #666;
 
       font-size: 10px;
 
       letter-spacing: 1px;
-
-      text-transform: uppercase;
     }
 
-    .footer-name {
-      color: var(--gold);
 
-      font-weight: 800;
-    }
-
-    /* =========================
+    /* =========================================================
        RESPONSIVE
-    ========================= */
+    ========================================================= */
 
     @media (max-width: 1000px) {
-
-      .gallery {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .brand-story-grid {
-        grid-template-columns: 1fr;
-
-        gap: 50px;
-      }
-
-      .story-logo {
-        order: 2;
-      }
-
-      .story-text {
-        order: 1;
-      }
-    }
-
-    @media (max-width: 850px) {
-
-      header {
-        padding: 15px 5%;
-      }
 
       .desktop-menu {
         display: none;
       }
 
       .menu-button {
-        display: flex;
+        display: block;
+      }
+
+      .cards {
+        grid-template-columns:
+          1fr 1fr;
+      }
+
+      .gallery {
+        grid-template-columns:
+          repeat(3,1fr);
+      }
+
+      .vision-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .brand-story-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .story-logo {
+        justify-content: flex-start;
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      header {
+        padding:
+          16px 5%;
       }
 
       .brand-image {
@@ -1205,214 +1589,193 @@
         height: 46px;
       }
 
-      .hero {
-        min-height: 100svh;
+      .brand-name {
+        font-size: 13px;
       }
+
+      .brand-sub {
+        font-size: 8px;
+      }
+
 
       .hero-background {
         background:
           linear-gradient(
-            180deg,
-            rgba(0,0,0,.55) 0%,
-            rgba(0,0,0,.78) 55%,
-            rgba(0,0,0,.98) 100%
+            90deg,
+            rgba(0,0,0,.90),
+            rgba(0,0,0,.52)
           ),
-          url("./IMG_3045_compressed.jpeg") center / cover no-repeat;
+          url("./IMG_3045_compressed.jpeg")
+          center / cover no-repeat;
       }
+
 
       .hero-watermark {
         width: 500px;
 
-        right: -150px;
-        bottom: 40px;
+        right: -170px;
 
-        opacity: .04;
+        bottom: 20px;
+
+        opacity: .035;
       }
 
+
       .hero-content {
-        padding: 150px 5% 120px;
+        padding:
+          135px 5% 100px;
       }
 
       .hero h1 {
-        font-size: clamp(50px, 15vw, 85px);
+        font-size:
+          clamp(
+            48px,
+            15vw,
+            80px
+          );
 
         letter-spacing: -4px;
       }
 
       .hero-text {
         font-size: 14px;
-
-        max-width: 500px;
       }
 
       .hero-actions {
-        flex-direction: column;
-
-        align-items: stretch;
-
-        max-width: 330px;
-      }
-
-      .btn {
-        width: 100%;
+        flex-wrap: wrap;
       }
 
       .hero-bottom {
         left: 5%;
         right: 5%;
-        bottom: 20px;
       }
 
+
       .section {
-        padding: 85px 5%;
+        padding:
+          85px 5%;
       }
 
       .section-title {
-        letter-spacing: -2px;
+        letter-spacing: -3px;
       }
 
-      .vision-grid {
-        grid-template-columns: 1fr;
-
-        gap: 35px;
-
-        margin-top: 50px;
-      }
 
       .cards {
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-
-        margin-top: 50px;
+        grid-template-columns:
+          1fr;
       }
 
-      .card {
-        min-height: 280px;
+
+      .gallery {
+        grid-template-columns:
+          repeat(2,1fr);
+
+        gap: 10px;
       }
+
+      .gallery-item {
+        aspect-ratio: 3 / 4 !important;
+      }
+
 
       .collection-header {
         display: block;
-
-        margin-bottom: 45px;
       }
 
       .collection-description {
         margin-top: 25px;
       }
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 10px;
-      }
-
-      .gallery-item {
-        aspect-ratio: 3 / 4;
-      }
 
       .special {
         min-height: 70vh;
+
+        background:
+          linear-gradient(
+            90deg,
+            rgba(0,0,0,.92),
+            rgba(0,0,0,.55)
+          ),
+          url("./IMG_3045_compressed.jpeg")
+          center / cover no-repeat;
       }
 
       .special-title {
-        font-size: clamp(50px, 14vw, 85px);
+        font-size:
+          clamp(
+            52px,
+            15vw,
+            90px
+          );
 
-        letter-spacing: -4px;
+        letter-spacing: -5px;
       }
 
+
       .experience-item {
-        grid-template-columns: 45px 1fr;
+        grid-template-columns:
+          55px 1fr;
 
         gap: 15px;
       }
 
       .experience-item p {
-        grid-column: 2;
+        grid-column:
+          2;
       }
+
+
+      .contact-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .contact-card {
+        padding: 30px;
+      }
+
 
       .footer-inner {
-        flex-direction: column;
+        flex-direction:
+          column;
 
-        align-items: flex-start;
+        align-items:
+          flex-start;
       }
+
 
       .whatsapp {
-        width: 54px;
-        height: 54px;
+        width: 58px;
+        height: 58px;
 
-        right: 17px;
-        bottom: 17px;
+        right: 18px;
+        bottom: 18px;
       }
+
     }
 
-    @media (max-width: 450px) {
-
-      .brand-name {
-        font-size: 12px;
-      }
-
-      .brand-sub {
-        font-size: 7px;
-      }
-
-      .hero-kicker {
-        font-size: 8px;
-
-        letter-spacing: 3px;
-      }
-
-      .hero h1 {
-        font-size: 51px;
-      }
-
-      .hero-text {
-        font-size: 13px;
-      }
-
-      .section-title {
-        font-size: 42px;
-      }
-
-      .card h3 {
-        font-size: 29px;
-      }
-
-      .special-title {
-        font-size: 52px;
-      }
-
-      .gallery {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .gallery-label {
-        font-size: 8px;
-
-        left: 12px;
-        bottom: 12px;
-      }
-
-      .story-logo img {
-        width: 250px;
-      }
-    }
   </style>
 </head>
 
+
 <body>
 
-  <!-- =========================
+
+  <!-- =======================================================
        HEADER
-  ========================= -->
+  ======================================================== -->
 
   <header id="header">
 
-    <nav class="nav">
+    <div class="nav">
 
-      <a href="#accueil" class="brand">
+      <a
+        href="#accueil"
+        class="brand"
+      >
 
-        <!-- LOGO AR NIANTO -->
         <img
           class="brand-image"
           src="./IMG_4209.jpeg"
@@ -1420,79 +1783,99 @@
         >
 
         <div>
+
           <div class="brand-name">
-            Khalidou Kane
+            KHALIDOU KANE
           </div>
 
           <div class="brand-sub">
             AR NIANTO • Vient t'habiller
           </div>
+
         </div>
 
       </a>
 
 
-      <div class="desktop-menu">
+      <!-- MENU DESKTOP -->
 
-        <a href="#accueil">Accueil</a>
+      <nav class="desktop-menu">
 
-        <a href="#vision">Vision</a>
+        <a href="#accueil">
+          Accueil
+        </a>
 
-        <a href="#univers">L'univers</a>
+        <a href="#vision">
+          Vision
+        </a>
 
-        <a href="#collection">Collection</a>
+        <a href="#univers">
+          L'univers
+        </a>
 
-        <a href="#experience">Expérience</a>
+        <a href="#collection">
+          Collection
+        </a>
 
-        <a href="#contact">Contact</a>
+        <a href="#experience">
+          Expérience
+        </a>
 
-      </div>
+        <a href="#contact">
+          Contact
+        </a>
 
+      </nav>
+
+
+      <!-- BOUTON MOBILE -->
 
       <button
         class="menu-button"
         id="menuButton"
         aria-label="Ouvrir le menu"
-        aria-expanded="false"
       >
         <span></span>
       </button>
 
-    </nav>
+    </div>
 
   </header>
 
 
-  <!-- =========================
-       MOBILE MENU
-  ========================= -->
+  <!-- =======================================================
+       MENU MOBILE
+  ======================================================== -->
 
-  <div class="mobile-menu" id="mobileMenu">
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
 
     <div class="mobile-links">
 
       <a href="#accueil">
-        01 — Accueil
+        Accueil
       </a>
 
       <a href="#vision">
-        02 — Vision
+        Vision
       </a>
 
       <a href="#univers">
-        03 — L'univers
+        L'univers
       </a>
 
       <a href="#collection">
-        04 — Collection
+        Collection
       </a>
 
       <a href="#experience">
-        05 — Expérience
+        Expérience
       </a>
 
       <a href="#contact">
-        06 — Contact
+        Contact
       </a>
 
       <div class="mobile-number">
@@ -1504,22 +1887,21 @@
   </div>
 
 
-  <!-- =========================
+  <!-- =======================================================
        HERO
-  ========================= -->
+  ======================================================== -->
 
   <main>
 
-    <section class="hero" id="accueil">
+    <section
+      class="hero"
+      id="accueil"
+    >
 
       <div class="hero-background"></div>
 
 
-      <!--
-        FILIGRANE DU LOGO
-        Le même fichier IMG_4209.jpeg
-        mais rendu très transparent.
-      -->
+      <!-- FILIGRANE DU LOGO -->
 
       <img
         class="hero-watermark"
@@ -1532,16 +1914,16 @@
       <div class="hero-content">
 
         <div class="hero-kicker">
-          AR NIANTO
+          Dakar • Sénégal
         </div>
 
 
         <h1>
 
-          De la lumière
+          DE LA LUMIÈRE
 
           <span>
-            dans votre style.
+            DANS VOTRE STYLE
           </span>
 
         </h1>
@@ -1549,9 +1931,13 @@
 
         <p class="hero-text">
 
-          L'élégance africaine rencontre une identité moderne.
-          Découvrez l'univers de Khalidou Kane et de sa marque
-          <strong>AR NIANTO</strong>.
+          Découvrez l'univers de
+          <strong>AR NIANTO</strong>,
+          la signature de Khalidou Kane.
+
+          Des créations africaines pensées
+          pour révéler votre élégance,
+          votre identité et votre personnalité.
 
         </p>
 
@@ -1569,10 +1955,10 @@
           <a
             href="https://wa.me/221708927400"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             class="btn btn-outline"
           >
-            Nous contacter
+            WhatsApp
           </a>
 
         </div>
@@ -1583,14 +1969,16 @@
       <div class="hero-bottom">
 
         <div>
-          Dakar • Sénégal
+          AR NIANTO
         </div>
 
         <div class="scroll">
 
           <span class="scroll-line"></span>
 
-          Défiler
+          <span>
+            Scroll
+          </span>
 
         </div>
 
@@ -1599,9 +1987,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          VISION
-    ========================= -->
+    ====================================================== -->
 
     <section
       class="section vision"
@@ -1611,16 +1999,15 @@
       <div class="container">
 
         <div class="section-label">
-          01 — Notre vision
+          01 — Vision
         </div>
-
 
         <h2 class="section-title">
 
-          Une identité qui
+          L'élégance
 
           <span>
-            se remarque.
+            comme identité.
           </span>
 
         </h2>
@@ -1630,10 +2017,11 @@
 
           <div class="vision-big">
 
-            Nous croyons que chaque détail peut devenir une
+            Un vêtement ne se porte pas
+            seulement.
 
             <span>
-              signature.
+              Il raconte qui vous êtes.
             </span>
 
           </div>
@@ -1641,24 +2029,17 @@
 
           <div class="vision-text">
 
-            Khalidou Kane développe un univers autour du
-            vêtement africain et de l'élégance contemporaine.
+            Chez AR NIANTO, chaque création
+            est pensée comme une rencontre
+            entre tradition africaine,
+            modernité et élégance.
 
             <br><br>
 
-            À travers <strong style="color:var(--gold);">
-            AR NIANTO</strong>, chaque création cherche à
-            mettre en valeur l'identité, le style et le savoir-faire.
-
-            <br><br>
-
-            <strong style="color:var(--gold);">
-              AR NIANTO
-            </strong>
-            est une expression en poular qui signifie
-            <strong style="color:var(--gold);">
-              « Viens t'habiller ».
-            </strong>
+            Khalidou Kane imagine des pièces
+            qui respectent l'identité de celui
+            qui les porte tout en apportant
+            une touche contemporaine.
 
           </div>
 
@@ -1669,9 +2050,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          UNIVERS
-    ========================= -->
+    ====================================================== -->
 
     <section
       class="section universe"
@@ -1684,27 +2065,29 @@
           02 — L'univers
         </div>
 
-
         <h2 class="section-title">
 
-          Plus qu'un vêtement.
+          AR
 
           <span>
-            Une présence.
+            NIANTO
           </span>
 
         </h2>
 
-
         <p class="section-intro">
 
-          AR NIANTO représente une vision de la mode africaine
-          où le style, l'identité et l'élégance se rencontrent.
+          « Viens t'habiller ».
+
+          Une invitation à découvrir
+          une autre manière de porter
+          l'élégance africaine.
 
         </p>
 
 
         <div class="cards">
+
 
           <article class="card">
 
@@ -1713,12 +2096,13 @@
             </div>
 
             <h3>
-              Identité
+              Bazin
             </h3>
 
             <p>
-              Des créations qui racontent une histoire et
-              affirment votre personnalité.
+              Des créations élégantes,
+              travaillées avec précision
+              pour les grandes occasions.
             </p>
 
           </article>
@@ -1731,12 +2115,13 @@
             </div>
 
             <h3>
-              Élégance
+              Getzner
             </h3>
 
             <p>
-              Des silhouettes pensées pour donner du caractère
-              à chaque apparition.
+              Des matières nobles et
+              raffinées pour une silhouette
+              moderne et distinguée.
             </p>
 
           </article>
@@ -1749,15 +2134,17 @@
             </div>
 
             <h3>
-              Tradition
+              Wax
             </h3>
 
             <p>
-              Une inspiration africaine associée à une vision
-              contemporaine du vêtement.
+              L'énergie des motifs africains
+              réinterprétée avec une identité
+              contemporaine.
             </p>
 
           </article>
+
 
         </div>
 
@@ -1766,9 +2153,9 @@
     </section>
 
 
-    <!-- =========================
-         COLLECTION
-    ========================= -->
+    <!-- =====================================================
+         COLLECTION 17 PHOTOS
+    ====================================================== -->
 
     <section
       class="section collection"
@@ -1790,7 +2177,7 @@
               Nos
 
               <span>
-                créations.
+                créations
               </span>
 
             </h2>
@@ -1800,8 +2187,11 @@
 
           <p class="collection-description">
 
-            Découvrez une sélection de créations Khalidou Kane.
-            Cliquez sur une photo pour la voir en grand.
+            Découvrez une sélection de
+            créations AR NIANTO.
+
+            Cliquez sur une photo pour
+            l'afficher en grand.
 
           </p>
 
@@ -1811,7 +2201,7 @@
         <div class="gallery">
 
 
-          <!-- 01 -->
+          <!-- PHOTO 01 -->
 
           <div
             class="gallery-item"
@@ -1831,7 +2221,7 @@
           </div>
 
 
-          <!-- 02 -->
+          <!-- PHOTO 02 -->
 
           <div
             class="gallery-item"
@@ -1851,7 +2241,7 @@
           </div>
 
 
-          <!-- 03 -->
+          <!-- PHOTO 03 -->
 
           <div
             class="gallery-item"
@@ -1871,7 +2261,7 @@
           </div>
 
 
-          <!-- 04 -->
+          <!-- PHOTO 04 -->
 
           <div
             class="gallery-item"
@@ -1891,7 +2281,7 @@
           </div>
 
 
-          <!-- 05 -->
+          <!-- PHOTO 05 -->
 
           <div
             class="gallery-item"
@@ -1911,7 +2301,7 @@
           </div>
 
 
-          <!-- 06 -->
+          <!-- PHOTO 06 -->
 
           <div
             class="gallery-item"
@@ -1931,7 +2321,7 @@
           </div>
 
 
-          <!-- 07 -->
+          <!-- PHOTO 07 -->
 
           <div
             class="gallery-item"
@@ -1951,7 +2341,7 @@
           </div>
 
 
-          <!-- 08 -->
+          <!-- PHOTO 08 -->
 
           <div
             class="gallery-item"
@@ -1971,7 +2361,7 @@
           </div>
 
 
-          <!-- 09 -->
+          <!-- PHOTO 09 -->
 
           <div
             class="gallery-item"
@@ -1991,7 +2381,7 @@
           </div>
 
 
-          <!-- 10 -->
+          <!-- PHOTO 10 -->
 
           <div
             class="gallery-item"
@@ -2011,7 +2401,7 @@
           </div>
 
 
-          <!-- 11 -->
+          <!-- PHOTO 11 -->
 
           <div
             class="gallery-item"
@@ -2031,7 +2421,7 @@
           </div>
 
 
-          <!-- 12 -->
+          <!-- PHOTO 12 -->
 
           <div
             class="gallery-item"
@@ -2051,7 +2441,7 @@
           </div>
 
 
-          <!-- 13 -->
+          <!-- PHOTO 13 -->
 
           <div
             class="gallery-item"
@@ -2071,7 +2461,7 @@
           </div>
 
 
-          <!-- 14 -->
+          <!-- PHOTO 14 -->
 
           <div
             class="gallery-item"
@@ -2091,7 +2481,7 @@
           </div>
 
 
-          <!-- 15 -->
+          <!-- PHOTO 15 -->
 
           <div
             class="gallery-item"
@@ -2111,7 +2501,7 @@
           </div>
 
 
-          <!-- 16 -->
+          <!-- PHOTO 16 -->
 
           <div
             class="gallery-item"
@@ -2131,7 +2521,7 @@
           </div>
 
 
-          <!-- 17 -->
+          <!-- PHOTO 17 -->
 
           <div
             class="gallery-item"
@@ -2158,43 +2548,46 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          SPECIAL
-    ========================= -->
+    ====================================================== -->
 
-    <section class="section special">
+    <section class="special">
 
-      <div class="container">
+      <div class="section">
 
-        <div class="special-content">
+        <div class="container">
 
-          <div class="section-label">
-            04 — AR NIANTO
-          </div>
+          <div class="special-content">
 
-
-          <h2 class="special-title">
-
-            Viens
-
-            <span>
-              t'habiller.
-            </span>
-
-          </h2>
-
-
-          <p>
-
-            <strong style="color:var(--gold);">
+            <div class="section-label">
               AR NIANTO
-            </strong>
-            signifie « Viens t'habiller » en poular.
+            </div>
 
-            Une invitation à découvrir une manière différente
-            de porter l'élégance africaine.
+            <h2 class="special-title">
 
-          </p>
+              VIENS
+
+              <span>
+                T'HABILLER
+              </span>
+
+            </h2>
+
+            <p>
+
+              Une signature.
+              Une identité.
+              Une façon de faire parler
+              votre style.
+
+              <br><br>
+
+              AR NIANTO — « Viens t'habiller ».
+
+            </p>
+
+          </div>
 
         </div>
 
@@ -2203,9 +2596,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          EXPERIENCE
-    ========================= -->
+    ====================================================== -->
 
     <section
       class="section experience"
@@ -2215,16 +2608,15 @@
       <div class="container">
 
         <div class="section-label">
-          05 — L'expérience
+          04 — Expérience
         </div>
-
 
         <h2 class="section-title">
 
-          Pensé pour
+          Plus qu'un
 
           <span>
-            marquer.
+            vêtement.
           </span>
 
         </h2>
@@ -2240,12 +2632,14 @@
             </div>
 
             <h3>
-              Style
+              Conseil
             </h3>
 
             <p>
-              Une direction visuelle contemporaine,
-              reconnaissable et inspirée par l'élégance africaine.
+              Une attention portée à votre
+              style, à votre silhouette et
+              à l'occasion pour laquelle
+              vous souhaitez vous habiller.
             </p>
 
           </div>
@@ -2258,12 +2652,14 @@
             </div>
 
             <h3>
-              Identité
+              Création
             </h3>
 
             <p>
-              Chaque création est pensée pour donner une
-              présence unique à celui ou celle qui la porte.
+              Des tissus soigneusement
+              sélectionnés et une création
+              pensée pour vous donner une
+              allure unique.
             </p>
 
           </div>
@@ -2276,30 +2672,14 @@
             </div>
 
             <h3>
-              Qualité
+              Identité
             </h3>
 
             <p>
-              L'attention portée aux détails est au cœur
-              de l'approche Khalidou Kane.
-            </p>
-
-          </div>
-
-
-          <div class="experience-item">
-
-            <div class="experience-num">
-              04
-            </div>
-
-            <h3>
-              Vision
-            </h3>
-
-            <p>
-              Construire une marque africaine moderne,
-              forte et durable.
+              Parce que chaque personne
+              possède son propre style,
+              AR NIANTO cherche à faire
+              ressortir votre identité.
             </p>
 
           </div>
@@ -2312,13 +2692,11 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          HISTOIRE DE LA MARQUE
-    ========================= -->
+    ====================================================== -->
 
-    <section
-      class="section brand-story"
-    >
+    <section class="section brand-story">
 
       <div class="container">
 
@@ -2327,50 +2705,50 @@
 
           <div class="story-logo">
 
-            <!-- LOGO AR NIANTO -->
             <img
               src="./IMG_4209.jpeg"
               alt="Logo AR NIANTO"
+              loading="lazy"
             >
 
           </div>
 
 
-          <div class="story-text">
+          <div>
 
             <div class="section-label">
-              AR NIANTO
+              05 — La signature
             </div>
-
 
             <h2 class="section-title">
 
-              Une marque.
+              KHALIDOU
 
               <span>
-                Une identité.
+                KANE
               </span>
 
             </h2>
 
+            <br>
 
-            <p style="margin-top:30px;">
+            <p class="story-text">
 
-              AR NIANTO est la marque créée autour de la vision
-              de Khalidou Kane.
+              Derrière <strong>AR NIANTO</strong>,
+              il y a une vision :
 
-              <br><br>
-
-              Son nom vient du poular et signifie
-              <strong>
-                « Viens t'habiller ».
-              </strong>
+              créer des vêtements qui
+              mettent en valeur la beauté
+              et l'élégance africaine.
 
               <br><br>
 
-              Une phrase simple qui représente l'esprit de la
-              marque : une invitation à venir découvrir,
-              essayer et porter son identité.
+              « <strong>Viens t'habiller</strong> »
+              n'est pas seulement une phrase.
+
+              C'est une invitation à assumer
+              son style, son identité et
+              son élégance.
 
             </p>
 
@@ -2384,9 +2762,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          CONTACT
-    ========================= -->
+    ====================================================== -->
 
     <section
       class="section contact"
@@ -2399,47 +2777,74 @@
           06 — Contact
         </div>
 
-
         <h2 class="section-title">
 
           Parlons de
 
           <span>
-            la suite.
+            votre style.
           </span>
 
         </h2>
 
+        <p class="section-intro">
 
-        <p class="contact-text">
-
-          Une question, une création qui vous plaît ou envie
-          d'en savoir plus sur AR NIANTO ?
-
-          Contactez directement Khalidou Kane.
+          Pour une création, une commande,
+          une demande d'information ou
+          simplement pour découvrir
+          l'univers AR NIANTO,
+          contactez Khalidou Kane.
 
         </p>
 
 
-        <div class="contact-buttons">
+        <div class="contact-grid">
 
 
           <a
+            class="contact-card"
             href="https://wa.me/221708927400"
             target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-primary"
+            rel="noopener"
           >
-            WhatsApp
+
+            <small>
+              WhatsApp
+            </small>
+
+            <h3>
+              +221 70 892 74 00
+            </h3>
+
+            <p>
+              Cliquez ici pour contacter
+              directement Khalidou Kane
+              sur WhatsApp.
+            </p>
+
           </a>
 
 
-          <a
-            href="#collection"
-            class="btn btn-outline"
-          >
-            Voir la collection
-          </a>
+          <div class="contact-card">
+
+            <small>
+              Localisation
+            </small>
+
+            <h3>
+              Dakar
+            </h3>
+
+            <p>
+              Sénégal
+
+              <br>
+
+              AR NIANTO
+              • Khalidou Kane
+            </p>
+
+          </div>
 
 
         </div>
@@ -2451,9 +2856,72 @@
   </main>
 
 
-  <!-- =========================
+  <!-- =======================================================
+       WHATSAPP FLOTTANT
+  ======================================================== -->
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/221708927400"
+    target="_blank"
+    rel="noopener"
+    aria-label="Contacter Khalidou Kane sur WhatsApp"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path d="
+        M20.52 3.48
+        A11.86 11.86 0 0 0 12.05 0
+        C5.52 0 .21 5.3 .21 11.84
+        c0 2.09 .55 4.13 1.6 5.93
+        L.1 24l6.37-1.67
+        a11.85 11.85 0 0 0 5.58 1.42
+        h.01c6.53 0 11.84-5.31 11.84-11.84
+        0-3.17-1.23-6.15-3.38-8.43z
+
+        M12.06 21.69
+        a9.83 9.83 0 0 1-5.02-1.37
+        l-.36-.21-3.78.99
+        1.01-3.68-.23-.38
+        a9.86 9.86 0 1 1 8.38 4.65z
+
+        M17.47 14.92
+        c-.3-.15-1.77-.87-2.05-.97
+        -.27-.1-.47-.15-.67.15
+        -.2.3-.77.97-.94 1.17
+        -.17.2-.35.22-.65.07
+        -.3-.15-1.26-.46-2.4-1.47
+        -.89-.79-1.49-1.77-1.66-2.07
+        -.17-.3-.02-.46.13-.61
+        .13-.13.3-.35.45-.52
+        .15-.17.2-.3.3-.5
+        .1-.2.05-.37-.02-.52
+        -.07-.15-.67-1.62-.92-2.22
+        -.24-.58-.49-.5-.67-.51
+        -.17-.01-.37-.01-.57-.01
+        -.2 0-.52.07-.79.37
+        -.27.3-1.04 1.02-1.04 2.49
+        0 1.47 1.07 2.89 1.22 3.09
+        .15.2 2.1 3.21 5.09 4.5
+        .71.31 1.26.49 1.69.63
+        .71.23 1.35.2 1.86.12
+        .57-.08 1.77-.72 2.02-1.42
+        .25-.7.25-1.3.17-1.42
+        -.07-.12-.27-.2-.57-.35z
+      "></path>
+
+    </svg>
+
+  </a>
+
+
+  <!-- =======================================================
        LIGHTBOX
-  ========================= -->
+  ======================================================== -->
 
   <div
     class="lightbox"
@@ -2469,7 +2937,6 @@
       ×
     </button>
 
-
     <img
       id="lightboxImage"
       src=""
@@ -2479,242 +2946,225 @@
   </div>
 
 
-  <!-- =========================
-       WHATSAPP
-  ========================= -->
-
-  <a
-    class="whatsapp"
-    href="https://wa.me/221708927400"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Contacter Khalidou Kane sur WhatsApp"
-  >
-
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-
-      <path d="M20.5 3.5A11.9 11.9 0 0 0 12.03 0C5.45 0 .1 5.34.1 11.92c0 2.1.55 4.15 1.59 5.96L0 24l6.27-1.64a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.92-5.35 11.92-11.92 0-3.19-1.24-6.19-3.46-8.41ZM12.04 21.85h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.97.99-3.63-.23-.37a9.9 9.9 0 0 1-1.52-5.3C2.15 6.46 6.58 2.03 12.03 2.03c2.64 0 5.12 1.03 6.98 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.86 9.93Zm5.42-7.41c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
-
-    </svg>
-
-  </a>
-
-
-  <!-- =========================
+  <!-- =======================================================
        FOOTER
-  ========================= -->
+  ======================================================== -->
 
   <footer>
 
     <div class="footer-inner">
 
-      <p>
-        © 2026
-        <span class="footer-name">
-          Khalidou Kane
+
+      <div class="footer-brand">
+
+        <img
+          src="./IMG_4209.jpeg"
+          alt="AR NIANTO"
+        >
+
+        <span>
+          KHALIDOU KANE • AR NIANTO
         </span>
-      </p>
+
+      </div>
 
 
-      <p>
-        AR NIANTO — Viens t'habiller.
-      </p>
+      <div class="footer-copy">
+
+        © 2026 Khalidou Kane.
+        Tous droits réservés.
+
+      </div>
+
 
     </div>
 
   </footer>
 
 
-  <!-- =========================
+  <!-- =======================================================
        JAVASCRIPT
-  ========================= -->
+  ======================================================== -->
 
   <script>
 
-    /* =========================
-       HEADER
-    ========================= */
+    /* =======================================================
+       HEADER AU SCROLL
+    ======================================================== */
 
     const header =
       document.getElementById("header");
 
+    window.addEventListener(
+      "scroll",
+      () => {
 
-    window.addEventListener("scroll", () => {
+        if (window.scrollY > 40) {
 
-      if (window.scrollY > 30) {
-
-        header.classList.add("scrolled");
-
-      } else {
-
-        header.classList.remove("scrolled");
-
-      }
-
-    });
-
-
-    /* =========================
-       MOBILE MENU
-    ========================= */
-
-    const menuButton =
-      document.getElementById("menuButton");
-
-    const mobileMenu =
-      document.getElementById("mobileMenu");
-
-
-    function toggleMenu() {
-
-      const isOpen =
-        mobileMenu.classList.toggle("active");
-
-
-      menuButton.classList.toggle(
-        "active",
-        isOpen
-      );
-
-
-      menuButton.setAttribute(
-        "aria-expanded",
-        isOpen ? "true" : "false"
-      );
-
-
-      document.body.classList.toggle(
-        "menu-open",
-        isOpen
-      );
-
-    }
-
-
-    menuButton.addEventListener(
-      "click",
-      toggleMenu
-    );
-
-
-    document
-      .querySelectorAll(".mobile-links a")
-      .forEach(link => {
-
-        link.addEventListener("click", () => {
-
-          mobileMenu.classList.remove("active");
-
-          menuButton.classList.remove("active");
-
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
+          header.classList.add(
+            "scrolled"
           );
 
-          document.body.classList.remove(
-            "menu-open"
-          );
+        } else {
 
-        });
-
-      });
-
-
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        if (event.key === "Escape") {
-
-          mobileMenu.classList.remove("active");
-
-          menuButton.classList.remove("active");
-
-          menuButton.setAttribute(
-            "aria-expanded",
-            "false"
-          );
-
-          document.body.classList.remove(
-            "menu-open"
+          header.classList.remove(
+            "scrolled"
           );
 
         }
 
+      },
+      { passive: true }
+    );
+
+
+    /* =======================================================
+       MENU MOBILE
+    ======================================================== */
+
+    const menuButton =
+      document.getElementById(
+        "menuButton"
+      );
+
+    const mobileMenu =
+      document.getElementById(
+        "mobileMenu"
+      );
+
+    const mobileLinks =
+      document.querySelectorAll(
+        ".mobile-links a"
+      );
+
+
+    menuButton.addEventListener(
+      "click",
+      () => {
+
+        menuButton.classList.toggle(
+          "active"
+        );
+
+        mobileMenu.classList.toggle(
+          "active"
+        );
+
+        document.body.classList.toggle(
+          "menu-open"
+        );
+
       }
     );
 
 
-    /* =========================
-       LIGHTBOX GALERIE
-    ========================= */
+    mobileLinks.forEach(
+      link => {
+
+        link.addEventListener(
+          "click",
+          () => {
+
+            menuButton.classList.remove(
+              "active"
+            );
+
+            mobileMenu.classList.remove(
+              "active"
+            );
+
+            document.body.classList.remove(
+              "menu-open"
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =======================================================
+       LIGHTBOX COLLECTION
+    ======================================================== */
+
+    const galleryItems =
+      document.querySelectorAll(
+        ".gallery-item"
+      );
 
     const lightbox =
-      document.getElementById("lightbox");
+      document.getElementById(
+        "lightbox"
+      );
 
     const lightboxImage =
-      document.getElementById("lightboxImage");
+      document.getElementById(
+        "lightboxImage"
+      );
 
     const closeLightbox =
-      document.getElementById("closeLightbox");
+      document.getElementById(
+        "closeLightbox"
+      );
 
 
-    document
-      .querySelectorAll(".gallery-item")
-      .forEach(item => {
+    galleryItems.forEach(
+      item => {
 
-        item.addEventListener("click", () => {
+        item.addEventListener(
+          "click",
+          () => {
 
-          const image =
-            item.getAttribute("data-image");
+            const image =
+              item.dataset.image;
 
+            lightboxImage.src =
+              image;
 
-          lightboxImage.src = image;
+            lightbox.classList.add(
+              "active"
+            );
 
+            lightbox.setAttribute(
+              "aria-hidden",
+              "false"
+            );
 
-          lightbox.classList.add("active");
+            document.body.classList.add(
+              "menu-open"
+            );
 
+          }
+        );
 
-          lightbox.setAttribute(
-            "aria-hidden",
-            "false"
-          );
-
-
-          document.body.classList.add(
-            "menu-open"
-          );
-
-        });
-
-      });
+      }
+    );
 
 
     function closeGallery() {
 
-      lightbox.classList.remove("active");
-
+      lightbox.classList.remove(
+        "active"
+      );
 
       lightbox.setAttribute(
         "aria-hidden",
         "true"
       );
 
-
       document.body.classList.remove(
         "menu-open"
       );
 
+      setTimeout(
+        () => {
 
-      setTimeout(() => {
+          lightboxImage.src = "";
 
-        lightboxImage.src = "";
-
-      }, 300);
+        },
+        300
+      );
 
     }
 
@@ -2729,7 +3179,9 @@
       "click",
       event => {
 
-        if (event.target === lightbox) {
+        if (
+          event.target === lightbox
+        ) {
 
           closeGallery();
 
@@ -2739,18 +3191,95 @@
     );
 
 
+    /* =======================================================
+       TOUCHE ESC
+    ======================================================== */
+
     document.addEventListener(
       "keydown",
       event => {
 
         if (
-          event.key === "Escape" &&
-          lightbox.classList.contains("active")
+          event.key === "Escape"
         ) {
 
           closeGallery();
 
+          menuButton.classList.remove(
+            "active"
+          );
+
+          mobileMenu.classList.remove(
+            "active"
+          );
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
         }
+
+      }
+    );
+
+
+    /* =======================================================
+       ANIMATION AU SCROLL
+    ======================================================== */
+
+    const revealElements =
+      document.querySelectorAll(
+        ".card, .experience-item, .contact-card"
+      );
+
+
+    const observer =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(
+            entry => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target.style.opacity =
+                  "1";
+
+                entry.target.style.transform =
+                  "translateY(0)";
+
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
+
+            }
+          );
+
+        },
+        {
+          threshold: .12
+        }
+      );
+
+
+    revealElements.forEach(
+      element => {
+
+        element.style.opacity = "0";
+
+        element.style.transform =
+          "translateY(25px)";
+
+        element.style.transition =
+          "opacity .7s ease, transform .7s ease";
+
+        observer.observe(
+          element
+        );
 
       }
     );
