@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta name="description"
@@ -20,9 +19,27 @@
 
   <style>
 
-    /* =========================================================
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
+
+    :root {
+      --black: #050505;
+      --black-2: #090909;
+      --black-3: #111111;
+      --white: #ffffff;
+      --gray: #858585;
+      --gray-dark: #555555;
+      --line: rgba(255,255,255,.10);
+      --orange: #d98a32;
+      --orange-light: #e7a04b;
+      --max: 1240px;
+    }
+
+
+    /* =====================================================
        RESET
-    ========================================================= */
+    ===================================================== */
 
     * {
       margin: 0;
@@ -35,15 +52,15 @@
     }
 
     body {
-      background: #050505;
-      color: #ffffff;
+      background: var(--black);
+      color: var(--white);
       font-family: "Inter", sans-serif;
       overflow-x: hidden;
     }
 
-    body::selection {
-      background: #d98a32;
-      color: #ffffff;
+    ::selection {
+      background: var(--orange);
+      color: #fff;
     }
 
     img {
@@ -62,27 +79,9 @@
     }
 
 
-    /* =========================================================
-       VARIABLES
-    ========================================================= */
-
-    :root {
-      --black: #050505;
-      --black-2: #090909;
-      --black-3: #111111;
-      --white: #ffffff;
-      --gray: #858585;
-      --gray-dark: #555555;
-      --line: rgba(255,255,255,.10);
-      --orange: #d98a32;
-      --orange-light: #e7a04b;
-      --max: 1240px;
-    }
-
-
-    /* =========================================================
-       INTRO SCREEN
-    ========================================================= */
+    /* =====================================================
+       INTRO
+    ===================================================== */
 
     .intro-screen {
       position: fixed;
@@ -103,8 +102,6 @@
     .intro-content {
       text-align: center;
       padding: 30px;
-
-      animation: introContent 1.2s ease forwards;
     }
 
     .intro-logo {
@@ -189,46 +186,36 @@
     }
 
     @keyframes logoReveal {
-      0% {
+      from {
         opacity: 0;
         transform: scale(.65) translateY(20px);
       }
 
-      100% {
+      to {
         opacity: 1;
         transform: scale(1) translateY(0);
       }
     }
 
     @keyframes introLine {
-      0% {
+      from {
         width: 0;
       }
 
-      100% {
+      to {
         width: 90px;
       }
     }
 
     @keyframes textReveal {
-      0% {
+      from {
         opacity: 0;
         transform: translateY(18px);
       }
 
-      100% {
+      to {
         opacity: 1;
         transform: translateY(0);
-      }
-    }
-
-    @keyframes introContent {
-      0% {
-        transform: scale(.98);
-      }
-
-      100% {
-        transform: scale(1);
       }
     }
 
@@ -251,9 +238,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        CONTAINER
-    ========================================================= */
+    ===================================================== */
 
     .container {
       width: min(var(--max), calc(100% - 50px));
@@ -261,9 +248,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        HEADER
-    ========================================================= */
+    ===================================================== */
 
     header {
       position: fixed;
@@ -327,7 +314,8 @@
 
       background: var(--orange);
 
-      box-shadow: 0 0 20px rgba(217,138,50,.45);
+      box-shadow:
+        0 0 20px rgba(217,138,50,.45);
     }
 
     .brand-sub {
@@ -381,7 +369,7 @@
     }
 
     .nav-links a:hover {
-      color: #ffffff;
+      color: #fff;
     }
 
     .nav-links a:hover::after {
@@ -389,9 +377,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        MENU MOBILE
-    ========================================================= */
+    ===================================================== */
 
     .menu-btn {
       display: none;
@@ -419,7 +407,7 @@
       width: 18px;
       height: 1px;
 
-      background: #ffffff;
+      background: #fff;
 
       transition: .3s ease;
     }
@@ -431,7 +419,6 @@
     .menu-btn.active span:last-child {
       transform: translateY(-3px) rotate(-45deg);
     }
-
 
     .mobile-menu {
       position: fixed;
@@ -478,9 +465,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        HERO
-    ========================================================= */
+    ===================================================== */
 
     .hero {
       position: relative;
@@ -622,9 +609,10 @@
 
       border-color: var(--orange);
 
-      color: #ffffff;
+      color: #fff;
 
-      box-shadow: 0 10px 30px rgba(217,138,50,.15);
+      box-shadow:
+        0 10px 30px rgba(217,138,50,.15);
     }
 
     .btn-primary:hover {
@@ -634,11 +622,12 @@
 
       transform: translateY(-3px);
 
-      box-shadow: 0 15px 40px rgba(217,138,50,.28);
+      box-shadow:
+        0 15px 40px rgba(217,138,50,.28);
     }
 
     .btn-outline {
-      color: #ffffff;
+      color: #fff;
 
       background: rgba(255,255,255,.02);
     }
@@ -655,10 +644,12 @@
       position: absolute;
 
       bottom: 35px;
-      left: 0;
+      left: 25px;
 
       display: flex;
+
       align-items: center;
+
       gap: 15px;
 
       color: #777;
@@ -678,9 +669,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        SECTIONS
-    ========================================================= */
+    ===================================================== */
 
     .section {
       padding: 130px 0;
@@ -748,9 +739,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        VISION
-    ========================================================= */
+    ===================================================== */
 
     .vision-grid {
       margin-top: 70px;
@@ -771,7 +762,7 @@
 
       line-height: 1.25;
 
-      color: #eeeeee;
+      color: #eee;
     }
 
     .vision-big span {
@@ -793,9 +784,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        UNIVERS
-    ========================================================= */
+    ===================================================== */
 
     .universe-grid {
       margin-top: 70px;
@@ -925,9 +916,9 @@
     }
 
 
-    /* =========================================================
-       COLLECTION COSTUMES
-    ========================================================= */
+    /* =====================================================
+       COLLECTION — 2 COSTUMES PAR LIGNE
+    ===================================================== */
 
     .collection {
       background: #090909;
@@ -960,55 +951,30 @@
     .costumes-wrapper {
       margin-top: 60px;
 
-      overflow-x: auto;
+      width: 100%;
 
-      overflow-y: hidden;
-
-      padding: 5px 5px 25px;
-
-      scroll-snap-type: x mandatory;
-
-      scrollbar-width: thin;
-
-      scrollbar-color: var(--orange) transparent;
-
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .costumes-wrapper::-webkit-scrollbar {
-      height: 4px;
-    }
-
-    .costumes-wrapper::-webkit-scrollbar-track {
-      background: rgba(255,255,255,.04);
-    }
-
-    .costumes-wrapper::-webkit-scrollbar-thumb {
-      background: var(--orange);
-
-      border-radius: 20px;
+      padding: 5px 0 25px;
     }
 
     .costumes-line {
-      display: flex;
+      display: grid;
 
-      gap: 20px;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
-      width: max-content;
+      gap: 25px;
+
+      width: 100%;
     }
 
     .costume {
-      width: 285px;
-
-      flex: 0 0 285px;
+      width: 100%;
 
       background: #111;
 
       border: 1px solid rgba(255,255,255,.09);
 
       overflow: hidden;
-
-      scroll-snap-align: start;
 
       position: relative;
 
@@ -1027,7 +993,7 @@
     .costume-image {
       position: relative;
 
-      height: 350px;
+      height: 470px;
 
       overflow: hidden;
 
@@ -1044,7 +1010,7 @@
     }
 
     .costume:hover .costume-image img {
-      transform: scale(1.07);
+      transform: scale(1.06);
     }
 
     .costume-number {
@@ -1061,7 +1027,7 @@
 
       letter-spacing: 3px;
 
-      color: #ffffff;
+      color: #fff;
 
       background: rgba(0,0,0,.65);
 
@@ -1071,21 +1037,21 @@
     }
 
     .costume-info {
-      padding: 22px;
+      padding: 25px;
     }
 
     .costume-info h3 {
-      font-size: 17px;
+      font-size: 19px;
 
       text-transform: uppercase;
 
-      letter-spacing: -.3px;
+      letter-spacing: -.4px;
     }
 
     .costume-info p {
       color: #777;
 
-      font-size: 10px;
+      font-size: 11px;
 
       margin-top: 8px;
 
@@ -1103,7 +1069,7 @@
 
       justify-content: center;
 
-      min-height: 46px;
+      min-height: 48px;
 
       padding: 0 15px;
 
@@ -1111,7 +1077,7 @@
 
       background: var(--orange);
 
-      color: #ffffff;
+      color: #fff;
 
       font-size: 9px;
 
@@ -1149,13 +1115,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        SPECIAL
-    ========================================================= */
-
-    .special {
-      overflow: hidden;
-    }
+    ===================================================== */
 
     .special-layout {
       margin-top: 70px;
@@ -1243,9 +1205,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        EXPERIENCE
-    ========================================================= */
+    ===================================================== */
 
     .experience {
       background: #090909;
@@ -1310,9 +1272,9 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        CONTACT
-    ========================================================= */
+    ===================================================== */
 
     .contact {
       padding-bottom: 100px;
@@ -1376,9 +1338,9 @@
     }
 
 
-    /* =========================================================
-       FLOATING WHATSAPP
-    ========================================================= */
+    /* =====================================================
+       WHATSAPP FLOTTANT
+    ===================================================== */
 
     .floating-whatsapp {
       position: fixed;
@@ -1396,12 +1358,11 @@
       display: flex;
 
       align-items: center;
-
       justify-content: center;
 
       background: var(--orange);
 
-      color: #ffffff;
+      color: #fff;
 
       box-shadow:
         0 12px 35px rgba(0,0,0,.45),
@@ -1423,6 +1384,7 @@
     }
 
     @keyframes whatsappPulse {
+
       0% {
         box-shadow:
           0 12px 35px rgba(0,0,0,.45),
@@ -1440,12 +1402,13 @@
           0 12px 35px rgba(0,0,0,.45),
           0 0 0 0 rgba(217,138,50,0);
       }
+
     }
 
 
-    /* =========================================================
+    /* =====================================================
        FOOTER
-    ========================================================= */
+    ===================================================== */
 
     footer {
       border-top: 1px solid var(--line);
@@ -1490,9 +1453,9 @@
     }
 
 
-    /* =========================================================
-       REVEAL ANIMATION
-    ========================================================= */
+    /* =====================================================
+       ANIMATIONS
+    ===================================================== */
 
     .reveal {
       opacity: 0;
@@ -1511,9 +1474,9 @@
     }
 
 
-    /* =========================================================
-       RESPONSIVE TABLET
-    ========================================================= */
+    /* =====================================================
+       TABLET
+    ===================================================== */
 
     @media (max-width: 900px) {
 
@@ -1562,14 +1525,14 @@
     }
 
 
-    /* =========================================================
-       RESPONSIVE MOBILE
-    ========================================================= */
+    /* =====================================================
+       MOBILE
+    ===================================================== */
 
     @media (max-width: 600px) {
 
       .container {
-        width: min(100% - 30px, var(--max));
+        width: calc(100% - 30px);
       }
 
       header {
@@ -1650,24 +1613,56 @@
         margin-top: 20px;
       }
 
-      .costumes-wrapper {
-        margin-left: -15px;
+      /*
+        IMPORTANT :
+        Les costumes restent volontairement
+        à 2 par ligne sur téléphone.
+      */
 
-        margin-right: -15px;
+      .costumes-line {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
 
-        padding-left: 15px;
-
-        padding-right: 15px;
-      }
-
-      .costume {
-        width: 270px;
-
-        flex-basis: 270px;
+        gap: 10px;
       }
 
       .costume-image {
-        height: 330px;
+        height: 250px;
+      }
+
+      .costume-info {
+        padding: 13px;
+      }
+
+      .costume-info h3 {
+        font-size: 12px;
+
+        line-height: 1.35;
+      }
+
+      .costume-info p {
+        font-size: 9px;
+
+        line-height: 1.5;
+      }
+
+      .btn-whatsapp {
+        min-height: 42px;
+
+        padding: 0 8px;
+
+        font-size: 7px;
+
+        letter-spacing: .5px;
+      }
+
+      .costume-number {
+        top: 10px;
+        left: 10px;
+
+        padding: 6px 8px;
+
+        font-size: 7px;
       }
 
       .special-image {
@@ -1696,7 +1691,6 @@
 
       .intro-logo {
         width: 85px;
-
         height: 85px;
       }
 
@@ -1715,9 +1709,9 @@
 <body>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        INTRO
-  ======================================================== -->
+  ===================================================== -->
 
   <div class="intro-screen">
 
@@ -1748,9 +1742,9 @@
   </div>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        HEADER
-  ======================================================== -->
+  ===================================================== -->
 
   <header id="header">
 
@@ -1760,9 +1754,7 @@
 
         <span class="brand-mark"></span>
 
-        <span>
-          AR NIANTO
-        </span>
+        <span>AR NIANTO</span>
 
         <span class="brand-sub">
           Une identité • Une vision
@@ -1774,39 +1766,27 @@
       <ul class="nav-links">
 
         <li>
-          <a href="#vision">
-            Vision
-          </a>
+          <a href="#vision">Vision</a>
         </li>
 
         <li>
-          <a href="#univers">
-            L'univers
-          </a>
+          <a href="#univers">L'univers</a>
         </li>
 
         <li>
-          <a href="#collection">
-            Costumes
-          </a>
+          <a href="#collection">Costumes</a>
         </li>
 
         <li>
-          <a href="#special">
-            À découvrir
-          </a>
+          <a href="#special">À découvrir</a>
         </li>
 
         <li>
-          <a href="#experience">
-            L'expérience
-          </a>
+          <a href="#experience">L'expérience</a>
         </li>
 
         <li>
-          <a href="#contact">
-            Contact
-          </a>
+          <a href="#contact">Contact</a>
         </li>
 
       </ul>
@@ -1826,9 +1806,9 @@
   </header>
 
 
-  <!-- =======================================================
-       MOBILE MENU
-  ======================================================== -->
+  <!-- =====================================================
+       MENU MOBILE
+  ===================================================== -->
 
   <div class="mobile-menu" id="mobileMenu">
 
@@ -1859,11 +1839,16 @@
   </div>
 
 
-  <!-- =======================================================
-       HERO
-  ======================================================== -->
+  <!-- =====================================================
+       MAIN
+  ===================================================== -->
 
   <main id="accueil">
+
+
+    <!-- ===================================================
+         HERO
+    ==================================================== -->
 
     <section class="hero">
 
@@ -1920,9 +1905,9 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          VISION
-    ====================================================== -->
+    ==================================================== -->
 
     <section
       class="section"
@@ -1968,9 +1953,9 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          UNIVERS
-    ====================================================== -->
+    ==================================================== -->
 
     <section
       class="section section-dark"
@@ -2058,9 +2043,9 @@
     </section>
 
 
-    <!-- =====================================================
-         COLLECTION
-    ====================================================== -->
+    <!-- ===================================================
+         COLLECTION — 17 COSTUMES
+    ==================================================== -->
 
     <section
       class="section collection"
@@ -2084,7 +2069,7 @@
           </div>
 
           <div class="collection-note reveal">
-            Glissez pour découvrir →
+            17 modèles • AR NIANTO
           </div>
 
         </div>
@@ -2092,8 +2077,8 @@
 
         <p class="section-intro reveal">
           Découvrez nos modèles AR NIANTO.
-          Choisissez votre costume et commandez directement
-          sur WhatsApp.
+          Choisissez votre costume et commandez
+          directement sur WhatsApp.
         </p>
 
 
@@ -2102,7 +2087,9 @@
           <div class="costumes-line">
 
 
-            <!-- COSTUME 01 -->
+            <!-- =================================================
+                 COSTUME 01
+            ================================================== -->
 
             <article class="costume reveal">
 
@@ -2127,8 +2114,7 @@
                 </h3>
 
                 <p>
-                  Une silhouette élégante
-                  et affirmée.
+                  Une silhouette élégante et affirmée.
                 </p>
 
                 <a
@@ -2145,15 +2131,13 @@
             </article>
 
 
-            <!-- COSTUME 02 -->
+            <!-- 02 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  02
-                </span>
+                <span class="costume-number">02</span>
 
                 <img
                   src="./IMG_3052_compressed_2.jpeg"
@@ -2165,13 +2149,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 02
-                </h3>
+                <h3>Costume africain 02</h3>
 
                 <p>
-                  Une présence forte,
-                  pensée pour se démarquer.
+                  Une présence forte, pensée pour se démarquer.
                 </p>
 
                 <a
@@ -2188,15 +2169,13 @@
             </article>
 
 
-            <!-- COSTUME 03 -->
+            <!-- 03 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  03
-                </span>
+                <span class="costume-number">03</span>
 
                 <img
                   src="./IMG_3061_compressed.jpeg"
@@ -2208,13 +2187,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 03
-                </h3>
+                <h3>Costume africain 03</h3>
 
                 <p>
-                  L'élégance africaine
-                  dans une expression moderne.
+                  L'élégance africaine dans une expression moderne.
                 </p>
 
                 <a
@@ -2231,15 +2207,13 @@
             </article>
 
 
-            <!-- COSTUME 04 -->
+            <!-- 04 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  04
-                </span>
+                <span class="costume-number">04</span>
 
                 <img
                   src="./IMG_3068_compressed_2.jpeg"
@@ -2251,13 +2225,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 04
-                </h3>
+                <h3>Costume africain 04</h3>
 
                 <p>
-                  Une coupe contemporaine
-                  avec caractère.
+                  Une coupe contemporaine avec caractère.
                 </p>
 
                 <a
@@ -2274,15 +2245,13 @@
             </article>
 
 
-            <!-- COSTUME 05 -->
+            <!-- 05 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  05
-                </span>
+                <span class="costume-number">05</span>
 
                 <img
                   src="./IMG_3075_compressed.jpeg"
@@ -2294,13 +2263,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 05
-                </h3>
+                <h3>Costume africain 05</h3>
 
                 <p>
-                  Une création pensée
-                  pour les grandes occasions.
+                  Une création pensée pour les grandes occasions.
                 </p>
 
                 <a
@@ -2317,15 +2283,13 @@
             </article>
 
 
-            <!-- COSTUME 06 -->
+            <!-- 06 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  06
-                </span>
+                <span class="costume-number">06</span>
 
                 <img
                   src="./IMG_3080_compressed_2.jpeg"
@@ -2337,13 +2301,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 06
-                </h3>
+                <h3>Costume africain 06</h3>
 
                 <p>
-                  Un style raffiné
-                  et résolument moderne.
+                  Un style raffiné et résolument moderne.
                 </p>
 
                 <a
@@ -2360,15 +2321,13 @@
             </article>
 
 
-            <!-- COSTUME 07 -->
+            <!-- 07 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  07
-                </span>
+                <span class="costume-number">07</span>
 
                 <img
                   src="./IMG_3087_compressed.jpeg"
@@ -2380,13 +2339,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 07
-                </h3>
+                <h3>Costume africain 07</h3>
 
                 <p>
-                  Une identité visuelle
-                  qui s'impose naturellement.
+                  Une identité visuelle qui s'impose naturellement.
                 </p>
 
                 <a
@@ -2403,15 +2359,13 @@
             </article>
 
 
-            <!-- COSTUME 08 -->
+            <!-- 08 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  08
-                </span>
+                <span class="costume-number">08</span>
 
                 <img
                   src="./IMG_3095_compressed_2.jpeg"
@@ -2423,13 +2377,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 08
-                </h3>
+                <h3>Costume africain 08</h3>
 
                 <p>
-                  Une alliance entre tradition
-                  et sophistication.
+                  Une alliance entre tradition et sophistication.
                 </p>
 
                 <a
@@ -2446,15 +2397,13 @@
             </article>
 
 
-            <!-- COSTUME 09 -->
+            <!-- 09 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  09
-                </span>
+                <span class="costume-number">09</span>
 
                 <img
                   src="./IMG_3105_compressed.jpeg"
@@ -2466,13 +2415,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 09
-                </h3>
+                <h3>Costume africain 09</h3>
 
                 <p>
-                  Une coupe élégante
-                  pour une allure unique.
+                  Une coupe élégante pour une allure unique.
                 </p>
 
                 <a
@@ -2489,15 +2435,13 @@
             </article>
 
 
-            <!-- COSTUME 10 -->
+            <!-- 10 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  10
-                </span>
+                <span class="costume-number">10</span>
 
                 <img
                   src="./IMG_3110_compressed_2.jpeg"
@@ -2509,13 +2453,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 10
-                </h3>
+                <h3>Costume africain 10</h3>
 
                 <p>
-                  Le détail au service
-                  de votre élégance.
+                  Le détail au service de votre élégance.
                 </p>
 
                 <a
@@ -2532,15 +2473,13 @@
             </article>
 
 
-            <!-- COSTUME 11 -->
+            <!-- 11 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  11
-                </span>
+                <span class="costume-number">11</span>
 
                 <img
                   src="./IMG_3115_compressed.jpeg"
@@ -2552,13 +2491,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 11
-                </h3>
+                <h3>Costume africain 11</h3>
 
                 <p>
-                  Un modèle pensé
-                  pour votre présence.
+                  Un modèle pensé pour votre présence.
                 </p>
 
                 <a
@@ -2575,15 +2511,13 @@
             </article>
 
 
-            <!-- COSTUME 12 -->
+            <!-- 12 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  12
-                </span>
+                <span class="costume-number">12</span>
 
                 <img
                   src="./IMG_3120_compressed_3.jpeg"
@@ -2595,13 +2529,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 12
-                </h3>
+                <h3>Costume africain 12</h3>
 
                 <p>
-                  Une signature sobre,
-                  élégante et affirmée.
+                  Une signature sobre, élégante et affirmée.
                 </p>
 
                 <a
@@ -2618,15 +2549,13 @@
             </article>
 
 
-            <!-- COSTUME 13 -->
+            <!-- 13 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  13
-                </span>
+                <span class="costume-number">13</span>
 
                 <img
                   src="./IMG_3125_compressed.jpeg"
@@ -2638,13 +2567,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 13
-                </h3>
+                <h3>Costume africain 13</h3>
 
                 <p>
-                  Un style qui conjugue
-                  héritage et modernité.
+                  Un style qui conjugue héritage et modernité.
                 </p>
 
                 <a
@@ -2661,15 +2587,13 @@
             </article>
 
 
-            <!-- COSTUME 14 -->
+            <!-- 14 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  14
-                </span>
+                <span class="costume-number">14</span>
 
                 <img
                   src="./IMG_3129_compressed_2.jpeg"
@@ -2681,13 +2605,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 14
-                </h3>
+                <h3>Costume africain 14</h3>
 
                 <p>
-                  Une silhouette pensée
-                  pour impressionner.
+                  Une silhouette pensée pour impressionner.
                 </p>
 
                 <a
@@ -2704,15 +2625,13 @@
             </article>
 
 
-            <!-- COSTUME 15 -->
+            <!-- 15 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  15
-                </span>
+                <span class="costume-number">15</span>
 
                 <img
                   src="./IMG_3133_compressed.jpeg"
@@ -2724,13 +2643,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 15
-                </h3>
+                <h3>Costume africain 15</h3>
 
                 <p>
-                  Une création élégante
-                  pour les moments importants.
+                  Une création élégante pour les moments importants.
                 </p>
 
                 <a
@@ -2747,15 +2663,13 @@
             </article>
 
 
-            <!-- COSTUME 16 -->
+            <!-- 16 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  16
-                </span>
+                <span class="costume-number">16</span>
 
                 <img
                   src="./IMG_3145_compressed_3.jpeg"
@@ -2767,13 +2681,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 16
-                </h3>
+                <h3>Costume africain 16</h3>
 
                 <p>
-                  L'élégance AR NIANTO
-                  dans une nouvelle expression.
+                  L'élégance AR NIANTO dans une nouvelle expression.
                 </p>
 
                 <a
@@ -2790,15 +2701,13 @@
             </article>
 
 
-            <!-- COSTUME 17 -->
+            <!-- 17 -->
 
             <article class="costume reveal">
 
               <div class="costume-image">
 
-                <span class="costume-number">
-                  17
-                </span>
+                <span class="costume-number">17</span>
 
                 <img
                   src="./IMG_3156_compressed.jpeg"
@@ -2810,13 +2719,10 @@
 
               <div class="costume-info">
 
-                <h3>
-                  Costume africain 17
-                </h3>
+                <h3>Costume africain 17</h3>
 
                 <p>
-                  Une dernière signature
-                  pour compléter la collection.
+                  Une dernière signature pour compléter la collection.
                 </p>
 
                 <a
@@ -2847,9 +2753,9 @@
     </section>
 
 
-    <!-- =====================================================
-         SPECIAL
-    ====================================================== -->
+    <!-- ===================================================
+         À DÉCOUVRIR
+    ==================================================== -->
 
     <section
       class="section"
@@ -2927,9 +2833,9 @@
     </section>
 
 
-    <!-- =====================================================
-         EXPERIENCE
-    ====================================================== -->
+    <!-- ===================================================
+         EXPÉRIENCE
+    ==================================================== -->
 
     <section
       class="section experience"
@@ -3015,9 +2921,9 @@
     </section>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          CONTACT
-    ====================================================== -->
+    ==================================================== -->
 
     <section
       class="section contact"
@@ -3076,9 +2982,9 @@
   </main>
 
 
-  <!-- =======================================================
-       FLOATING WHATSAPP
-  ======================================================== -->
+  <!-- =====================================================
+       WHATSAPP FLOTTANT
+  ===================================================== -->
 
   <a
     class="floating-whatsapp"
@@ -3088,13 +2994,13 @@
     aria-label="Contacter AR NIANTO sur WhatsApp"
     title="Contacter AR NIANTO"
   >
-    <span>✆</span>
+    ✆
   </a>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        FOOTER
-  ======================================================== -->
+  ===================================================== -->
 
   <footer>
 
@@ -3121,17 +3027,16 @@
   </footer>
 
 
-  <!-- =======================================================
+  <!-- =====================================================
        JAVASCRIPT
-  ======================================================== -->
+  ===================================================== -->
 
   <script>
 
-    /* =======================================================
-       HEADER SCROLL
-    ======================================================== */
+    /* HEADER */
 
-    const header = document.getElementById("header");
+    const header =
+      document.getElementById("header");
 
     function handleHeader() {
 
@@ -3147,66 +3052,76 @@
 
     }
 
-    window.addEventListener("scroll", handleHeader);
+    window.addEventListener(
+      "scroll",
+      handleHeader
+    );
 
     handleHeader();
 
 
-    /* =======================================================
-       MOBILE MENU
-    ======================================================== */
+    /* MENU MOBILE */
 
-    const menuBtn = document.getElementById("menuBtn");
+    const menuBtn =
+      document.getElementById("menuBtn");
 
-    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileMenu =
+      document.getElementById("mobileMenu");
 
-    menuBtn.addEventListener("click", function () {
+    menuBtn.addEventListener(
+      "click",
+      function () {
 
-      menuBtn.classList.toggle("active");
+        menuBtn.classList.toggle("active");
 
-      mobileMenu.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
 
-    });
+      }
+    );
 
 
-    /* Fermer le menu lorsqu'on clique sur un lien */
+    /* FERMER MENU APRÈS CLIC */
 
     const mobileLinks =
       mobileMenu.querySelectorAll("a");
 
-    mobileLinks.forEach(function (link) {
+    mobileLinks.forEach(
+      function (link) {
 
-      link.addEventListener("click", function () {
+        link.addEventListener(
+          "click",
+          function () {
 
-        menuBtn.classList.remove("active");
+            menuBtn.classList.remove("active");
 
-        mobileMenu.classList.remove("open");
+            mobileMenu.classList.remove("open");
 
-      });
-
-    });
-
-
-    /* =======================================================
-       ESCAPE = FERMER LE MENU
-    ======================================================== */
-
-    document.addEventListener("keydown", function (event) {
-
-      if (event.key === "Escape") {
-
-        menuBtn.classList.remove("active");
-
-        mobileMenu.classList.remove("open");
+          }
+        );
 
       }
+    );
 
-    });
+
+    /* ESCAPE */
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        if (event.key === "Escape") {
+
+          menuBtn.classList.remove("active");
+
+          mobileMenu.classList.remove("open");
+
+        }
+
+      }
+    );
 
 
-    /* =======================================================
-       REVEAL ON SCROLL
-    ======================================================== */
+    /* ANIMATIONS AU SCROLL */
 
     const revealElements =
       document.querySelectorAll(".reveal");
@@ -3216,17 +3131,21 @@
 
         function (entries, observer) {
 
-          entries.forEach(function (entry) {
+          entries.forEach(
+            function (entry) {
 
-            if (entry.isIntersecting) {
+              if (entry.isIntersecting) {
 
-              entry.target.classList.add("visible");
+                entry.target.classList.add("visible");
 
-              observer.unobserve(entry.target);
+                observer.unobserve(
+                  entry.target
+                );
+
+              }
 
             }
-
-          });
+          );
 
         },
 
@@ -3237,72 +3156,86 @@
       );
 
 
-    revealElements.forEach(function (element) {
+    revealElements.forEach(
+      function (element) {
 
-      revealObserver.observe(element);
+        revealObserver.observe(element);
 
-    });
-
-
-    /* =======================================================
-       INTRO
-       On force l'affichage normal après l'animation.
-    ======================================================== */
-
-    window.addEventListener("load", function () {
-
-      setTimeout(function () {
-
-        document
-          .querySelectorAll(".hero .reveal")
-          .forEach(function (element) {
-
-            element.classList.add("visible");
-
-          });
-
-      }, 900);
-
-    });
+      }
+    );
 
 
-    /* =======================================================
-       SMOOTH SCROLL
-    ======================================================== */
+    /* HERO APRÈS INTRO */
+
+    window.addEventListener(
+      "load",
+      function () {
+
+        setTimeout(
+          function () {
+
+            document
+              .querySelectorAll(".hero .reveal")
+              .forEach(
+                function (element) {
+
+                  element.classList.add(
+                    "visible"
+                  );
+
+                }
+              );
+
+          },
+          900
+        );
+
+      }
+    );
+
+
+    /* SMOOTH SCROLL */
 
     document
       .querySelectorAll('a[href^="#"]')
-      .forEach(function (anchor) {
+      .forEach(
+        function (anchor) {
 
-        anchor.addEventListener("click", function (event) {
+          anchor.addEventListener(
+            "click",
+            function (event) {
 
-          const targetId =
-            this.getAttribute("href");
+              const targetId =
+                this.getAttribute("href");
 
-          if (
-            targetId &&
-            targetId !== "#"
-          ) {
+              if (
+                targetId &&
+                targetId !== "#"
+              ) {
 
-            const target =
-              document.querySelector(targetId);
+                const target =
+                  document.querySelector(
+                    targetId
+                  );
 
-            if (target) {
+                if (target) {
 
-              event.preventDefault();
+                  event.preventDefault();
 
-              target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-              });
+                  target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                  });
+
+                }
+
+              }
 
             }
+          );
 
-          }
-
-        });
-
-      });
+        }
+      );
 
   </script>
 
