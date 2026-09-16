@@ -2,34 +2,31 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <meta name="description"
-        content="AR NIANTO — De la lumière dans votre style. Collection de costumes africains à Dakar, Sénégal.">
+        content="AR NIANTO — Costumes africains. Une identité. Une énergie. Une vision.">
 
-  <meta name="theme-color" content="#050505">
+  <meta name="theme-color"
+        content="#070707">
 
-  <title>AR NIANTO — De la lumière dans votre style.</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+  <title>AR NIANTO — Viens habiller</title>
 
   <style>
 
     :root {
-      --black: #050505;
-      --black-2: #090909;
-      --black-3: #111111;
+      --black: #070707;
+      --black-2: #101010;
+      --black-3: #151515;
       --white: #ffffff;
-      --gray: #858585;
-      --gray-dark: #555555;
-      --line: rgba(255,255,255,.10);
+      --gray: #a5a5a5;
+      --gray-light: #d0d0d0;
       --orange: #d98a32;
-      --orange-light: #e7a04b;
-      --max: 1240px;
+      --gold: #e7b66a;
+      --line: rgba(255,255,255,.10);
+      --shadow: 0 25px 70px rgba(0,0,0,.45);
     }
 
     * {
@@ -45,18 +42,12 @@
     body {
       background: var(--black);
       color: var(--white);
-      font-family: "Inter", sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
     }
 
-    ::selection {
-      background: var(--orange);
-      color: #fff;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
+    body.menu-open {
+      overflow: hidden;
     }
 
     a {
@@ -64,501 +55,455 @@
       text-decoration: none;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
+    img {
+      display: block;
+      max-width: 100%;
     }
 
-    /* =====================================================
-       INTRO
-    ===================================================== */
-
-    .intro-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 99999;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: #050505;
-
-      overflow: hidden;
-
-      animation: introExit 1.2s ease 3.5s forwards;
+    button {
+      font: inherit;
     }
 
-    .intro-content {
-      text-align: center;
-      padding: 30px;
-    }
 
-    .intro-logo {
-      width: 100px;
-      height: 100px;
-
-      object-fit: cover;
-
-      border-radius: 50%;
-
-      margin: 0 auto 25px;
-
-      border: 1px solid rgba(255,255,255,.30);
-
-      box-shadow:
-        0 0 35px rgba(217,138,50,.18),
-        0 0 90px rgba(217,138,50,.06);
-
-      opacity: 0;
-
-      animation:
-        logoReveal 1.2s cubic-bezier(.2,.8,.2,1) .1s forwards;
-    }
-
-    .intro-line {
-      width: 0;
-      height: 1px;
-
-      background: var(--orange);
-
-      margin: 0 auto 25px;
-
-      animation: introLine 1s ease .8s forwards;
-    }
-
-    .intro-brand {
-      font-size: clamp(38px, 8vw, 75px);
-
-      font-weight: 900;
-
-      letter-spacing: 8px;
-
-      text-transform: uppercase;
-
-      opacity: 0;
-
-      animation: textReveal 1s ease 1s forwards;
-    }
-
-    .intro-present {
-      margin-top: 14px;
-
-      color: var(--orange);
-
-      font-size: 10px;
-
-      font-weight: 700;
-
-      letter-spacing: 5px;
-
-      text-transform: uppercase;
-
-      opacity: 0;
-
-      animation: textReveal 1s ease 1.35s forwards;
-    }
-
-    .intro-sub {
-      margin-top: 28px;
-
-      color: #777;
-
-      font-size: 9px;
-
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
-
-      opacity: 0;
-
-      animation: textReveal 1s ease 1.7s forwards;
-    }
-
-    @keyframes logoReveal {
-      from {
-        opacity: 0;
-        transform: scale(.65) translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    @keyframes introLine {
-      from {
-        width: 0;
-      }
-
-      to {
-        width: 90px;
-      }
-    }
-
-    @keyframes textReveal {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes introExit {
-      0% {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      70% {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      100% {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
-    }
-
-    /* =====================================================
-       CONTAINER
-    ===================================================== */
-
-    .container {
-      width: min(var(--max), calc(100% - 50px));
-      margin: 0 auto;
-    }
-
-    /* =====================================================
+    /* =====================================
        HEADER
-    ===================================================== */
+    ===================================== */
 
     header {
       position: fixed;
-
       top: 0;
       left: 0;
-      right: 0;
-
-      z-index: 5000;
-
-      height: 82px;
-
-      display: flex;
-      align-items: center;
-
-      border-bottom: 1px solid transparent;
-
-      transition:
-        background .4s ease,
-        border-color .4s ease,
-        backdrop-filter .4s ease;
+      width: 100%;
+      z-index: 1000;
+      padding: 22px 6%;
+      transition: .35s ease;
     }
 
     header.scrolled {
-      background: rgba(5,5,5,.88);
-
-      border-color: var(--line);
-
+      background: rgba(7,7,7,.88);
       backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+      padding-top: 14px;
+      padding-bottom: 14px;
     }
 
     .nav {
-      width: min(var(--max), calc(100% - 50px));
-
+      max-width: 1400px;
       margin: auto;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      gap: 30px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 13px;
 
-      font-size: 15px;
-
-      font-weight: 900;
-
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
+      position: relative;
+      z-index: 1100;
     }
 
-    /* LOGO AJOUTÉ À LA PLACE DU PETIT POINT ORANGE */
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
+    .brand-image {
+      width: 52px;
+      height: 52px;
 
       border-radius: 50%;
 
       object-fit: cover;
 
-      border: 1px solid rgba(255,255,255,.25);
+      border: 1px solid rgba(255,255,255,.35);
 
       box-shadow:
-        0 0 20px rgba(217,138,50,.20);
+        0 0 25px rgba(217,138,50,.18);
 
-      flex-shrink: 0;
+      background: #080808;
     }
 
-    .brand-sub {
-      color: #777;
-
-      font-size: 7px;
+    .brand-name {
+      font-size: 15px;
+      font-weight: 800;
 
       letter-spacing: 2px;
 
-      font-weight: 500;
+      text-transform: uppercase;
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 34px;
-
-      list-style: none;
-    }
-
-    .nav-links a {
-      position: relative;
-
-      color: #999;
+    .brand-sub {
+      color: var(--gray);
 
       font-size: 9px;
 
-      font-weight: 700;
+      letter-spacing: 2px;
 
-      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
+
+
+    /* =====================================
+       DESKTOP MENU
+    ===================================== */
+
+    .desktop-menu {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .desktop-menu a {
+      font-size: 11px;
 
       text-transform: uppercase;
 
-      transition: color .3s ease;
+      letter-spacing: 1.8px;
+
+      color: #ddd;
+
+      position: relative;
+
+      padding: 8px 0;
     }
 
-    .nav-links a::after {
+    .desktop-menu a::after {
       content: "";
 
       position: absolute;
 
       left: 0;
-      bottom: -8px;
+      bottom: 0;
 
       width: 0;
       height: 1px;
 
-      background: var(--orange);
+      background: var(--gold);
 
-      transition: width .3s ease;
+      transition: .3s;
     }
 
-    .nav-links a:hover {
-      color: #fff;
+    .desktop-menu a:hover {
+      color: var(--white);
     }
 
-    .nav-links a:hover::after {
+    .desktop-menu a:hover::after {
       width: 100%;
     }
 
-    /* =====================================================
-       MENU MOBILE
-    ===================================================== */
 
-    .menu-btn {
+    /* =====================================
+       MENU BUTTON
+    ===================================== */
+
+    .menu-button {
       display: none;
 
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
 
       border: 1px solid var(--line);
 
-      background: transparent;
+      background: rgba(255,255,255,.04);
+
+      color: white;
+
+      border-radius: 50%;
 
       cursor: pointer;
 
-      align-items: center;
-      justify-content: center;
+      position: relative;
 
-      flex-direction: column;
-
-      gap: 5px;
+      z-index: 1100;
     }
 
-    .menu-btn span {
+    .menu-button span,
+    .menu-button span::before,
+    .menu-button span::after {
       display: block;
 
-      width: 18px;
-      height: 1px;
+      width: 20px;
+      height: 2px;
 
-      background: #fff;
+      background: white;
 
-      transition: .3s ease;
+      margin: auto;
+
+      transition: .3s;
     }
 
-    .menu-btn.active span:first-child {
-      transform: translateY(3px) rotate(45deg);
+    .menu-button span::before,
+    .menu-button span::after {
+      content: "";
+
+      position: absolute;
+
+      left: 13px;
     }
 
-    .menu-btn.active span:last-child {
-      transform: translateY(-3px) rotate(-45deg);
+    .menu-button span::before {
+      transform: translateY(-6px);
     }
+
+    .menu-button span::after {
+      transform: translateY(6px);
+    }
+
+    .menu-button.active span {
+      background: transparent;
+    }
+
+    .menu-button.active span::before {
+      transform: rotate(45deg);
+    }
+
+    .menu-button.active span::after {
+      transform: rotate(-45deg);
+    }
+
+
+    /* =====================================
+       MOBILE MENU
+    ===================================== */
 
     .mobile-menu {
       position: fixed;
 
-      top: 82px;
-      left: 0;
-      right: 0;
+      inset: 0;
 
-      z-index: 4999;
+      background: rgba(7,7,7,.98);
 
-      background: rgba(5,5,5,.98);
+      backdrop-filter: blur(20px);
 
-      border-bottom: 1px solid var(--line);
+      z-index: 1050;
 
-      padding: 25px;
+      display: flex;
 
-      transform: translateY(-130%);
+      align-items: center;
 
-      transition: transform .4s ease;
+      justify-content: center;
+
+      opacity: 0;
+
+      visibility: hidden;
+
+      transform: translateY(-15px);
+
+      transition: .35s ease;
     }
 
-    .mobile-menu.open {
+    .mobile-menu.active {
+      opacity: 1;
+
+      visibility: visible;
+
       transform: translateY(0);
     }
 
-    .mobile-menu a {
+    .mobile-links {
+      width: 85%;
+
+      max-width: 500px;
+    }
+
+    .mobile-links a {
       display: block;
 
-      padding: 18px 0;
+      padding: 20px 0;
 
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid var(--line);
 
-      font-size: 11px;
+      font-size: 28px;
+
+      font-weight: 700;
+
+      letter-spacing: -1px;
+    }
+
+    .mobile-number {
+      margin-top: 35px;
+
+      color: var(--gold);
+
+      font-size: 12px;
 
       letter-spacing: 2px;
-
-      text-transform: uppercase;
-
-      color: #aaa;
     }
 
-    .mobile-menu a:hover {
-      color: var(--orange);
-    }
 
-    /* =====================================================
+    /* =====================================
        HERO
-    ===================================================== */
+    ===================================== */
 
     .hero {
+      min-height: 100svh;
+
       position: relative;
 
-      min-height: 100vh;
-
       display: flex;
+
       align-items: center;
 
       overflow: hidden;
 
+      isolation: isolate;
+    }
+
+    .hero-background {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: -5;
+
       background:
         linear-gradient(
           90deg,
-          rgba(0,0,0,.92) 0%,
-          rgba(0,0,0,.62) 42%,
-          rgba(0,0,0,.30) 100%
+          rgba(0,0,0,.96) 0%,
+          rgba(0,0,0,.72) 43%,
+          rgba(0,0,0,.20) 100%
         ),
-        url("./IMG_4209.jpeg") center/cover no-repeat;
+        url("./IMG_4209.jpeg")
+        center center / cover no-repeat;
+
+      transform: scale(1.04);
+
+      animation: heroZoom 12s ease-out forwards;
     }
 
-    .hero::before {
+    @keyframes heroZoom {
+
+      from {
+        transform: scale(1.08);
+      }
+
+      to {
+        transform: scale(1.01);
+      }
+
+    }
+
+    .hero::after {
       content: "";
 
       position: absolute;
 
       inset: 0;
 
+      z-index: -3;
+
       background:
-        radial-gradient(
-          circle at 80% 50%,
-          rgba(217,138,50,.10),
-          transparent 30%
+        linear-gradient(
+          0deg,
+          var(--black) 0%,
+          transparent 25%,
+          transparent 75%,
+          rgba(0,0,0,.35) 100%
         );
     }
 
-    .hero-content {
-      position: relative;
 
-      z-index: 2;
+    /* =====================================
+       LOGO FILIGRANE
+    ===================================== */
 
-      padding-top: 80px;
+    .hero-watermark {
+      position: absolute;
 
-      max-width: 850px;
+      width: min(700px, 90vw);
+
+      right: -100px;
+
+      bottom: -100px;
+
+      opacity: .035;
+
+      filter: grayscale(1);
+
+      z-index: -2;
+
+      pointer-events: none;
+
+      user-select: none;
     }
 
-    .eyebrow {
+
+    .hero-content {
+      width: 100%;
+
+      max-width: 1400px;
+
+      margin: auto;
+
+      padding: 150px 6% 90px;
+    }
+
+    .hero-kicker {
       display: flex;
+
       align-items: center;
-      gap: 15px;
 
-      margin-bottom: 25px;
+      gap: 12px;
 
-      color: var(--orange);
+      color: var(--gold);
 
-      font-size: 9px;
+      font-size: 10px;
 
-      font-weight: 800;
+      font-weight: 700;
 
       letter-spacing: 4px;
 
       text-transform: uppercase;
+
+      margin-bottom: 25px;
+
+      animation: reveal .8s ease forwards;
     }
 
-    .eyebrow::before {
+    .hero-kicker::before {
       content: "";
 
-      width: 42px;
+      width: 45px;
+
       height: 1px;
 
-      background: var(--orange);
+      background: var(--gold);
     }
 
     .hero h1 {
-      font-family: "Playfair Display", serif;
+      max-width: 900px;
 
-      font-size: clamp(50px, 8vw, 105px);
+      font-size: clamp(55px, 8vw, 125px);
 
-      line-height: .94;
+      line-height: .88;
 
-      font-weight: 500;
+      letter-spacing: -6px;
 
-      letter-spacing: -4px;
+      text-transform: uppercase;
+
+      font-weight: 900;
+
+      animation: reveal .9s .1s ease both;
     }
 
     .hero h1 span {
-      color: var(--orange);
+      color: var(--gold);
+
+      display: block;
     }
 
     .hero-text {
-      max-width: 600px;
+      max-width: 560px;
 
       margin-top: 32px;
 
-      color: #a0a0a0;
+      color: #d0d0d0;
 
-      font-size: 14px;
+      line-height: 1.8;
 
-      line-height: 1.9;
+      font-size: 16px;
+
+      animation: reveal .9s .2s ease both;
     }
 
     .hero-actions {
@@ -568,248 +513,281 @@
 
       gap: 14px;
 
-      margin-top: 40px;
+      margin-top: 38px;
 
-      flex-wrap: wrap;
+      animation: reveal .9s .3s ease both;
     }
+
+
+    /* =====================================
+       BUTTONS
+    ===================================== */
 
     .btn {
       display: inline-flex;
 
       align-items: center;
+
       justify-content: center;
 
-      min-height: 48px;
+      min-height: 52px;
 
-      padding: 0 24px;
+      padding: 0 25px;
 
-      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
 
-      font-size: 9px;
+      font-size: 11px;
 
       font-weight: 800;
+
+      text-transform: uppercase;
 
       letter-spacing: 1.5px;
 
-      text-transform: uppercase;
-
       transition: .3s ease;
+
+      border: 1px solid transparent;
     }
 
     .btn-primary {
-      background: var(--orange);
+      background: var(--white);
 
-      border-color: var(--orange);
-
-      color: #fff;
-
-      box-shadow:
-        0 10px 30px rgba(217,138,50,.15);
+      color: #080808;
     }
 
     .btn-primary:hover {
-      background: var(--orange-light);
-
-      border-color: var(--orange-light);
+      background: var(--gold);
 
       transform: translateY(-3px);
-
-      box-shadow:
-        0 15px 40px rgba(217,138,50,.28);
     }
 
     .btn-outline {
-      color: #fff;
+      border-color: rgba(255,255,255,.35);
 
-      background: rgba(255,255,255,.02);
+      background: rgba(255,255,255,.04);
     }
 
     .btn-outline:hover {
-      border-color: var(--orange);
+      border-color: var(--gold);
 
-      color: var(--orange);
+      color: var(--gold);
 
       transform: translateY(-3px);
     }
 
-    .scroll-indicator {
+
+    .hero-bottom {
       position: absolute;
 
-      bottom: 35px;
-      left: 25px;
+      bottom: 30px;
+
+      left: 6%;
+
+      right: 6%;
 
       display: flex;
 
-      align-items: center;
-
-      gap: 15px;
-
-      color: #777;
-
-      font-size: 8px;
-
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
-    }
-
-    .scroll-line {
-      width: 55px;
-      height: 1px;
-
-      background: #444;
-    }
-
-    /* =====================================================
-       SECTIONS
-    ===================================================== */
-
-    .section {
-      padding: 130px 0;
-
-      position: relative;
-    }
-
-    .section-dark {
-      background: #090909;
-    }
-
-    .section-label {
-      display: flex;
+      justify-content: space-between;
 
       align-items: center;
 
-      gap: 15px;
-
-      margin-bottom: 25px;
-
-      color: var(--orange);
+      color: #888;
 
       font-size: 9px;
 
-      font-weight: 800;
+      text-transform: uppercase;
 
       letter-spacing: 3px;
-
-      text-transform: uppercase;
     }
 
-    .section-label::before {
-      content: "";
+    .scroll {
+      display: flex;
 
-      width: 35px;
+      align-items: center;
+
+      gap: 12px;
+    }
+
+    .scroll-line {
+      width: 45px;
+
       height: 1px;
 
-      background: var(--orange);
+      background: #777;
+    }
+
+
+    @keyframes reveal {
+
+      from {
+        opacity: 0;
+
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =====================================
+       GENERAL
+    ===================================== */
+
+    section {
+      position: relative;
+    }
+
+    .section {
+      padding: 120px 6%;
+    }
+
+    .container {
+      max-width: 1400px;
+
+      margin: auto;
+    }
+
+    .section-label {
+      color: var(--gold);
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 4px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 20px;
     }
 
     .section-title {
       max-width: 900px;
 
-      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 6vw, 82px);
 
-      font-size: clamp(38px, 6vw, 72px);
+      line-height: .95;
 
-      line-height: 1.05;
+      letter-spacing: -4px;
 
-      font-weight: 500;
+      text-transform: uppercase;
 
-      letter-spacing: -2px;
+      font-weight: 900;
+    }
+
+    .section-title span {
+      color: var(--gold);
     }
 
     .section-intro {
       max-width: 650px;
 
-      margin-top: 25px;
+      color: var(--gray);
 
-      color: #858585;
+      line-height: 1.8;
 
-      font-size: 13px;
+      margin-top: 28px;
 
-      line-height: 1.9;
+      font-size: 16px;
     }
 
-    /* =====================================================
+
+    /* =====================================
        VISION
-    ===================================================== */
+    ===================================== */
+
+    .vision {
+      background: var(--black);
+    }
 
     .vision-grid {
-      margin-top: 70px;
+      margin-top: 75px;
 
       display: grid;
 
-      grid-template-columns: 1.3fr .7fr;
+      grid-template-columns: 1.1fr .9fr;
 
-      gap: 80px;
+      gap: 70px;
 
       align-items: end;
     }
 
     .vision-big {
-      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 4vw, 55px);
 
-      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.05;
 
-      line-height: 1.25;
+      letter-spacing: -2px;
 
-      color: #eee;
+      font-weight: 700;
     }
 
     .vision-big span {
-      color: var(--orange);
+      color: var(--gold);
     }
 
-    .vision-side {
-      border-left: 1px solid var(--line);
-
-      padding-left: 35px;
-    }
-
-    .vision-side p {
-      color: #777;
-
-      font-size: 12px;
+    .vision-text {
+      color: var(--gray);
 
       line-height: 1.9;
+
+      font-size: 15px;
     }
 
-    /* =====================================================
-       UNIVERS
-    ===================================================== */
 
-    .universe-grid {
+    /* =====================================
+       GALERIE 20 PHOTOS
+    ===================================== */
+
+    .gallery-section {
+      background: var(--black-2);
+    }
+
+    .gallery {
       margin-top: 70px;
 
       display: grid;
 
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
-      gap: 20px;
+      gap: 14px;
     }
 
-    .universe-card {
+    .gallery-item {
       position: relative;
-
-      min-height: 330px;
-
-      padding: 35px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: flex-end;
 
       overflow: hidden;
 
+      aspect-ratio: 3 / 4;
+
       background: #111;
 
-      border: 1px solid var(--line);
+      border: 1px solid rgba(255,255,255,.08);
 
-      transition: .5s ease;
+      cursor: pointer;
     }
 
-    .universe-card::before {
+    .gallery-item img {
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform .7s ease,
+        filter .7s ease;
+
+      filter: brightness(.88);
+    }
+
+    .gallery-item::after {
       content: "";
 
       position: absolute;
@@ -818,238 +796,57 @@
 
       background:
         linear-gradient(
-          to top,
-          rgba(0,0,0,.9),
-          rgba(0,0,0,.10)
+          180deg,
+          transparent 45%,
+          rgba(0,0,0,.72) 100%
         );
 
-      z-index: 1;
+      opacity: .65;
+
+      transition: .4s;
     }
 
-    .universe-card:hover {
-      transform: translateY(-8px);
+    .gallery-item:hover img {
+      transform: scale(1.07);
 
-      border-color: rgba(217,138,50,.5);
+      filter: brightness(1);
     }
 
-    .universe-number {
+    .gallery-item:hover::after {
+      opacity: .35;
+    }
+
+    .gallery-number {
       position: absolute;
 
-      top: 25px;
-      left: 25px;
+      left: 17px;
 
-      color: var(--orange);
-
-      font-size: 9px;
-
-      font-weight: 800;
-
-      letter-spacing: 2px;
-
-      z-index: 3;
-    }
-
-    .universe-card h3,
-    .universe-card p {
-      position: relative;
-
-      z-index: 2;
-    }
-
-    .universe-card h3 {
-      font-family: "Playfair Display", serif;
-
-      font-size: 29px;
-
-      font-weight: 500;
-    }
-
-    .universe-card p {
-      margin-top: 10px;
-
-      color: #999;
-
-      font-size: 11px;
-
-      line-height: 1.7;
-    }
-
-    .card-one {
-      background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,.85),
-          rgba(0,0,0,.15)
-        ),
-        url("./IMG_3045_compressed.jpeg") center/cover;
-    }
-
-    .card-two {
-      background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,.85),
-          rgba(0,0,0,.15)
-        ),
-        url("./IMG_3052_compressed_2.jpeg") center/cover;
-    }
-
-    .card-three {
-      background:
-        linear-gradient(
-          to top,
-          rgba(0,0,0,.85),
-          rgba(0,0,0,.15)
-        ),
-        url("./IMG_3061_compressed.jpeg") center/cover;
-    }
-
-    /* =====================================================
-       COLLECTION
-    ===================================================== */
-
-    .collection {
-      background: #090909;
-
-      overflow: hidden;
-    }
-
-    .collection-header {
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: space-between;
-
-      gap: 30px;
-    }
-
-    .collection-note {
-      color: #777;
-
-      font-size: 9px;
-
-      letter-spacing: 2px;
-
-      text-transform: uppercase;
-
-      white-space: nowrap;
-    }
-
-    .costumes-wrapper {
-      margin-top: 60px;
-
-      width: 100%;
-
-      padding: 5px 0 25px;
-    }
-
-    .costumes-line {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-      gap: 25px;
-
-      width: 100%;
-    }
-
-    .costume {
-      width: 100%;
-
-      background: #111;
-
-      border: 1px solid rgba(255,255,255,.09);
-
-      overflow: hidden;
-
-      position: relative;
-
-      transition: .45s ease;
-    }
-
-    .costume:hover {
-      transform: translateY(-10px);
-
-      border-color: rgba(217,138,50,.65);
-
-      box-shadow:
-        0 25px 60px rgba(0,0,0,.5);
-    }
-
-    .costume-image {
-      position: relative;
-
-      height: 470px;
-
-      overflow: hidden;
-
-      background: #151515;
-    }
-
-    .costume-image img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      transition: transform .8s ease;
-    }
-
-    .costume:hover .costume-image img {
-      transform: scale(1.06);
-    }
-
-    .costume-number {
-      position: absolute;
-
-      top: 18px;
-      left: 18px;
+      bottom: 15px;
 
       z-index: 2;
 
-      font-size: 9px;
-
-      font-weight: 800;
+      font-size: 10px;
 
       letter-spacing: 3px;
 
-      color: #fff;
-
-      background: rgba(0,0,0,.65);
-
-      padding: 8px 11px;
-
-      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.8);
     }
 
-    .costume-info {
-      padding: 25px;
-    }
 
-    .costume-info h3 {
-      font-size: 19px;
+    /* =====================================
+       LIGHTBOX
+    ===================================== */
 
-      text-transform: uppercase;
+    .lightbox {
+      position: fixed;
 
-      letter-spacing: -.4px;
-    }
+      inset: 0;
 
-    .costume-info p {
-      color: #777;
+      background: rgba(0,0,0,.96);
 
-      font-size: 11px;
+      backdrop-filter: blur(15px);
 
-      margin-top: 8px;
-
-      line-height: 1.6;
-    }
-
-    .btn-whatsapp {
-      width: 100%;
-
-      margin-top: 18px;
+      z-index: 3000;
 
       display: flex;
 
@@ -1057,601 +854,552 @@
 
       justify-content: center;
 
-      min-height: 48px;
+      padding: 30px;
 
-      padding: 0 15px;
+      opacity: 0;
 
-      border-radius: 999px;
-
-      background: var(--orange);
-
-      color: #fff;
-
-      font-size: 9px;
-
-      font-weight: 900;
-
-      letter-spacing: 1px;
-
-      text-transform: uppercase;
+      visibility: hidden;
 
       transition: .3s ease;
-
-      box-shadow:
-        0 8px 25px rgba(217,138,50,.18);
     }
 
-    .btn-whatsapp:hover {
-      background: var(--orange-light);
+    .lightbox.active {
+      opacity: 1;
 
-      transform: translateY(-4px);
-
-      box-shadow:
-        0 12px 35px rgba(217,138,50,.35);
+      visibility: visible;
     }
 
-    .collection-bottom {
-      margin-top: 30px;
+    .lightbox-image {
+      max-width: 92vw;
 
-      color: #555;
+      max-height: 88vh;
 
-      font-size: 8px;
+      width: auto;
 
-      letter-spacing: 3px;
+      height: auto;
 
-      text-transform: uppercase;
+      object-fit: contain;
+
+      box-shadow: 0 30px 80px rgba(0,0,0,.7);
     }
 
-    /* =====================================================
-       SPECIAL
-    ===================================================== */
+    .lightbox-close {
+      position: absolute;
 
-    .special-layout {
+      top: 25px;
+
+      right: 25px;
+
+      width: 50px;
+
+      height: 50px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(255,255,255,.2);
+
+      background: rgba(255,255,255,.06);
+
+      color: white;
+
+      font-size: 28px;
+
+      cursor: pointer;
+    }
+
+
+    /* =====================================
+       UNIVERS
+    ===================================== */
+
+    .universe {
+      background: var(--black);
+    }
+
+    .cards {
       margin-top: 70px;
 
       display: grid;
 
-      grid-template-columns: .9fr 1.1fr;
+      grid-template-columns:
+        repeat(3, 1fr);
 
-      gap: 70px;
-
-      align-items: center;
+      gap: 18px;
     }
 
-    .special-image {
-      position: relative;
+    .card {
+      min-height: 340px;
 
-      height: 600px;
-
-      overflow: hidden;
-
-      background: #111;
-    }
-
-    .special-image img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      transition: transform 1s ease;
-    }
-
-    .special-image:hover img {
-      transform: scale(1.04);
-    }
-
-    .special-content h3 {
-      font-family: "Playfair Display", serif;
-
-      font-size: clamp(34px, 5vw, 60px);
-
-      font-weight: 500;
-
-      line-height: 1.1;
-    }
-
-    .special-content h3 span {
-      color: var(--orange);
-    }
-
-    .special-content p {
-      max-width: 550px;
-
-      margin-top: 25px;
-
-      color: #777;
-
-      font-size: 13px;
-
-      line-height: 1.9;
-    }
-
-    .special-list {
-      margin-top: 35px;
-
-      list-style: none;
-    }
-
-    .special-list li {
-      padding: 14px 0;
-
-      border-bottom: 1px solid var(--line);
-
-      color: #aaa;
-
-      font-size: 11px;
-
-      display: flex;
-
-      justify-content: space-between;
-    }
-
-    .special-list li span {
-      color: var(--orange);
-    }
-
-    /* =====================================================
-       EXPERIENCE
-    ===================================================== */
-
-    .experience {
-      background: #090909;
-    }
-
-    .experience-grid {
-      margin-top: 70px;
-
-      display: grid;
-
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 20px;
-    }
-
-    .experience-card {
       padding: 35px;
-
-      min-height: 260px;
 
       border: 1px solid var(--line);
 
-      background: #0d0d0d;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.045),
+          rgba(255,255,255,.01)
+        );
+
+      position: relative;
+
+      overflow: hidden;
 
       transition: .4s ease;
     }
 
-    .experience-card:hover {
-      border-color: rgba(217,138,50,.45);
+    .card::before {
+      content: "";
 
-      transform: translateY(-7px);
+      position: absolute;
+
+      width: 180px;
+
+      height: 180px;
+
+      border-radius: 50%;
+
+      right: -80px;
+
+      bottom: -80px;
+
+      background: rgba(231,182,106,.06);
+
+      transition: .4s;
     }
 
-    .experience-card-number {
-      color: var(--orange);
+    .card:hover {
+      transform: translateY(-8px);
 
-      font-size: 9px;
-
-      font-weight: 800;
-
-      letter-spacing: 2px;
+      border-color:
+        rgba(231,182,106,.45);
     }
 
-    .experience-card h3 {
-      margin-top: 55px;
-
-      font-family: "Playfair Display", serif;
-
-      font-size: 27px;
-
-      font-weight: 500;
+    .card:hover::before {
+      transform: scale(1.5);
     }
 
-    .experience-card p {
-      margin-top: 12px;
-
+    .card-number {
       color: #777;
 
-      font-size: 11px;
+      font-size: 10px;
 
-      line-height: 1.8;
+      letter-spacing: 3px;
     }
 
-    /* =====================================================
-       CONTACT
-    ===================================================== */
+    .card h3 {
+      position: absolute;
 
-    .contact {
-      padding-bottom: 100px;
+      left: 35px;
+
+      bottom: 75px;
+
+      font-size: 34px;
+
+      letter-spacing: -1px;
+
+      text-transform: uppercase;
     }
 
-    .contact-box {
-      margin-top: 70px;
+    .card p {
+      position: absolute;
 
-      padding: 60px;
+      left: 35px;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(217,138,50,.12),
-          rgba(217,138,50,.02)
-        );
+      right: 35px;
 
-      border: 1px solid rgba(217,138,50,.25);
-
-      display: grid;
-
-      grid-template-columns: 1fr auto;
-
-      gap: 50px;
-
-      align-items: center;
-    }
-
-    .contact-box h3 {
-      font-family: "Playfair Display", serif;
-
-      font-size: clamp(35px, 5vw, 60px);
-
-      font-weight: 500;
-    }
-
-    .contact-box p {
-      margin-top: 15px;
+      bottom: 35px;
 
       color: #888;
 
       font-size: 12px;
 
-      line-height: 1.8;
+      line-height: 1.6;
     }
 
-    .contact-info {
-      margin-top: 25px;
 
-      color: #aaa;
+    /* =====================================
+       SPECIAL
+    ===================================== */
+
+    .special {
+      min-height: 75vh;
+
+      display: flex;
+
+      align-items: center;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.96),
+          rgba(0,0,0,.55)
+        ),
+        url("./IMG_4209.jpeg")
+        center / cover no-repeat;
+    }
+
+    .special-content {
+      max-width: 1000px;
+    }
+
+    .special-title {
+      font-size: clamp(50px, 9vw, 130px);
+
+      line-height: .82;
+
+      letter-spacing: -7px;
+
+      text-transform: uppercase;
+
+      font-weight: 900;
+    }
+
+    .special-title span {
+      color: var(--gold);
+    }
+
+    .special p {
+      max-width: 600px;
+
+      color: #ccc;
+
+      line-height: 1.8;
+
+      margin-top: 35px;
+    }
+
+
+    /* =====================================
+       EXPERIENCE
+    ===================================== */
+
+    .experience {
+      background: var(--black);
+    }
+
+    .experience-grid {
+      margin-top: 70px;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .experience-item {
+      display: grid;
+
+      grid-template-columns:
+        100px 1fr 1fr;
+
+      gap: 30px;
+
+      padding: 35px 0;
+
+      border-bottom: 1px solid var(--line);
+
+      transition: .3s;
+    }
+
+    .experience-item:hover {
+      padding-left: 12px;
+    }
+
+    .experience-num {
+      color: var(--gold);
 
       font-size: 11px;
 
-      line-height: 2;
+      letter-spacing: 2px;
     }
 
-    .contact-info strong {
-      color: var(--orange);
+    .experience-item h3 {
+      font-size: clamp(25px, 3vw, 42px);
 
-      font-weight: 700;
+      text-transform: uppercase;
+
+      letter-spacing: -1px;
     }
 
-    /* =====================================================
-       WHATSAPP FLOTTANT
-    ===================================================== */
+    .experience-item p {
+      color: var(--gray);
 
-    .floating-whatsapp {
+      line-height: 1.7;
+
+      font-size: 14px;
+    }
+
+
+    /* =====================================
+       CONTACT
+    ===================================== */
+
+    .contact {
+      background: var(--black-2);
+
+      text-align: center;
+
+      padding-bottom: 140px;
+    }
+
+    .contact .section-title {
+      margin: auto;
+    }
+
+    .contact-text {
+      max-width: 600px;
+
+      margin: 30px auto 0;
+
+      color: var(--gray);
+
+      line-height: 1.8;
+    }
+
+    .contact-buttons {
+      margin-top: 40px;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 14px;
+
+      flex-wrap: wrap;
+    }
+
+
+    /* =====================================
+       WHATSAPP
+    ===================================== */
+
+    .whatsapp {
       position: fixed;
 
-      right: 25px;
-      bottom: 25px;
+      right: 22px;
 
-      z-index: 4000;
+      bottom: 22px;
 
       width: 58px;
+
       height: 58px;
 
       border-radius: 50%;
 
+      background: #25D366;
+
+      color: white;
+
       display: flex;
 
       align-items: center;
+
       justify-content: center;
 
-      background: var(--orange);
-
-      color: #fff;
+      z-index: 900;
 
       box-shadow:
-        0 12px 35px rgba(0,0,0,.45),
-        0 8px 25px rgba(217,138,50,.25);
+        0 10px 35px rgba(0,0,0,.4);
 
-      font-size: 24px;
-
-      transition: .3s ease;
-
-      animation: whatsappPulse 2.5s infinite;
+      transition: .3s;
     }
 
-    .floating-whatsapp:hover {
-      transform: translateY(-6px) scale(1.05);
-
-      background: var(--orange-light);
-
-      animation: none;
+    .whatsapp:hover {
+      transform:
+        translateY(-5px)
+        scale(1.05);
     }
 
-    @keyframes whatsappPulse {
+    .whatsapp svg {
+      width: 27px;
 
-      0% {
-        box-shadow:
-          0 12px 35px rgba(0,0,0,.45),
-          0 0 0 0 rgba(217,138,50,.35);
-      }
+      height: 27px;
 
-      70% {
-        box-shadow:
-          0 12px 35px rgba(0,0,0,.45),
-          0 0 0 14px rgba(217,138,50,0);
-      }
-
-      100% {
-        box-shadow:
-          0 12px 35px rgba(0,0,0,.45),
-          0 0 0 0 rgba(217,138,50,0);
-      }
-
+      fill: currentColor;
     }
 
-    /* =====================================================
+
+    /* =====================================
        FOOTER
-    ===================================================== */
+    ===================================== */
 
     footer {
+      background: #050505;
+
       border-top: 1px solid var(--line);
 
-      padding: 35px 0;
+      padding: 30px 6%;
     }
 
     .footer-inner {
+      max-width: 1400px;
+
+      margin: auto;
+
       display: flex;
 
-      align-items: center;
-
       justify-content: space-between;
+
+      align-items: center;
 
       gap: 20px;
     }
 
-    .footer-brand {
-      font-size: 11px;
+    footer p {
+      color: #666;
 
-      font-weight: 800;
+      font-size: 10px;
 
-      letter-spacing: 3px;
+      letter-spacing: 1px;
 
       text-transform: uppercase;
     }
 
-    .footer-copy {
-      color: #555;
+    .footer-name {
+      color: var(--gold);
 
-      font-size: 9px;
-
-      letter-spacing: 1px;
+      font-weight: 800;
     }
 
-    .footer-location {
-      color: #777;
 
-      font-size: 9px;
+    /* =====================================
+       MOBILE
+    ===================================== */
 
-      letter-spacing: 1px;
-    }
+    @media (max-width: 850px) {
 
-    /* =====================================================
-       ANIMATIONS
-    ===================================================== */
+      header {
+        padding: 15px 5%;
+      }
 
-    .reveal {
-      opacity: 0;
-
-      transform: translateY(35px);
-
-      transition:
-        opacity .8s ease,
-        transform .8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-
-      transform: translateY(0);
-    }
-
-    /* =====================================================
-       TABLET
-    ===================================================== */
-
-    @media (max-width: 900px) {
-
-      .nav-links {
+      .desktop-menu {
         display: none;
       }
 
-      .menu-btn {
+      .menu-button {
         display: flex;
       }
 
-      .vision-grid {
-        grid-template-columns: 1fr;
+      .brand-image {
+        width: 46px;
 
-        gap: 40px;
-      }
-
-      .vision-side {
-        padding-left: 25px;
-      }
-
-      .universe-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .special-layout {
-        grid-template-columns: 1fr;
-
-        gap: 45px;
-      }
-
-      .special-image {
-        height: 500px;
-      }
-
-      .experience-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-box {
-        grid-template-columns: 1fr;
-
-        padding: 40px;
-      }
-
-    }
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (max-width: 600px) {
-
-      .container {
-        width: calc(100% - 30px);
-      }
-
-      header {
-        height: 72px;
-      }
-
-      .nav {
-        width: calc(100% - 30px);
-      }
-
-      .brand {
-        font-size: 13px;
-
-        letter-spacing: 2px;
-      }
-
-      /* LOGO PLUS PETIT SUR MOBILE */
-
-      .brand-mark {
-        width: 36px;
-        height: 36px;
-      }
-
-      .brand-sub {
-        display: none;
-      }
-
-      .mobile-menu {
-        top: 72px;
+        height: 46px;
       }
 
       .hero {
         min-height: 100svh;
+      }
 
-        background-position: 65% center;
+      .hero-background {
+        background:
+          linear-gradient(
+            180deg,
+            rgba(0,0,0,.55) 0%,
+            rgba(0,0,0,.78) 55%,
+            rgba(0,0,0,.98) 100%
+          ),
+          url("./IMG_4209.jpeg")
+          center / cover no-repeat;
       }
 
       .hero-content {
-        padding-top: 50px;
+        padding: 150px 5% 120px;
       }
 
       .hero h1 {
-        font-size: clamp(47px, 15vw, 75px);
+        font-size:
+          clamp(50px, 15vw, 85px);
 
-        letter-spacing: -3px;
+        letter-spacing: -4px;
       }
 
       .hero-text {
-        font-size: 12px;
+        font-size: 14px;
 
-        line-height: 1.8;
+        max-width: 500px;
       }
 
       .hero-actions {
         flex-direction: column;
 
         align-items: stretch;
+
+        max-width: 330px;
       }
 
       .btn {
         width: 100%;
       }
 
+      .hero-bottom {
+        left: 5%;
+
+        right: 5%;
+
+        bottom: 20px;
+      }
+
       .section {
-        padding: 90px 0;
+        padding: 85px 5%;
       }
 
       .section-title {
-        font-size: 40px;
+        letter-spacing: -2px;
       }
 
-      .universe-grid {
+      .vision-grid {
         grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        margin-top: 50px;
       }
 
-      .universe-card {
-        min-height: 300px;
-      }
-
-      .collection-header {
-        display: block;
-      }
-
-      .collection-note {
-        margin-top: 20px;
-      }
-
-      .costumes-line {
+      .gallery {
         grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+          repeat(2, 1fr);
 
-        gap: 10px;
+        gap: 9px;
+
+        margin-top: 50px;
       }
 
-      .costume-image {
-        height: 250px;
+      .gallery-item {
+        aspect-ratio: 3 / 4;
       }
 
-      .costume-info {
-        padding: 13px;
+      .cards {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-top: 50px;
       }
 
-      .costume-info h3 {
-        font-size: 12px;
-
-        line-height: 1.35;
+      .card {
+        min-height: 280px;
       }
 
-      .costume-info p {
-        font-size: 9px;
-
-        line-height: 1.5;
+      .special {
+        min-height: 70vh;
       }
 
-      .btn-whatsapp {
-        min-height: 42px;
+      .special-title {
+        font-size:
+          clamp(50px, 14vw, 85px);
 
-        padding: 0 8px;
-
-        font-size: 7px;
-
-        letter-spacing: .5px;
+        letter-spacing: -4px;
       }
 
-      .costume-number {
-        top: 10px;
-        left: 10px;
+      .experience-item {
+        grid-template-columns:
+          45px 1fr;
 
-        padding: 6px 8px;
-
-        font-size: 7px;
+        gap: 15px;
       }
 
-      .special-image {
-        height: 430px;
-      }
-
-      .contact-box {
-        padding: 30px 25px;
+      .experience-item p {
+        grid-column: 2;
       }
 
       .footer-inner {
@@ -1660,25 +1408,57 @@
         align-items: flex-start;
       }
 
-      .floating-whatsapp {
-        right: 18px;
-
-        bottom: 18px;
-
+      .whatsapp {
         width: 54px;
 
         height: 54px;
+
+        right: 17px;
+
+        bottom: 17px;
       }
 
-      .intro-logo {
-        width: 85px;
-        height: 85px;
+    }
+
+
+    @media (max-width: 450px) {
+
+      .brand-name {
+        font-size: 12px;
       }
 
-      .intro-brand {
-        font-size: 39px;
+      .brand-sub {
+        font-size: 7px;
+      }
 
-        letter-spacing: 5px;
+      .hero-kicker {
+        font-size: 8px;
+
+        letter-spacing: 3px;
+      }
+
+      .hero h1 {
+        font-size: 51px;
+      }
+
+      .hero-text {
+        font-size: 13px;
+      }
+
+      .section-title {
+        font-size: 42px;
+      }
+
+      .gallery {
+        gap: 7px;
+      }
+
+      .card h3 {
+        font-size: 29px;
+      }
+
+      .special-title {
+        font-size: 52px;
       }
 
     }
@@ -1686,98 +1466,74 @@
   </style>
 </head>
 
+
 <body>
 
-  <!-- =====================================================
-       INTRO
-  ===================================================== -->
 
-  <div class="intro-screen">
-
-    <div class="intro-content">
-
-      <img
-        class="intro-logo"
-        src="./IMG_4209.jpeg"
-        alt="AR NIANTO"
-      >
-
-      <div class="intro-line"></div>
-
-      <div class="intro-brand">
-        AR NIANTO
-      </div>
-
-      <div class="intro-present">
-        VOUS PRÉSENTE
-      </div>
-
-      <div class="intro-sub">
-        De la lumière dans votre style.
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- =====================================================
+  <!-- =====================================
        HEADER
-  ===================================================== -->
+  ===================================== -->
 
   <header id="header">
 
     <nav class="nav">
 
-      <a href="#accueil" class="brand">
+      <a href="#accueil"
+         class="brand">
 
+        <!-- LOGO AR NIANTO -->
         <img
-          class="brand-mark"
+          class="brand-image"
           src="./IMG_4209.jpeg"
           alt="Logo AR NIANTO"
         >
 
-        <span>AR NIANTO</span>
+        <div>
 
-        <span class="brand-sub">
-          Une identité • Une vision
-        </span>
+          <div class="brand-name">
+            AR NIANTO
+          </div>
+
+          <div class="brand-sub">
+            VIENS HABILLER
+          </div>
+
+        </div>
 
       </a>
 
-      <ul class="nav-links">
 
-        <li>
-          <a href="#vision">Vision</a>
-        </li>
+      <div class="desktop-menu">
 
-        <li>
-          <a href="#univers">L'univers</a>
-        </li>
+        <a href="#accueil">
+          Accueil
+        </a>
 
-        <li>
-          <a href="#collection">Costumes</a>
-        </li>
+        <a href="#vision">
+          Vision
+        </a>
 
-        <li>
-          <a href="#special">À découvrir</a>
-        </li>
+        <a href="#collection">
+          Collection
+        </a>
 
-        <li>
-          <a href="#experience">L'expérience</a>
-        </li>
+        <a href="#univers">
+          L'univers
+        </a>
 
-        <li>
-          <a href="#contact">Contact</a>
-        </li>
+        <a href="#contact">
+          Contact
+        </a>
 
-      </ul>
+      </div>
+
 
       <button
-        class="menu-btn"
-        id="menuBtn"
+        class="menu-button"
+        id="menuButton"
         aria-label="Ouvrir le menu"
+        aria-expanded="false"
       >
-        <span></span>
         <span></span>
       </button>
 
@@ -1785,135 +1541,193 @@
 
   </header>
 
-  <!-- =====================================================
-       MENU MOBILE
-  ===================================================== -->
 
-  <div class="mobile-menu" id="mobileMenu">
+  <!-- =====================================
+       MOBILE MENU
+  ===================================== -->
 
-    <a href="#vision">
-      01 — Notre vision
-    </a>
+  <div
+    class="mobile-menu"
+    id="mobileMenu"
+  >
 
-    <a href="#univers">
-      02 — L'univers
-    </a>
+    <div class="mobile-links">
 
-    <a href="#collection">
-      03 — La collection
-    </a>
+      <a href="#accueil">
+        01 — Accueil
+      </a>
 
-    <a href="#special">
-      04 — À découvrir
-    </a>
+      <a href="#vision">
+        02 — Vision
+      </a>
 
-    <a href="#experience">
-      05 — L'expérience
-    </a>
+      <a href="#collection">
+        03 — Collection
+      </a>
 
-    <a href="#contact">
-      06 — Contact
-    </a>
+      <a href="#univers">
+        04 — L'univers
+      </a>
+
+      <a href="#contact">
+        05 — Contact
+      </a>
+
+      <div class="mobile-number">
+        +221 70 892 74 00
+      </div>
+
+    </div>
 
   </div>
 
-  <!-- =====================================================
-       MAIN
-  ===================================================== -->
 
-  <main id="accueil">
+  <main>
 
-    <!-- HERO -->
 
-    <section class="hero">
+    <!-- =====================================
+         HERO
+    ===================================== -->
 
-      <div class="container">
+    <section
+      class="hero"
+      id="accueil"
+    >
 
-        <div class="hero-content reveal">
+      <div class="hero-background"></div>
 
-          <div class="eyebrow">
-            AR NIANTO
-          </div>
 
-          <h1>
-            De la lumière<br>
-            dans <span>votre style.</span>
-          </h1>
+      <!-- FILIGRANE DU LOGO -->
+      <img
+        class="hero-watermark"
+        src="./IMG_4209.jpeg"
+        alt=""
+        aria-hidden="true"
+      >
 
-          <p class="hero-text">
-            Une identité forte, une énergie singulière
-            et une vision tournée vers l'avenir.
-            Bienvenue dans l'univers AR NIANTO.
-          </p>
 
-          <div class="hero-actions">
+      <div class="hero-content">
 
-            <a
-              href="#collection"
-              class="btn btn-primary"
-            >
-              Découvrir la collection
-            </a>
+        <div class="hero-kicker">
+          AR NIANTO
+        </div>
 
-            <a
-              href="#vision"
-              class="btn btn-outline"
-            >
-              Notre vision
-            </a>
 
-          </div>
+        <h1>
+
+          Viens habiller
+
+          <span>ton identité.</span>
+
+        </h1>
+
+
+        <p class="hero-text">
+
+          Une marque de costumes africains pensée pour celles
+          et ceux qui veulent porter leur identité avec élégance,
+          caractère et distinction.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+          <a
+            href="#collection"
+            class="btn btn-primary"
+          >
+            Découvrir la collection
+          </a>
+
+
+          <a
+            href="#contact"
+            class="btn btn-outline"
+          >
+            Nous contacter
+          </a>
 
         </div>
 
       </div>
 
-      <div class="scroll-indicator">
 
-        <span class="scroll-line"></span>
+      <div class="hero-bottom">
 
-        Faites défiler
+        <div>
+          Dakar • Sénégal
+        </div>
+
+        <div class="scroll">
+
+          <span class="scroll-line"></span>
+
+          Défiler
+
+        </div>
 
       </div>
 
     </section>
 
-    <!-- VISION -->
+
+    <!-- =====================================
+         VISION
+    ===================================== -->
 
     <section
-      class="section"
+      class="section vision"
       id="vision"
     >
 
       <div class="container">
 
-        <div class="section-label reveal">
+        <div class="section-label">
           01 — Notre vision
         </div>
 
-        <h2 class="section-title reveal">
-          L'élégance n'est pas
-          seulement ce que l'on porte.
+
+        <h2 class="section-title">
+
+          Une identité qui
+
+          <span>
+            se remarque.
+          </span>
+
         </h2>
+
 
         <div class="vision-grid">
 
-          <div class="vision-big reveal">
+          <div class="vision-big">
 
-            C'est une manière
-            <span>de se présenter</span>
-            au monde.
+            Chaque tenue devient une
+
+            <span>
+              signature.
+            </span>
 
           </div>
 
-          <div class="vision-side reveal">
 
-            <p>
-              AR NIANTO imagine un univers où la mode,
-              la culture et la personnalité se rencontrent.
-              Chaque pièce est pensée pour vous permettre
-              d'exprimer votre identité avec caractère.
-            </p>
+          <div class="vision-text">
+
+            AR NIANTO est une marque dédiée
+            à l'élégance africaine.
+
+            <br><br>
+
+            Son nom signifie
+            <strong>« viens habiller »</strong>
+            en poular.
+
+            <br><br>
+
+            Une invitation à découvrir une autre
+            manière de porter nos cultures,
+            notre élégance et notre personnalité.
 
           </div>
 
@@ -1923,80 +1737,483 @@
 
     </section>
 
-    <!-- UNIVERS -->
+
+    <!-- =====================================
+         COLLECTION
+    ===================================== -->
 
     <section
-      class="section section-dark"
+      class="section gallery-section"
+      id="collection"
+    >
+
+      <div class="container">
+
+        <div class="section-label">
+          02 — Collection
+        </div>
+
+
+        <h2 class="section-title">
+
+          Nos
+
+          <span>
+            créations.
+          </span>
+
+        </h2>
+
+
+        <p class="section-intro">
+
+          Découvrez une sélection de costumes
+          africains AR NIANTO. Chaque pièce possède
+          son propre caractère.
+
+        </p>
+
+
+        <!-- 20 PHOTOS -->
+
+        <div class="gallery">
+
+
+          <!-- 01 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3045_compressed.jpeg"
+              alt="Costume AR NIANTO 01"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              01
+            </span>
+
+          </div>
+
+
+          <!-- 02 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3052_compressed_2.jpeg"
+              alt="Costume AR NIANTO 02"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              02
+            </span>
+
+          </div>
+
+
+          <!-- 03 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3061_compressed.jpeg"
+              alt="Costume AR NIANTO 03"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              03
+            </span>
+
+          </div>
+
+
+          <!-- 04 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3068_compressed_2.jpeg"
+              alt="Costume AR NIANTO 04"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              04
+            </span>
+
+          </div>
+
+
+          <!-- 05 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3075_compressed.jpeg"
+              alt="Costume AR NIANTO 05"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              05
+            </span>
+
+          </div>
+
+
+          <!-- 06 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3080_compressed_2.jpeg"
+              alt="Costume AR NIANTO 06"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              06
+            </span>
+
+          </div>
+
+
+          <!-- 07 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3087_compressed.jpeg"
+              alt="Costume AR NIANTO 07"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              07
+            </span>
+
+          </div>
+
+
+          <!-- 08 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3095_compressed_2.jpeg"
+              alt="Costume AR NIANTO 08"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              08
+            </span>
+
+          </div>
+
+
+          <!-- 09 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3105_compressed.jpeg"
+              alt="Costume AR NIANTO 09"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              09
+            </span>
+
+          </div>
+
+
+          <!-- 10 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3110_compressed_2.jpeg"
+              alt="Costume AR NIANTO 10"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              10
+            </span>
+
+          </div>
+
+
+          <!-- 11 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3115_compressed.jpeg"
+              alt="Costume AR NIANTO 11"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              11
+            </span>
+
+          </div>
+
+
+          <!-- 12 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3120_compressed_3.jpeg"
+              alt="Costume AR NIANTO 12"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              12
+            </span>
+
+          </div>
+
+
+          <!-- 13 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3125_compressed.jpeg"
+              alt="Costume AR NIANTO 13"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              13
+            </span>
+
+          </div>
+
+
+          <!-- 14 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3129_compressed_2.jpeg"
+              alt="Costume AR NIANTO 14"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              14
+            </span>
+
+          </div>
+
+
+          <!-- 15 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3133_compressed.jpeg"
+              alt="Costume AR NIANTO 15"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              15
+            </span>
+
+          </div>
+
+
+          <!-- 16 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3145_compressed_3.jpeg"
+              alt="Costume AR NIANTO 16"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              16
+            </span>
+
+          </div>
+
+
+          <!-- 17 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./IMG_3156_compressed.jpeg"
+              alt="Costume AR NIANTO 17"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              17
+            </span>
+
+          </div>
+
+
+          <!-- 18 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./a3089b7e-91d8-413d-b5e9-b323f6882f6c.jpeg"
+              alt="Costume AR NIANTO 18"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              18
+            </span>
+
+          </div>
+
+
+          <!-- 19 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./c6124e8e-ee5a-440a-9b23-d8fca682cad7.jpeg"
+              alt="Costume AR NIANTO 19"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              19
+            </span>
+
+          </div>
+
+
+          <!-- 20 -->
+
+          <div class="gallery-item">
+
+            <img
+              src="./fea84e1f-dc7e-468e-9e18-b6a9b9c6bfab.jpeg"
+              alt="Costume AR NIANTO 20"
+              loading="lazy"
+            >
+
+            <span class="gallery-number">
+              20
+            </span>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================
+         UNIVERS
+    ===================================== -->
+
+    <section
+      class="section universe"
       id="univers"
     >
 
       <div class="container">
 
-        <div class="section-label reveal">
-          02 — L'univers
+        <div class="section-label">
+          03 — L'univers
         </div>
 
-        <h2 class="section-title reveal">
-          Une esthétique.
-          Une attitude.
-          Une signature.
+
+        <h2 class="section-title">
+
+          Plus qu'un costume.
+
+          <span>
+            Une présence.
+          </span>
+
         </h2>
 
-        <p class="section-intro reveal">
-          Des matières, des silhouettes et des détails
-          choisis pour créer une présence qui ne passe
-          jamais inaperçue.
+
+        <p class="section-intro">
+
+          AR NIANTO construit un univers autour
+          de l'élégance, de l'identité africaine
+          et du caractère.
+
         </p>
 
-        <div class="universe-grid">
 
-          <article class="universe-card card-one reveal">
+        <div class="cards">
 
-            <span class="universe-number">
+
+          <article class="card">
+
+            <div class="card-number">
               01
-            </span>
-
-            <h3>
-              Tradition
-            </h3>
-
-            <p>
-              L'héritage africain réinterprété
-              avec une vision contemporaine.
-            </p>
-
-          </article>
-
-          <article class="universe-card card-two reveal">
-
-            <span class="universe-number">
-              02
-            </span>
-
-            <h3>
-              Élégance
-            </h3>
-
-            <p>
-              Des lignes maîtrisées et une attention
-              particulière portée aux détails.
-            </p>
-
-          </article>
-
-          <article class="universe-card card-three reveal">
-
-            <span class="universe-number">
-              03
-            </span>
+            </div>
 
             <h3>
               Identité
             </h3>
 
             <p>
-              Parce que votre style doit vous ressembler
-              avant tout.
+              Une signature reconnaissable,
+              personnelle et authentique.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-number">
+              02
+            </div>
+
+            <h3>
+              Élégance
+            </h3>
+
+            <p>
+              Des silhouettes pensées pour
+              donner du caractère à chaque tenue.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-number">
+              03
+            </div>
+
+            <h3>
+              Héritage
+            </h3>
+
+            <p>
+              Une inspiration africaine portée
+              avec une vision contemporaine.
             </p>
 
           </article>
@@ -2007,758 +2224,41 @@
 
     </section>
 
-    <!-- COLLECTION -->
 
-    <section
-      class="section collection"
-      id="collection"
-    >
+    <!-- =====================================
+         SPECIAL
+    ===================================== -->
+
+    <section class="section special">
 
       <div class="container">
 
-        <div class="collection-header">
+        <div class="special-content">
 
-          <div>
-
-            <div class="section-label reveal">
-              03 — La collection
-            </div>
-
-            <h2 class="section-title reveal">
-              Costumes africains
-            </h2>
-
+          <div class="section-label">
+            04 — AR NIANTO
           </div>
 
-          <div class="collection-note reveal">
-            17 modèles • AR NIANTO
-          </div>
 
-        </div>
+          <h2 class="special-title">
 
-        <p class="section-intro reveal">
-          Découvrez nos modèles AR NIANTO.
-          Choisissez votre costume et commandez
-          directement sur WhatsApp.
-        </p>
+            Viens
 
-        <div class="costumes-wrapper">
+            <span>
+              habiller.
+            </span>
 
-          <div class="costumes-line">
+          </h2>
 
-            <!-- 01 -->
 
-            <article class="costume reveal">
+          <p>
 
-              <div class="costume-image">
+            AR NIANTO n'est pas seulement une
+            marque. C'est une invitation à exprimer
+            qui vous êtes à travers votre manière
+            de vous habiller.
 
-                <span class="costume-number">
-                  01
-                </span>
-
-                <img
-                  src="./IMG_3045_compressed.jpeg"
-                  alt="Costume africain 01 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>
-                  Costume africain 01
-                </h3>
-
-                <p>
-                  Une silhouette élégante et affirmée.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2001."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 02 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">02</span>
-
-                <img
-                  src="./IMG_3052_compressed_2.jpeg"
-                  alt="Costume africain 02 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 02</h3>
-
-                <p>
-                  Une présence forte, pensée pour se démarquer.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2002."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 03 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">03</span>
-
-                <img
-                  src="./IMG_3061_compressed.jpeg"
-                  alt="Costume africain 03 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 03</h3>
-
-                <p>
-                  L'élégance africaine dans une expression moderne.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2003."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 04 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">04</span>
-
-                <img
-                  src="./IMG_3068_compressed_2.jpeg"
-                  alt="Costume africain 04 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 04</h3>
-
-                <p>
-                  Une coupe contemporaine avec caractère.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2004."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 05 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">05</span>
-
-                <img
-                  src="./IMG_3075_compressed.jpeg"
-                  alt="Costume africain 05 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 05</h3>
-
-                <p>
-                  Une création pensée pour les grandes occasions.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2005."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 06 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">06</span>
-
-                <img
-                  src="./IMG_3080_compressed_2.jpeg"
-                  alt="Costume africain 06 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 06</h3>
-
-                <p>
-                  Un style raffiné et résolument moderne.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2006."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 07 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">07</span>
-
-                <img
-                  src="./IMG_3087_compressed.jpeg"
-                  alt="Costume africain 07 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 07</h3>
-
-                <p>
-                  Une identité visuelle qui s'impose naturellement.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2007."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 08 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">08</span>
-
-                <img
-                  src="./IMG_3095_compressed_2.jpeg"
-                  alt="Costume africain 08 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 08</h3>
-
-                <p>
-                  Une alliance entre tradition et sophistication.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2008."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 09 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">09</span>
-
-                <img
-                  src="./IMG_3105_compressed.jpeg"
-                  alt="Costume africain 09 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 09</h3>
-
-                <p>
-                  Une coupe élégante pour une allure unique.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2009."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 10 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">10</span>
-
-                <img
-                  src="./IMG_3110_compressed_2.jpeg"
-                  alt="Costume africain 10 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 10</h3>
-
-                <p>
-                  Le détail au service de votre élégance.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2010."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 11 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">11</span>
-
-                <img
-                  src="./IMG_3115_compressed.jpeg"
-                  alt="Costume africain 11 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 11</h3>
-
-                <p>
-                  Un modèle pensé pour votre présence.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2011."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 12 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">12</span>
-
-                <img
-                  src="./IMG_3120_compressed_3.jpeg"
-                  alt="Costume africain 12 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 12</h3>
-
-                <p>
-                  Une signature sobre, élégante et affirmée.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2012."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 13 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">13</span>
-
-                <img
-                  src="./IMG_3125_compressed.jpeg"
-                  alt="Costume africain 13 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 13</h3>
-
-                <p>
-                  Un style qui conjugue héritage et modernité.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2013."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 14 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">14</span>
-
-                <img
-                  src="./IMG_3129_compressed_2.jpeg"
-                  alt="Costume africain 14 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 14</h3>
-
-                <p>
-                  Une silhouette pensée pour impressionner.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2014."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 15 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">15</span>
-
-                <img
-                  src="./IMG_3133_compressed.jpeg"
-                  alt="Costume africain 15 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 15</h3>
-
-                <p>
-                  Une création élégante pour les moments importants.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2015."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 16 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">16</span>
-
-                <img
-                  src="./IMG_3145_compressed_3.jpeg"
-                  alt="Costume africain 16 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 16</h3>
-
-                <p>
-                  L'élégance AR NIANTO dans une nouvelle expression.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2016."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-            <!-- 17 -->
-
-            <article class="costume reveal">
-
-              <div class="costume-image">
-
-                <span class="costume-number">17</span>
-
-                <img
-                  src="./IMG_3156_compressed.jpeg"
-                  alt="Costume africain 17 AR NIANTO"
-                  loading="lazy"
-                >
-
-              </div>
-
-              <div class="costume-info">
-
-                <h3>Costume africain 17</h3>
-
-                <p>
-                  Une dernière signature pour compléter la collection.
-                </p>
-
-                <a
-                  class="btn-whatsapp"
-                  href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20suis%20int%C3%A9ress%C3%A9%20par%20le%20Costume%20africain%2017."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commander sur WhatsApp
-                </a>
-
-              </div>
-
-            </article>
-
-          </div>
-
-        </div>
-
-        <div class="collection-bottom">
-          AR NIANTO • Dakar • Sénégal
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- À DÉCOUVRIR -->
-
-    <section
-      class="section"
-      id="special"
-    >
-
-      <div class="container">
-
-        <div class="section-label reveal">
-          04 — À découvrir
-        </div>
-
-        <div class="special-layout">
-
-          <div class="special-image reveal">
-
-            <img
-              src="./IMG_3105_compressed.jpeg"
-              alt="Collection AR NIANTO"
-              loading="lazy"
-            >
-
-          </div>
-
-          <div class="special-content reveal">
-
-            <h3>
-              Chaque détail
-              <span>compte.</span>
-            </h3>
-
-            <p>
-              Chez AR NIANTO, nous croyons qu'un vêtement
-              ne doit pas seulement être beau.
-              Il doit raconter quelque chose sur celui
-              qui le porte.
-            </p>
-
-            <ul class="special-list">
-
-              <li>
-                <span>01</span>
-                Élégance contemporaine
-                <span>→</span>
-              </li>
-
-              <li>
-                <span>02</span>
-                Inspiration africaine
-                <span>→</span>
-              </li>
-
-              <li>
-                <span>03</span>
-                Finitions soignées
-                <span>→</span>
-              </li>
-
-              <li>
-                <span>04</span>
-                Identité unique
-                <span>→</span>
-              </li>
-
-            </ul>
-
-          </div>
+          </p>
 
         </div>
 
@@ -2766,7 +2266,10 @@
 
     </section>
 
-    <!-- EXPÉRIENCE -->
+
+    <!-- =====================================
+         EXPERIENCE
+    ===================================== -->
 
     <section
       class="section experience"
@@ -2775,72 +2278,96 @@
 
       <div class="container">
 
-        <div class="section-label reveal">
+        <div class="section-label">
           05 — L'expérience
         </div>
 
-        <h2 class="section-title reveal">
-          Plus qu'un vêtement.
-          Une expérience.
+
+        <h2 class="section-title">
+
+          Pensé pour
+
+          <span>
+            marquer.
+          </span>
+
         </h2>
 
-        <p class="section-intro reveal">
-          Notre objectif est de vous accompagner
-          vers un style qui vous ressemble.
-        </p>
 
         <div class="experience-grid">
 
-          <article class="experience-card reveal">
 
-            <div class="experience-card-number">
+          <div class="experience-item">
+
+            <div class="experience-num">
               01
             </div>
 
             <h3>
-              Choisissez
+              Style
             </h3>
 
             <p>
-              Parcourez notre collection et trouvez
-              le modèle qui correspond à votre style.
+              Une direction visuelle contemporaine,
+              élégante et reconnaissable.
             </p>
 
-          </article>
+          </div>
 
-          <article class="experience-card reveal">
 
-            <div class="experience-card-number">
+          <div class="experience-item">
+
+            <div class="experience-num">
               02
             </div>
 
             <h3>
-              Contactez-nous
+              Identité
             </h3>
 
             <p>
-              Un simple clic sur WhatsApp vous permet
-              de nous envoyer directement votre demande.
+              Des créations inspirées par la richesse
+              et la diversité de l'élégance africaine.
             </p>
 
-          </article>
+          </div>
 
-          <article class="experience-card reveal">
 
-            <div class="experience-card-number">
+          <div class="experience-item">
+
+            <div class="experience-num">
               03
             </div>
 
             <h3>
-              Affirmez-vous
+              Détail
             </h3>
 
             <p>
-              Portez votre pièce et laissez votre style
-              parler pour vous.
+              L'attention portée aux détails donne
+              à chaque pièce son caractère.
             </p>
 
-          </article>
+          </div>
+
+
+          <div class="experience-item">
+
+            <div class="experience-num">
+              04
+            </div>
+
+            <h3>
+              Vision
+            </h3>
+
+            <p>
+              Construire une marque moderne,
+              durable et profondément liée à son identité.
+            </p>
+
+          </div>
+
 
         </div>
 
@@ -2848,7 +2375,10 @@
 
     </section>
 
-    <!-- CONTACT -->
+
+    <!-- =====================================
+         CONTACT
+    ===================================== -->
 
     <section
       class="section contact"
@@ -2857,45 +2387,52 @@
 
       <div class="container">
 
-        <div class="section-label reveal">
+        <div class="section-label">
           06 — Contact
         </div>
 
-        <div class="contact-box reveal">
 
-          <div>
+        <h2 class="section-title">
 
-            <h3>
-              Prêt à affirmer
-              votre style ?
-            </h3>
+          Parlons de
 
-            <p>
-              Une question, un modèle qui vous plaît
-              ou une commande ? Écrivez-nous directement.
-            </p>
+          <span>
+            votre style.
+          </span>
 
-            <div class="contact-info">
+        </h2>
 
-              <strong>AR NIANTO</strong><br>
 
-              Dakar • Sénégal<br>
+        <p class="contact-text">
 
-              WhatsApp :
-              +221 70 892 74 00
+          Une question, une création qui vous plaît
+          ou envie de découvrir AR NIANTO ?
 
-            </div>
+          Contactez-nous directement sur WhatsApp.
 
-          </div>
+        </p>
+
+
+        <div class="contact-buttons">
+
 
           <a
-            class="btn btn-primary"
-            href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20souhaite%20avoir%20plus%20d%27informations%20sur%20vos%20costumes."
+            href="https://wa.me/221708927400"
             target="_blank"
             rel="noopener noreferrer"
+            class="btn btn-primary"
           >
-            Nous contacter sur WhatsApp
+            Commander sur WhatsApp
           </a>
+
+
+          <a
+            href="#collection"
+            class="btn btn-outline"
+          >
+            Voir la collection
+          </a>
+
 
         </div>
 
@@ -2905,258 +2442,316 @@
 
   </main>
 
-  <!-- =====================================================
-       WHATSAPP FLOTTANT
-  ===================================================== -->
+
+  <!-- =====================================
+       LIGHTBOX
+  ===================================== -->
+
+  <div
+    class="lightbox"
+    id="lightbox"
+    aria-hidden="true"
+  >
+
+    <button
+      class="lightbox-close"
+      id="lightboxClose"
+      aria-label="Fermer"
+    >
+      ×
+    </button>
+
+
+    <img
+      class="lightbox-image"
+      id="lightboxImage"
+      src=""
+      alt="AR NIANTO"
+    >
+
+  </div>
+
+
+  <!-- =====================================
+       WHATSAPP
+  ===================================== -->
 
   <a
-    class="floating-whatsapp"
-    href="https://wa.me/221708927400?text=Bonjour%20AR%20NIANTO%2C%20je%20souhaite%20avoir%20plus%20d%27informations."
+    class="whatsapp"
+    href="https://wa.me/221708927400"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Contacter AR NIANTO sur WhatsApp"
-    title="Contacter AR NIANTO"
   >
-    ✆
+
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path d="M20.5 3.5A11.9 11.9 0 0 0 12.03 0C5.45 0 .1 5.34.1 11.92c0 2.1.55 4.15 1.59 5.96L0 24l6.27-1.64a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.92-5.35 11.92-11.92 0-3.19-1.24-6.19-3.46-8.41ZM12.04 21.85h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.97.99-3.63-.23-.37a9.9 9.9 0 0 1-1.52-5.3C2.15 6.46 6.58 2.03 12.03 2.03c2.64 0 5.12 1.03 6.98 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.43 9.89-9.86 9.93Zm5.42-7.41c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.74-1.64-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.71.23 1.35.2 1.86.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"/>
+
+    </svg>
+
   </a>
 
-  <!-- =====================================================
+
+  <!-- =====================================
        FOOTER
-  ===================================================== -->
+  ===================================== -->
 
   <footer>
 
-    <div class="container">
+    <div class="footer-inner">
 
-      <div class="footer-inner">
+      <p>
 
-        <div class="footer-brand">
+        © 2026
+        <span class="footer-name">
           AR NIANTO
-        </div>
+        </span>
 
-        <div class="footer-copy">
-          © 2026 AR NIANTO — Tous droits réservés.
-        </div>
+      </p>
 
-        <div class="footer-location">
-          Dakar • Sénégal
-        </div>
 
-      </div>
+      <p>
+        Viens habiller.
+      </p>
 
     </div>
 
   </footer>
 
-  <!-- =====================================================
+
+  <!-- =====================================
        JAVASCRIPT
-  ===================================================== -->
+  ===================================== -->
 
   <script>
 
-    /* HEADER */
+    /* =====================================
+       HEADER
+    ===================================== */
 
     const header =
       document.getElementById("header");
 
-    function handleHeader() {
-
-      if (window.scrollY > 40) {
-
-        header.classList.add("scrolled");
-
-      } else {
-
-        header.classList.remove("scrolled");
-
-      }
-
-    }
-
     window.addEventListener(
       "scroll",
-      handleHeader
+      () => {
+
+        if (window.scrollY > 30) {
+
+          header.classList.add("scrolled");
+
+        } else {
+
+          header.classList.remove("scrolled");
+
+        }
+
+      }
     );
 
-    handleHeader();
 
+    /* =====================================
+       MOBILE MENU
+    ===================================== */
 
-    /* MENU MOBILE */
-
-    const menuBtn =
-      document.getElementById("menuBtn");
+    const menuButton =
+      document.getElementById("menuButton");
 
     const mobileMenu =
       document.getElementById("mobileMenu");
 
-    menuBtn.addEventListener(
+
+    function toggleMenu() {
+
+      const isOpen =
+        mobileMenu.classList.toggle("active");
+
+
+      menuButton.classList.toggle(
+        "active",
+        isOpen
+      );
+
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+
+
+      document.body.classList.toggle(
+        "menu-open",
+        isOpen
+      );
+
+    }
+
+
+    menuButton.addEventListener(
       "click",
-      function () {
-
-        menuBtn.classList.toggle("active");
-
-        mobileMenu.classList.toggle("open");
-
-      }
+      toggleMenu
     );
 
 
-    /* FERMER MENU APRÈS CLIC */
+    /* Fermer après clic */
 
-    const mobileLinks =
-      mobileMenu.querySelectorAll("a");
-
-    mobileLinks.forEach(
-      function (link) {
+    document
+      .querySelectorAll(".mobile-links a")
+      .forEach(link => {
 
         link.addEventListener(
           "click",
-          function () {
+          () => {
 
-            menuBtn.classList.remove("active");
+            mobileMenu.classList.remove(
+              "active"
+            );
 
-            mobileMenu.classList.remove("open");
+            menuButton.classList.remove(
+              "active"
+            );
+
+            menuButton.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+            document.body.classList.remove(
+              "menu-open"
+            );
 
           }
         );
 
-      }
-    );
+      });
 
 
-    /* ESCAPE */
+    /* =====================================
+       ESCAPE
+    ===================================== */
 
     document.addEventListener(
       "keydown",
-      function (event) {
+      event => {
 
         if (event.key === "Escape") {
 
-          menuBtn.classList.remove("active");
-
-          mobileMenu.classList.remove("open");
-
-        }
-
-      }
-    );
-
-
-    /* ANIMATIONS AU SCROLL */
-
-    const revealElements =
-      document.querySelectorAll(".reveal");
-
-    const revealObserver =
-      new IntersectionObserver(
-
-        function (entries, observer) {
-
-          entries.forEach(
-            function (entry) {
-
-              if (entry.isIntersecting) {
-
-                entry.target.classList.add("visible");
-
-                observer.unobserve(
-                  entry.target
-                );
-
-              }
-
-            }
+          mobileMenu.classList.remove(
+            "active"
           );
 
-        },
+          menuButton.classList.remove(
+            "active"
+          );
 
-        {
-          threshold: 0.10
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+          closeLightbox();
+
         }
 
-      );
-
-
-    revealElements.forEach(
-      function (element) {
-
-        revealObserver.observe(element);
-
       }
     );
 
 
-    /* HERO APRÈS INTRO */
+    /* =====================================
+       LIGHTBOX GALERIE
+    ===================================== */
 
-    window.addEventListener(
-      "load",
-      function () {
+    const lightbox =
+      document.getElementById("lightbox");
 
-        setTimeout(
-          function () {
+    const lightboxImage =
+      document.getElementById("lightboxImage");
 
-            document
-              .querySelectorAll(".hero .reveal")
-              .forEach(
-                function (element) {
+    const lightboxClose =
+      document.getElementById("lightboxClose");
 
-                  element.classList.add(
-                    "visible"
-                  );
-
-                }
-              );
-
-          },
-          900
-        );
-
-      }
-    );
-
-
-    /* SMOOTH SCROLL */
 
     document
-      .querySelectorAll('a[href^="#"]')
-      .forEach(
-        function (anchor) {
+      .querySelectorAll(".gallery-item img")
+      .forEach(image => {
 
-          anchor.addEventListener(
-            "click",
-            function (event) {
+        image.addEventListener(
+          "click",
+          () => {
 
-              const targetId =
-                this.getAttribute("href");
+            lightboxImage.src =
+              image.src;
 
-              if (
-                targetId &&
-                targetId !== "#"
-              ) {
+            lightboxImage.alt =
+              image.alt;
 
-                const target =
-                  document.querySelector(
-                    targetId
-                  );
+            lightbox.classList.add(
+              "active"
+            );
 
-                if (target) {
+            lightbox.setAttribute(
+              "aria-hidden",
+              "false"
+            );
 
-                  event.preventDefault();
+            document.body.classList.add(
+              "menu-open"
+            );
 
-                  target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                  });
+          }
+        );
 
-                }
+      });
 
-              }
 
-            }
-          );
+    function closeLightbox() {
+
+      lightbox.classList.remove(
+        "active"
+      );
+
+      lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      lightboxImage.src = "";
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+
+    }
+
+
+    lightboxClose.addEventListener(
+      "click",
+      closeLightbox
+    );
+
+
+    lightbox.addEventListener(
+      "click",
+      event => {
+
+        if (
+          event.target === lightbox
+        ) {
+
+          closeLightbox();
 
         }
-      );
+
+      }
+    );
 
   </script>
 
